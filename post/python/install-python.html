@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python安装配置 | M-78的开发小站</title>
+  <meta name="author" content="Niphor">
+  
+  <meta name="description" content="Niphor的开发文档收集贴，Blog不用了，放这吧...万年更一次...">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Python安装配置"/>
+  <meta property="og:site_name" content="M-78的开发小站"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="M-78的开发小站" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">M-78的开发小站</a></h1>
+  <h2><a href="/">凹凸曼就是这么造出来的</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-01-10T07:58:06.000Z"><a href="/post/python/install-python.html">2014-01-10</a></time>
+      
+      
+  
+    <h1 class="title">Python安装配置</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Python-5b89-88c5-">Python安装</h2>
+<p>Python 中国区下载地址：<a href="http://python.org/getit/" target="_blank">http://python.org/getit/</a><br>Package库<a href="https://pypi.python.org/pypi" target="_blank">https://pypi.python.org/pypi</a></p>
+<blockquote>
+<p>在Windows上面使用<code>安装给所有用户</code>选项会使<code>pythonXX.dll</code>复制到<code>Windos/system32</code>下面。<br>这时使用virtualenv生成环境后，需要把<code>pythonXX.dll</code>拷到<code>env/Scripts</code>下面，不然在没Python的机子上可能就可能会报<code>&quot;找不到pythonXX.dll&quot;</code>的错误。</p>
+</blockquote>
+<p>安装完毕将<code>C:\python27;C:\python27\Scripts</code>添加到Path中</p>
+<blockquote>
+<p>添加后，如果使用virtualenv有可能会出现python串掉的问题。</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="-5b89-88c5-setuptools">安装setuptools</h2>
+<p><a href="https://pypi.python.org/pypi/setuptools" title="setuptools" target="_blank">官网</a>推荐的方式是下载py脚本安装</p>
+<blockquote>
+<p>1.0开始的Windows平台已经没有easy_install的安装包了</p>
+</blockquote>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="variable">$ </span>wget <span class="symbol">https:</span>/<span class="regexp">/bitbucket.org/pypa</span><span class="regexp">/setuptools/raw</span><span class="regexp">/bootstrap/ez</span>_setup.py
+<span class="variable">$ </span>[sudo] python ez_setup.py
+
+<span class="comment">#指定安装路径</span>
+setuptools-x.x<span class="variable">$ </span>python setup.py --prefix=<span class="regexp">/opt/setuptools</span>
+
+<span class="comment">#安装至本地用户</span>
+python ez_setup.py --user
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>Windows下如果报</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>File "C:\Python27\lib\mimetypes.py", line <span class="number">358</span>, <span class="flow">in</span> init
+    db.read_windows_registry()
+</pre></td></tr></table></figure>
+
+<p>打开注册表，展开HKEY_CLASSES_ROOT找到中文节点，备份下，删掉就好了</p>
+</blockquote>
+<h2 id="-5b89-88c5-pip">安装pip</h2>
+<p><code>pip</code>需要<code>setuptools</code>支持 <a href="https://pypi.python.org/pypi/pip" title="Pip" target="_blank">官网</a>,<a href="http://www.pip-installer.org/" title="pip-installer" target="_blank">pip-installer 官网</a></p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="comment">#先升级setuptools</span>
+<span class="variable">$ </span>pip install --upgrade setuptools
+<span class="comment">#get_pip.py 脚本：</span>
+<span class="variable">$ </span>wget <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/pypa</span><span class="regexp">/pip/master</span><span class="regexp">/contrib/get</span>-pip.py
+<span class="variable">$ </span>[sudo] python get-pip.py <span class="comment">#可能需要管理员权限</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>Windows上面安装完需要将<code>C:\Python2x\Scripts</code>加入系统路径中</p>
+</blockquote>
+<p>Linux 上面可以简单的使用包管理器</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="variable">#On</span> Debian <span class="literal">and</span> Ubuntu:
+$ sudo apt<span class="attribute">-get</span> install python<span class="attribute">-pip</span>
+<span class="variable">#On</span> Fedora:
+$ sudo yum install python<span class="attribute">-pip</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>安装<code>python-pip</code>一般也会直接安装好<code>python-setuptools</code></p>
+</blockquote>
+<h3 id="-4f7f-7528-pip">使用pip</h3>
+<p>安装一个包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>$ [sudo] pip install SomePackage==<span class="number">1.0</span>
+
+#如
+$ [sudo] pip install Markdown
+#安装特定版本的<span class="package"><span class="keyword">package</span>
+#通过使用==, &gt;=, &lt;=, &gt;, &lt;来指定一个版本号。
+<span class="title">$</span> [<span class="title">sudo</span>] <span class="title">pip</span> <span class="title">install</span> '<span class="title">Markdown</span>&lt;2.0'
+<span class="title">$</span> [<span class="title">sudo</span>] <span class="title">pip</span> <span class="title">install</span> '<span class="title">Markdown</span>&gt;2.0,&lt;2.0.3'</span>
+</pre></td></tr></table></figure>
+
+<p>列出安装的packages</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip freeze
+</pre></td></tr></table></figure>
+
+<p>显示包安装的文件</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">show</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">files</span> <span class="comment">SomePackage</span>
+</pre></td></tr></table></figure>
+
+<p>显示过期的包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">list</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">outdated</span>
+</pre></td></tr></table></figure>
+
+<p>升级包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="comment">#升级包到当前最新的版本，可以使用</span><span class="literal">-</span><span class="comment">U</span> <span class="comment">或者</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span>
+<span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span> <span class="comment">SomePackage</span>
+</pre></td></tr></table></figure>
+
+<p>卸载一个包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip uninstall SomePackage
+</pre></td></tr></table></figure>
+
+<p>查询包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip search <span class="string">"Markdown"</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>包安装后的py文件路径：/usr/local/lib/python2.7/dist-packages  </p>
+</blockquote>
+<h3 id="-5b89-88c5-virtualenv">安装virtualenv</h3>
+<p><a href="https://pypi.python.org/pypi/virtualenv" title="virtualenv" target="_blank">官网</a></p>
+<p>通过pip全局安装(如果pip&gt;1.3或者全局安装的话)</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip install virtualenv
+</pre></td></tr></table></figure>
+
+<p>安装Dev版本</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">$ </span>[sudo] pip install <span class="symbol">https:</span>/<span class="regexp">/github.com/pypa</span><span class="regexp">/virtualenv/tarball</span><span class="regexp">/develop</span>
+</pre></td></tr></table></figure>
+
+<p>通过代码安装</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>$ curl -O https://pypi<span class="preprocessor">.python</span><span class="preprocessor">.org</span>/packages/source/v/virtualenv/virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span><span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
+$ tar xvfz virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span><span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
+$ cd virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span>
+<span class="preprocessor">#安装到全局</span>
+$ [sudo] python setup<span class="preprocessor">.py</span> install
+<span class="preprocessor"># 或 当前用户直接使用</span>
+$ python virtualenv<span class="preprocessor">.py</span> myVE
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果本地没有可用的<code>pip/setuptools/virtualenv</code> 发行包则<code>virtualenv.py</code>是不能用的。因为有一个和<code>virtualenv.py</code>在一起的有个完整的pip和setuptools的环境发行包的<code>virtualenv_support</code>文件夹，所以上面所有的操作都是支持的</p>
+</blockquote>
+<h3 id="-4f7f-7528-virtualenv">使用virtualenv</h3>
+<p>基础用法</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">$ </span>virtualenv <span class="constant">ENV</span> <span class="comment">#ENV为文件夹路径</span>
+</pre></td></tr></table></figure>
+
+<p>创建虚拟环境，分别会建立</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>ENV/<span class="keyword">lib</span>/pythonX.X/site-packages <span class="preprocessor">#libraries文件夹</span>
+ENV/bin/python <span class="preprocessor">#python编译器</span>
+ENV/bin/pip <span class="preprocessor">#当前环境的pip，可用来安装包</span>
+</pre></td></tr></table></figure>
+
+<p>访问 <a href="https://pypi.python.org/pypi/virtualenv#environment-variables-and-configuration-files" title="environment-variables-and-configuration-files" target="_blank">#environment-variables-and-configuration-files</a>查看相关配置</p>
+<blockquote>
+<p><code>ENV\Scripts\deactivate.bat</code> 是<code>Unix</code>的换行符,<code>Windows</code>下面手动转换一下.</p>
+<p>使用<code>%~dp0</code>替换<code>ENV\Scripts\(de)activate.bat</code> 里的路径可能可以实现到处带着走</p>
+</blockquote>
+<p>如果使用<code>PowerShell</code>，则必须先设置<code>PowerShell</code>的权限才能运行</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre>#管理员方式运行PowerShell执行
+PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy AllSigned
+
+#选A以便子线程能接受输入(这会将证书加到可信证书列表里)
+PS C:\&gt; .\foo\scripts\activate
+<span class="flow">Do</span> you want to run software from this untrusted publisher?
+File C:\foo\scripts\activate.ps1 is published by E=jannis@leidel.info,
+CN=Jannis Leidel, L=Berlin, S=Berlin, C=DE, Description=<span class="number">581796</span>-Gh7xfJxkxQSIO4E0
+and is <span class="flow">not</span> trusted on your system. Only run scripts from trusted publishers.
+[V] Never run  [D] <span class="flow">Do</span> <span class="flow">not</span> run  [R] Run once  [A] Always run  [?] Help
+(default is "D"):A 
+(foo) PS C:\&gt;
+
+#或者干脆删掉签名，直接运行。
+PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy <span class="comment">RemoteSigned</span>
+</pre></td></tr></table></figure>
+
+<p>参阅：<br><a href="http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html" target="_blank">http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/python/">Python</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/python/">python</a>
+  </div>
+
+        
+
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "24"
+        },
+        "share": {}
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89343201.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"niphor-dev"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:dev.m-78.net">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/server/">服务器</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/cacti/">cacti</a><small>1</small></li>
+  
+    <li><a href="/tags/mariadb/">mariadb</a><small>1</small></li>
+  
+    <li><a href="/tags/memcached/">memcached</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Niphor
+  
+</div>
+<div class="clearfix"></div></footer>
+  <!--[if lt IE 9]>
+<script src="//lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<![endif]-->
+<script src="http://cdn.staticfile.org/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" type="text/css">
+<script src="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

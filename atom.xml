@@ -1,0 +1,2017 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[M-78的开发小站]]></title>
+  <subtitle><![CDATA[凹凸曼就是这么造出来的]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://dev.m-78.net/"/>
+  <updated>2014-01-13T08:07:40.145Z</updated>
+  <id>http://dev.m-78.net/</id>
+  
+  <author>
+    <name><![CDATA[Niphor]]></name>
+    <email><![CDATA[Niphor@Gmail.COM]]></email>
+  </author>
+  
+  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Cacti安装]]></title>
+    <link href="http://dev.m-78.net/post/server/install-cacti.html"/>
+    <id>http://dev.m-78.net/post/server/install-cacti.html</id>
+    <published>2014-01-13T04:16:08.000Z</published>
+    <updated>2014-01-13T07:34:16.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="-524d-671f-51c6-5907-">前期准备</h2>
+<p>这里主要说明PHP、Apache的配置，默认认为你已经安装好MySQL、PHP、Apache或其它代替工具，并做好了相应的基本配置，已可以用于开发或生产环境。如果没有请参考其它教程配置PHP、Apache、MySQL，这里不再重复了。<br><a id="more"></a></p>
+<h3 id="PHP-914d-7f6e-">PHP配置</h3>
+<h4 id="-914d-7f6e-PHPRC">配置PHPRC</h4>
+<p>指向你php安装目录</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-phprc.png" alt="设置PHPRC"></p>
+<h4 id="-914d-7f6e-MIBDIRS">配置MIBDIRS</h4>
+<p>指向php目录下面的extras的mibs文件夹</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-mibdirs.png" alt="设置MIBDIRS"></p>
+<blockquote>
+<p>有的PHP版本安装完之后并不会包含这个文件夹，这时候找个有这个目录的php，拷贝过来即可</p>
+</blockquote>
+<h4 id="-4fee-6539-Path-53d8-91cf-ff0c-6dfb-52a0-PHP-8def-5f84-28-975e-5fc5-987b-29-">修改Path变量，添加PHP路径(非必须)</h4>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-php-path.png" alt="设置PATH"></p>
+<h4 id="-4fee-6539-php-ini">修改php.ini</h4>
+<p>修改/配置如下参数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="title">fastcgi</span>.impersonate = <span class="number">1</span>
+<span class="title">register_argc_argv</span> = <span class="type">On</span>
+<span class="title">safe_mode</span> = <span class="type">Off</span>
+<span class="title">cgi</span>.fix_pathinfo = <span class="number">1</span>
+<span class="title">cgi</span>.force_redirect = <span class="number">0</span>
+<span class="title">upload_tmp_dir</span> = <span class="string">"tmp文件夹路径"</span>
+<span class="title">session</span>.save_path=<span class="string">"Session文件夹路径"</span>
+
+//根据主机实际情况调整
+<span class="title">max_execution_time</span> = <span class="number">60</span> ;
+<span class="title">max_input_time</span> = <span class="number">120</span> ;
+<span class="title">memory_limit</span> = <span class="number">128</span>M ;
+</pre></td></tr></table></figure>
+
+<h4 id="-4fee-6539-6743-9650-">修改权限</h4>
+<p>给计划任务执行账户 修改<code>php目录\extras\mibs\</code>文件夹的权限</p>
+<p>如果使用IIS：<br>修改<code>tmp文件夹路径</code>和<code>Session文件夹路径</code>的NTFS权限，给<code>IUSR_</code>和<code>IIS_WPG</code>用户修改此文件夹内文件的权限</p>
+<h3 id="Apache-914d-7f6e-">Apache配置</h3>
+<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>#确保已开启以下模块的使用
+extension=php_mysql.dll
+extension=php_snmp.dll
+extension=php_sockets.dll
+</pre></td></tr></table></figure>
+
+<h3 id="-8f6f-4ef6-4e0b-8f7d-">软件下载</h3>
+<ul>
+<li>Cacti主程序<br>  <a href="http://www.cacti.net/download_cacti.php" target="_blank">http://www.cacti.net/download_cacti.php</a><br>  下载Windows in ZIP format包</li>
+<li>Spine 程序<br>  <a href="http://www.cacti.net/spine_download.php" target="_blank">http://www.cacti.net/spine_download.php</a><br>  下载Spine Binaries for Windows包</li>
+<li>RRDtool程序<br>  <a href="http://oss.oetiker.ch/rrdtool/download.en.html" target="_blank">http://oss.oetiker.ch/rrdtool/download.en.html</a><br>  下载Cygwin Windows包</li>
+<li>Net-SNMP程序<br>  <a href="http://www.net-snmp.org/download.html" target="_blank">http://www.net-snmp.org/download.html</a><br>  下载Binary 包</li>
+<li>ActivePerl程序<br>  <a href="http://www.activestate.com/activeperl/downloads" target="_blank">http://www.activestate.com/activeperl/downloads</a><br>  下载对应平台的安装包</li>
+</ul>
+<blockquote>
+<p>Spine前身为Cactid,用来轮询的，默认Cacti使用CMD.php，最小只能5分钟，效率较低，换成Spine之后可以1分钟轮询一次。</p>
+<p>RRDtool最新的为1.4.X版本的，但是默认编译好的Windows平台的只有1.2.X版本，如果使用最新的版本需要自行安装Cygwin（ <a href="http://www.cygwin.com/" target="_blank">http://www.cygwin.com/</a> ）编译新版本的源码。1.2.X编译好的版本在Windows下面不能支持中文。</p>
+<p>由于Cacti自带某些perl脚本来查询，所以需要安装ActivePerl，但若你确定自己不会用到perl脚本来查询，则可以不安装。</p>
+</blockquote>
+<h2 id="-8f6f-4ef6-5b89-88c5-">软件安装</h2>
+<h3 id="Spine">Spine</h3>
+<p>Spine为免安装工具，解压到你想要放置的地方( <em>如：c:\spine</em> )</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-spine.png" alt="放置Spine程序文件"></p>
+<p>复制一份<code>spine.conf.dist</code>，并改名为<code>spine.conf</code>并用编辑器打开，对cacti所使用的数据库进行配置</p>
+<blockquote>
+<p>Windows平台MySQL的地址需要使用IP地址！</p>
+</blockquote>
+<h3 id="RRDtool">RRDtool</h3>
+<p>RRDtool也是绿色软件，解压到你想放置的地方( <em>如：c:\rrdtool</em> )</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-rrdtool.png" alt="放置RRDtool程序文件"></p>
+<h3 id="Net-SNMP">Net-SNMP</h3>
+<p>Net-SNMP为安装程序，直接下一步，下一步安装到你想放置的地方( <em>如：c:\net-snmp</em> )<br><em>我安装在默认位置c:\usr下</em></p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-net-snmp.png" alt="安装Net-SNMP程序"></p>
+<h3 id="ActivePerl">ActivePerl</h3>
+<p>ActivePerl直接默认安装即可</p>
+<blockquote>
+<p>安装完之后确认系统变量中已经包含了perl，如果没有则自己添加一下。<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-perl-path.png" alt="确认perl在PATH里"></p>
+</blockquote>
+<h3 id="Cacti">Cacti</h3>
+<p>Cacti 主程序为PHP的WebApp,解压到Apache或代替软件的网站目录下( <em>如：D:\wamp\htdocs</em> )，或者自行建立虚拟主机，或者虚拟目录，然后解压进去。</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti.png" alt="放置Cacti程序文件"></p>
+<h4 id="MySQL-6570-636e-5e93-914d-7f6e-">MySQL数据库配置</h4>
+<p>这里创建的数据库即为<code>Spine</code>和<code>Cacti</code>使用的数据库</p>
+<blockquote>
+<p>cacti.sql在cacti的根目录下面，数据库名称和数据库用户可以自己定义。</p>
+</blockquote>
+<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>//创建cacti数据库
+mysql&gt; <span class="operator"><span class="keyword">create</span> database cacti;</span>
+//创建cactiuser用户并付给cacti表权限
+mysql&gt; <span class="operator"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">on</span> cacti.* <span class="keyword">to</span> cactiuser@localhost identified <span class="keyword">by</span> “cactiuser”;</span>
+mysql&gt;flush privileges;
+//导入cacti数据库sql
+mysql&gt;use cacti
+mysql&gt;source d:/wamp/htdocs/cacti/cacti.sql
+</pre></td></tr></table></figure>
+
+<p>打开Cacti目录下的<code>include\config.php</code>,配置数据库地址</p>
+<figure class="highlight lang-php"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="variable">$database_type</span> = <span class="string">"mysql"</span>;
+<span class="variable">$database_default</span> = <span class="string">"cacti"</span>;
+<span class="variable">$database_hostname</span> = <span class="string">"127.0.0.1"</span>;
+<span class="variable">$database_username</span> = <span class="string">"cactiuser"</span>;
+<span class="variable">$database_password</span> = <span class="string">"cactiuser"</span>;
+<span class="variable">$database_port</span> = <span class="string">"3306"</span>;
+<span class="variable">$database_ssl</span> = <span class="keyword">false</span>;
+</pre></td></tr></table></figure>
+
+<h4 id="-5b89-88c5-Cacti">安装Cacti</h4>
+<ol>
+<li>在浏览器中打开cacti(<a href="http://your-url/install/index.php" target="_blank">http://your-url/install/index.php</a>)<br><em>比如我放在了<a href="http://localhost/cacti/install/index.php" target="_blank">http://localhost/cacti/install/index.php</a></em><br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-1.png" alt="安装Cacti 第一步"><br>点击 <code>Next&gt;&gt;</code> 进入下一步</li>
+<li><p>选择全新安装</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-2.png" alt="安装Cacti 第二步"><br>点击 <code>Next&gt;&gt;</code> 进入下一步</p>
+</li>
+<li>配置路径<br>如图所示配置好各个程序所在的路径<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-3.png" alt="安装Cacti 第三步"><br>点击 <code>Finish</code> 完成</li>
+<li>重置密码  <ol>
+<li>完成后转入登陆窗口，填写用户名密码 admin/admin 进行登陆<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-4.png" alt="安装Cacti 第四步(1)">  </li>
+<li>填写新密码<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-5.png" alt="安装Cacti 第四步(2)"><blockquote>
+<p>Cacti不提供密码找回功能，所以修改之后的密码一定要牢记！</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
+<p>至此Cacti安装完成。</p>
+<h4 id="-8bbe-7f6e-Cacti">设置Cacti</h4>
+<h5 id="-8bbe-7f6e-8def-5f84-">设置路径</h5>
+<p>在Paths选项卡中，如图填入spine和其它组件的绝对路径</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-cacti-set-abspath.png" alt="设置abspath"></p>
+<h5 id="-8bbe-7f6e-Poller">设置Poller</h5>
+<p>因为我们安装了<code>Spine</code>，将<code>Poller Type</code>选为<code>spine</code>,并将<code>Poller Interval</code>和<code>Cron interval</code>都设置为<code>Every Minute</code>。</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-cacti-set-poller.png" alt="设置Poller"></p>
+<blockquote>
+<p><code>Poller Interval</code>和<code>Cron interval</code>这是指查询间隔。<br>因为使用了spine所以可以设置为1分钟一次。<br>如果使用默认的CMD.php， <strong>请不要低于5分钟</strong> 。</p>
+</blockquote>
+<p>同时修改左侧<code>Data Templates</code>选项卡里模板的<code>step</code>( <em>采样时间</em> )为 <strong>60</strong> ，<code>heartbeat</code>( <em>超时</em> )为 <strong>120</strong></p>
+<blockquote>
+<p>如果模板太多，可以简单用SQL命令修改：  </p>
+<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="operator"><span class="keyword">UPDATE</span> data_template_data <span class="keyword">SET</span> rrd_step=<span class="number">60</span> <span class="keyword">WHERE</span> rrd_step=<span class="number">300</span>;</span>
+<span class="operator"><span class="keyword">UPDATE</span> data_template_rrd <span class="keyword">SET</span> rrd_heartbeat=<span class="number">120</span> <span class="keyword">WHERE</span> rrd_heartbeat=<span class="number">600</span>;</span>
+</pre></td></tr></table></figure>
+
+</blockquote>
+<p>修改Data Templates 为需要以分钟为单位收集数据的模版选上<code>Hourly (1 Minute Average)</code></p>
+<blockquote>
+<p>如果模板太多，可以简单用SQL命令修改：</p>
+<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> data_template_data_rra(<span class="string">`data_template_data_id`</span>,<span class="string">`rra_id`</span>) <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> dtdr.data_template_data_id,<span class="number">5</span> <span class="keyword">FROM</span> data_template_data_rra dtdr</span>
+</pre></td></tr></table></figure>
+
+</blockquote>
+<h2 id="-8bbe-7f6e-8ba1-5212-4efb-52a1-">设置计划任务</h2>
+<p>打开控制面板里面的计划任务，点击添加计划任务</p>
+<p>任务的运行中，填写<code>php.exe</code>所在路径并加上参数<code>–f cacti路径/poller.php</code></p>
+<p>起始目录请指定为<code>cacti</code>所在目录。</p>
+<p>修改任务的计划，使其 <strong>每天24小时每隔1分钟执行一次</strong> 。 </p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-win-task-1.png" alt="设置Windows计划任务(1)"><br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-win-task-2.png" alt="设置Windows计划任务(2)"></p>
+<h2 id="Linux-7aef-">Linux端</h2>
+<blockquote>
+<p>因为虽然是不同的系统，但是配置都差不多，所以参照Windows的配置，Linux端就写的简短些了</p>
+</blockquote>
+<h3 id="-524d-671f-51c6-5907--1">前期准备</h3>
+<h4 id="-914d-7f6e-597d-Web-73af-5883-28-PHP-ff0c-MySQL-29-ff0c-5982-6700-57fa-672c-7684-LAMP-ff1a-">配置好Web环境(PHP，MySQL)，如最基本的LAMP：</h4>
+<ul>
+<li>httpd</li>
+<li>php</li>
+<li>php-mysql</li>
+<li>php-snmp</li>
+<li>php-ldap ( <em>当使用 LDAP authentication 时需要</em> )</li>
+<li>php-xml</li>
+<li>mysql</li>
+<li>mysql-server</li>
+<li>net-snmp ( <em>根据不同的distro ，也许需要安装net-snmp-utils</em> )</li>
+<li>crond (cron, cronie or the like)</li>
+</ul>
+<blockquote>
+<p>如果要安装官方的修补补丁则还需要有以下的包：</p>
+<ul>
+<li>wget</li>
+<li>patch</li>
+</ul>
+</blockquote>
+<h4 id="-8bbe-7f6e-PHP">设置PHP</h4>
+<h5 id="-4fee-6539-php-ini-1">修改php.ini</h5>
+<p>修改/配置如下参数</p>
+<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre>fastcgi.impersonate = 1
+register_argc_argv = On
+safe_mode = Off
+cgi.fix_pathinfo = 1
+cgi.force_redirect = 0
+upload_tmp_dir = "tmp文件夹路径"
+session.save_path="Session文件夹路径"
+
+//根据主机实际情况调整
+max_execution_time = 60 ;
+max_input_time = 120 ;
+memory_limit = 128M ;
+</pre></td></tr></table></figure>
+
+<p><strong>确保已经安装了php-mysql、php-snmp、php-ldap、php-xml</strong></p>
+<blockquote>
+<p>同时由于要使用<code>php-snmp</code>，必须指定<code>MIBDIRS</code>的位置<br>搜索系统中<code>mibs</code>文件夹，并将其设置为系统变量<br>如<code>export MIBDIRS=/path/to/:/path2/to</code></p>
+</blockquote>
+<h5 id="-914d-7f6e-Apache">配置Apache</h5>
+<p>确保已开启以下模块的使用：</p>
+<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="setting">extension=<span class="value">php_mysql.dll</span></span>
+<span class="setting">extension=<span class="value">php_snmp.dll</span></span>
+<span class="setting">extension=<span class="value">php_sockets.dll</span></span>
+</pre></td></tr></table></figure>
+
+<h3 id="-8f6f-4ef6-5b89-88c5--1">软件安装</h3>
+<h4 id="Cacti-1">Cacti</h4>
+<p>推荐使用<code>apt-get install cacti</code>来安装编译好的二进制版本</p>
+<blockquote>
+<p>也可以从<a href="http://www.cacti.net/download_cacti.php" target="_blank">http://www.cacti.net/download_cacti.php</a>下载源码包，编译安装</p>
+</blockquote>
+<p>我使用自己下载安装来介绍</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="preprocessor">#解压下载的安装包</span>
+tar xzvf cacti-<span class="number">0.8</span><span class="number">.8</span>a.tar.gz
+
+<span class="preprocessor">#将解压出来的文件夹移动到apache的相应目录，如：我这直接放www下</span>
+mv ./cacti-<span class="number">0.8</span><span class="number">.8</span>a /<span class="keyword">var</span>/www/cacti
+</pre></td></tr></table></figure>
+
+<h4 id="Spine-1">Spine</h4>
+<p>从<a href="http://www.cacti.net/spine_download.php" target="_blank">http://www.cacti.net/spine_download.php</a>处下载<code>Spine Source</code>包,手动编译安装。</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="preprocessor">#解压下载的安装包</span>
+tar xzvf cacti-spine-<span class="number">0.8</span><span class="number">.8</span>a<span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
+
+<span class="preprocessor">#进入目录 编译安装</span>
+sudo ./configure
+sudo make
+sudo make install
+
+<span class="preprocessor">#拷贝配置文件到安装目录</span>
+sudo <span class="keyword">cp</span> /usr/local/spine/etc/spine<span class="preprocessor">.conf</span><span class="preprocessor">.dist</span> /usr/local/spine/bin/spine<span class="preprocessor">.conf</span>
+
+<span class="preprocessor">#修改配置文件</span>
+sudo vi /usr/local/spine/bin/spine<span class="preprocessor">.conf</span>
+</pre></td></tr></table></figure>
+
+<h4 id="RRDtool-1">RRDtool</h4>
+<p>推荐使用<code>apt-get install rrdtool</code>来安装编译好的二进制版本</p>
+<blockquote>
+<p>也可以从<a href="http://oss.oetiker.ch/rrdtool/download.en.html" target="_blank">http://oss.oetiker.ch/rrdtool/download.en.html</a>下载Debian包，编译安装</p>
+</blockquote>
+<p>设置RRDtool显示中文</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="comment">#更改系统中rrdtool为 rrdtool.local</span>
+<span class="built_in">sudo</span> mv /usr/bin/rrdtool /usr/bin/rrdtool.local
+
+<span class="comment">#创建个脚本，指定系统字符集，并将参数传给rrdtool.local</span>
+<span class="built_in">sudo</span> vim/usr/bin/rrdtool
+</pre></td></tr></table></figure>
+
+<p>填写如下内容</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="shebang">#! /bin/sh
+ </span>
+<span class="keyword">export</span> LANG=zh_CN.utf8
+/usr/bin/rrdtool.local <span class="string">"<span class="variable">$@</span>"</span>
+</pre></td></tr></table></figure>
+
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="comment">#修改权限，使其能执行</span>
+<span class="built_in">sudo</span> chmod <span class="number">755</span> /usr/bin/rrdtool
+</pre></td></tr></table></figure>
+
+<h4 id="Net-SNMP-1">Net-SNMP</h4>
+<p>推荐使用<code>apt-get install snmp snmpd</code>来安装编译好的二进制版本</p>
+<blockquote>
+<p>也可以从<a href="http://www.net-snmp.org/download.html" target="_blank">http://www.net-snmp.org/download.html</a>下载源码包，编译安装</p>
+</blockquote>
+<h3 id="Cacti-5b89-88c5-2f-914d-7f6e-">Cacti安装/配置</h3>
+<blockquote>
+<p>参见Windows下的安装配置</p>
+<p>注意：RRDtool的版本此时应该选择为1.4.X！</p>
+</blockquote>
+<p>Linux下需要设置文件夹权限</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre><span class="preprocessor">#给日志文件夹读写权限</span>
+chmod <span class="number">777</span> /<span class="keyword">var</span>/www/cacti/log
+
+<span class="preprocessor">#给rra文件夹读写权限</span>
+chmod <span class="number">777</span> /<span class="keyword">var</span>/www/cacti/rra
+
+<span class="preprocessor">#给script文件夹执行权限</span>
+chmod <span class="number">755</span> /<span class="keyword">var</span>/www/cacti/script
+
+<span class="preprocessor">#给cacti 主文件夹执行权限</span>
+chmod <span class="number">755</span> /<span class="keyword">var</span>/www/cacti
+
+<span class="preprocessor">#给Poller以root用户root用户组的权限并给他root执行的权限</span>
+chown root:root /<span class="keyword">var</span>/www/cacti
+chmod +s /<span class="keyword">var</span>/www/cacti/poller.php
+</pre></td></tr></table></figure>
+
+<h3 id="-8ba1-5212-4efb-52a1-914d-7f6e-">计划任务配置</h3>
+<p>使用<code>sudo crontab –e</code>命令编辑任务，在最后添加一行：</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="comment"># */1表示 每1分钟执行1次</span>
+*<span class="regexp">/1 *  * * * /usr</span><span class="regexp">/bin/php</span> /var/www/cacti/poller.php &gt;<span class="regexp">/dev/null</span> <span class="number">2</span>&gt;&<span class="number">1</span>
+</pre></td></tr></table></figure>
+
+<p>Ctrl+X 退出保存</p>
+<h2 id="-88ab-76d1-63a7-7aef-">被监控端</h2>
+<h3 id="Window-5e73-53f0-">Window平台</h3>
+<p>安装Information-std<br>官方下载地址：<a href="http://www.wtcs.org/informant/download.htm" target="_blank">http://www.wtcs.org/informant/download.htm</a><br>不需要做配置</p>
+<blockquote>
+<p>这是由于由于Windows自带的SNMP提供的信息不足以让Cacti监控到主机的信息，所以需要安装</p>
+</blockquote>
+<h3 id="Linux-5e73-53f0-">Linux平台</h3>
+<p>Linux平台需要开启<code>SNMP</code>服务</p>
+<p>使用<code>apt-get install snmpd</code>安装<code>snmpd</code>服务</p>
+<blockquote>
+<p>如果服务器自带的MIB不足以让Cacti获得它所需要的信息<br>使用<code>apt-get install snmp-mibs-downloader</code>下载mibs文件。</p>
+</blockquote>
+<p>如果服务器有<code>iptables</code>，需要将<code>upd</code>的<code>161端口</code>设置为<code>可以接受传入</code></p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">#iptables</span> <span class="attribute">-A</span> INPUT <span class="attribute">-i</span> eth0 <span class="attribute">-p</span> udp <span class="attribute">-s</span> 监控服务器IP –dport <span class="number">161</span> <span class="attribute">-j</span> ACCEPT
+</pre></td></tr></table></figure>
+
+<p>如果是Ubuntu平台 修改<code>/etc/default/snmpd</code></p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>snmpDOPTS<span class="subst">=</span>’<span class="attribute">-Lsd</span> <span class="attribute">-Lf</span> <span class="subst">/</span>dev<span class="subst">/</span><span class="built_in">null</span> <span class="attribute">-u</span> snmp <span class="attribute">-I</span> <span class="attribute">-smux</span> <span class="attribute">-p</span> <span class="subst">/</span><span class="built_in">var</span><span class="subst">/</span>run<span class="subst">/</span>snmpd<span class="built_in">.</span>pid <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>’
+</pre></td></tr></table></figure>
+
+<p>将之修改为：</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>snmpDOPTS<span class="subst">=</span>’<span class="attribute">-Lsd</span> <span class="attribute">-Lf</span> <span class="subst">/</span>dev<span class="subst">/</span><span class="built_in">null</span> <span class="attribute">-u</span> snmp <span class="attribute">-I</span> <span class="attribute">-smux</span> <span class="attribute">-p</span> <span class="subst">/</span><span class="built_in">var</span><span class="subst">/</span>run<span class="subst">/</span>snmpd<span class="built_in">.</span>pid’
+</pre></td></tr></table></figure>
+
+<p>然后执行<code>sudo service snmd restart</code>重启服务</p>
+<h2 id="-5176-4ed6-95ee-9898-">其他问题</h2>
+<h3 id="Net-SNMP-627e-4e0d-5230-libnetsnmp-so-7684-95ee-9898-">Net-SNMP找不到libnetsnmp.so的问题</h3>
+<p>尝试添加系统变量<code>export LD_LIBRARY_PATH=/usr/local/lib</code><br>如果问题依旧使用如下方式：</p>
+<ul>
+<li>创建一个文件<code>/etc/ld.so.conf.d/local.conf</code></li>
+<li>编辑文件，写入<code>/usr/local/lib</code>保存</li>
+<li>运行”ldconfig”</li>
+</ul>
+<h3 id="-4fee-6539-rrd-6587-4ef6-65f6-95f4-95f4-9694-">修改rrd文件时间间隔</h3>
+<blockquote>
+<p>以修改为60 即1分钟为例</p>
+</blockquote>
+<ul>
+<li><p>用<code>rrdtool dump</code>将rrd库dump成一个xml文件  </p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>sudo rrdtool dump /www/webdev/cacti/rra/<span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.rrd</span> &gt;~/<span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.xml</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>用手动编辑的方法修改xml文件中的step值</p>
+<blockquote>
+<p>如本例，将300修改成60</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+	<span class="doctype">&lt;!DOCTYPE rrd SYSTEM "http://oss.oetiker.ch/rrdtool/rrdtool.dtd"&gt;</span>
+	<span class="comment">&lt;!-- Round Robin Database Dump --&gt;</span>
+	<span class="tag">&lt;<span class="title">rrd</span>&gt;</span>
+	。。。。。。。。
+	<span class="tag">&lt;<span class="title">step</span>&gt;</span>300改成60<span class="tag">&lt;/<span class="title">step</span>&gt;</span> <span class="comment">&lt;!-- Seconds --&gt;</span>
+	。。。。。。。。。。。。
+</pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>保存文件</p>
+</li>
+<li><p>将xml文件用rrd restore存成一个新的rrd库</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>rrdtool restore <span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.xml</span> <span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.rrd</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>再用新的库文件覆盖旧的rrd库文件</p>
+</li>
+</ul>
+<p>这时刷新cacti图形已经变更过来了</p>
+<blockquote>
+<p>建议先备份就的库文件，如果没有效果，检查数据/图像模板刷新时间是否已经修改为60了。</p>
+<p>来源：<a href="http://www.mayj.net/article/linux/57.htm" target="_blank">http://www.mayj.net/article/linux/57.htm</a></p>
+</blockquote>
+<p>[TOC]</p>
+]]></content>
+    <summary type="html"><![CDATA[<h2 id="-524d-671f-51c6-5907-">前期准备</h2>
+<p>这里主要说明PHP、Apache的配置，默认认为你已经安装好MySQL、PHP、Apache或其它代替工具，并做好了相应的基本配置，已可以用于开发或生产环境。如果没有请参考其它教程配置PHP、Apache、MySQL，这里不再重复了。<br>]]></summary>
+    
+      <category term="cacti" scheme="http://dev.m-78.net/tags/cacti/"/>
+    
+      <category term="windows" scheme="http://dev.m-78.net/tags/windows/"/>
+    
+      <category term="服务器" scheme="http://dev.m-78.net/categories/server/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[XAMP简明部署]]></title>
+    <link href="http://dev.m-78.net/post/server/install-apache-php-mariadb-mc-on-windows.html"/>
+    <id>http://dev.m-78.net/post/server/install-apache-php-mariadb-mc-on-windows.html</id>
+    <published>2014-01-13T02:19:29.000Z</published>
+    <updated>2014-01-13T07:34:37.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>题目起的有点大，其实是Windows平台，Linux大家直接用包好了啊…</p>
+</blockquote>
+<p>这个组合主要是跑PHP FastCGI模式( <em>虽然在windows下面没啥用</em> ),资源紧张的用户还是走传统形式吧。</p>
+<p>这个是我实际开发时的环境，主要是为了做个笔记免得自己忘记，Nginx 其实也配上了，不过Windows下面效率不高，因为没了.htaccess文件的支持，我在的项目里也用不上，再去用它实在是自找麻烦…</p>
+<p>网上也有许多打包好的包，比如PUPW,Xampp等，不过别人的始终不是太适合自用，而且改配置什么也麻烦，所以还不如自己配置一个用用，省时省力。</p>
+<a id="more"></a>
+
+<h2 id="PHP-53ca-5176-63d2-4ef6-">PHP及其插件</h2>
+<p>Windows主要从<a href="http://windows.php.net/" target="_blank">http://windows.php.net/</a><br>PHP的一些插件存放在<a href="http://windows.php.net/downloads/pecl/" target="_blank">http://windows.php.net/downloads/pecl/</a><br>64bit的一些插件在<br><a href="http://www.mediafire.com/php-win64-extensions" target="_blank">http://www.mediafire.com/php-win64-extensions</a>  (<a href="http://www.anindya.com/" target="_blank">http://www.anindya.com/</a>)<br><a href="http://www.iis.net/downloads/microsoft/wincache-extension" target="_blank">http://www.iis.net/downloads/microsoft/wincache-extension</a></p>
+<blockquote>
+<p>PHP 5.2以后的版本中的 <em>extras</em> 文件夹不包含如 <strong>mibs</strong> 的文件，可以去xampp里面拿出来借用一下哈，当然也可以直接装Net-SNMP然后用其中的MIBS</p>
+</blockquote>
+<h3 id="php-ini-914d-7f6e-">php.ini配置</h3>
+<blockquote>
+<p>用于开发的配置，有些属于我这边特殊情况…参考下</p>
+</blockquote>
+<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+</pre></td><td class="code"><pre>;都是建议关闭的，但是开发人员层次不齐...
+short_open_tag = On
+
+;默认开发时用ALL，但是开发人员层次不齐...
+error_reporting = E_ALL & ~E_NOTICE
+
+; include路径
+include_path = ".;d:\namp\php-nts\includes"
+
+;插件路径
+extension_dir = "ext"
+
+; 动态加载模块，只在apache有用，生产上要关闭
+enable_dl = On
+
+;常用插件
+extension=php_bz2.dll
+extension=php_curl.dll
+extension=php_gd2.dll
+extension=php_gettext.dll
+extension=php_mbstring.dll
+extension=php_exif.dll
+extension=php_mysql.dll
+extension=php_sockets.dll
+
+;加载 memcached
+[memcached]
+extension=php_memcache.dll
+
+;默认时区
+date.timezone = "Asia/Shanghai"
+
+; Extra Config Edit By Niphor
+
+; Magic quotes
+; Magic quotes for incoming GET/POST/Cookie data.
+magic_quotes_gpc = Off
+
+; Magic quotes for runtime-generated data, e.g. data from SQL, from exec(), etc.
+magic_quotes_runtime = Off
+
+; Use Sybase-style magic quotes (escape ' with '' instead of \').
+magic_quotes_sybase = Of
+
+[mime_magic]
+;mime_magic.magicfile = "d:\namp\php-nts\extras\magic.mime"
+;mime_magic.debug = On
+
+;======下面是一些插件的默认设置项======
+
+;eAccelerator 配置
+
+[eAccelerator]
+;zend_extension = "d:\namp\php\ext\php_eaccelerator_nts.dll"
+
+; The amount of shared memory (in megabytes) that eAccelerator will use.
+; "0" means OS default. Default value is "0".
+eaccelerator.shm_size = "0"
+
+; The directory that is used for disk cache. eAccelerator stores precompiled
+; code, session data, content and user entries  here. The same data can be
+; stored in shared memory also (for more quick access). Default value is
+; "/tmp/eaccelerator".
+eaccelerator.cache_dir = "d:\namp\tmp"
+
+; Enables or disables eAccelerator. Should be "1" for enabling or
+; "0" for disabling. Default value is "1".
+eaccelerator.enable = "1"
+
+; Enables or disables debug logging. Setting this to 1 will print information
+; to the log file about the cach hits of a file.
+eaccelerator.debug = 0
+
+; Set the log file for eaccelerator. When this option isn't set then the data
+; will be logged to stderr
+;eaccelerator.log_file = "d:\namp\apache\logs\eaccelerator.log"
+
+; Enables or disables PHP file modification checking. Should be "1"
+; for enabling or "0" for disabling. You should set it to "1" if you want
+; to recompile PHP files after modification. Default value is "1".
+eaccelerator.check_mtime = "1"
+
+; Determine which PHP files must be cached. You may specify the number of
+; patterns (for example "*.php *.phtml") which specifies to cache or
+; not to cache. If pattern starts with the character "!", it means to ignore
+; files which are matched by the following pattern. Default value is "" that
+; means - all PHP scripts will be cached.
+eaccelerator.filter = ""
+
+; Disables putting large values into shared memory by "eaccelerator_put()"
+; function.
+; It indicates the largest allowed size in bytes (10240, 10K, 1M). The "0"
+; disables the limit. Default value is "0".
+eaccelerator.shm_max = "0"
+
+; When eAccelerator fails to get shared memory for new script it removes
+; all scripts which were not accessed at last "shm_ttl" seconds from shared
+; memory. Default value is "0" that means - don't remove any files from
+; shared memory.
+eaccelerator.shm_ttl = "0"
+
+; When eAccelerator fails to get shared memory for new script it tryes to
+; remove old script if the previous try was made more then "shm_prune_period"
+; seconds ago. Default value is "0" that means - don't try to remove any
+; files from shared memory.
+eaccelerator.shm_prune_period = "0"
+
+; Enables or disables caching of compiled scripts on disk. It has no effect
+; on session data and content caching.
+; Default value is "0" that means - use disk and shared memory for caching.
+eaccelerator.shm_only = "0"
+
+;XDebug 配置
+[XDebug]
+zend_extension = "d:\namp\php-nts\ext\php_xdebug-2.2.2-5.4-vc9-nts.dll"
+
+; xdebug.auto_trace
+; Type: boolean, Default value: 0
+; When this setting is set to on, the tracing of function calls will be enabled just before the
+; script is run. This makes it possible to trace code in the auto_prepend_file.
+;xdebug.auto_trace = 0
+
+; xdebug.collect_includes
+; Type: boolean, Default value: 1
+; This setting, defaulting to On, controls whether Xdebug should write the filename used in include
+; (), include_once(), require() or require_once() to the trace files.
+;xdebug.collect_includes = 1
+
+; xdebug.collect_params
+; Type: integer, Default value: 0
+;
+; This setting, defaulting to 0, controls whether Xdebug should collect the parameters passed to
+; functions when a function call is recorded in either the function trace or the stack trace.
+;xdebug.collect_params = 0
+
+; xdebug.collect_return
+; Type: boolean, Default value: 0
+; This setting, defaulting to Off, controls whether Xdebug should write the return value of function
+; calls to the trace files.
+;xdebug.collect_return = 0
+
+; xdebug.collect_vars
+; Type: boolean, Default value: Off
+; This setting tells Xdebug to gather information about which variables are used in a certain scope.
+; This analysis can be quite slow as Xdebug has to reverse engineer PHP's opcode arrays. This setting
+; will not record which values the different variables have, for that use xdebug.collect_params. This
+; setting needs to be enabled only if you wish to use xdebug_get_declared_vars().
+;xdebug.collect_vars = "Off"
+
+; xdebug.default_enable
+; Type: boolean, Default value: On
+; If this setting is On then stacktraces will be shown by default on an error event. You can disable
+; showing stacktraces from your code with xdebug_disable(). As this is one of the basic functions of
+; Xdebug, it is advisable to leave this setting set to 'On'.
+;xdebug.default_enable = "On"
+
+; xdebug.dump.*
+; Type: string, Default value: Empty
+; * = COOKIE, FILES, GET, POST, REQUEST, SERVER, SESSION. These seven settings control which data
+; from the superglobals is shown when an error situation occurs. Each php.ini setting can consist of
+; a comma seperated list of variables from this superglobal to dump, but make sure you do not add
+; spaces in this setting. In order to dump the REMOTE_ADDR and the REQUEST_METHOD when an error
+; occurs, add this setting:
+;
+; xdebug.dump.SERVER = REMOTE_ADDR,REQUEST_METHOD
+; xdebug.dump.SERVER = REMOTE_ADDR,REQUEST_METHOD
+;xdebug.dump.COOKIE = ""
+;xdebug.dump.FILES = ""
+;xdebug.dump.GET = ""
+;xdebug.dump.POST = ""
+;xdebug.dump.REQUEST = ""
+;xdebug.dump.SERVER = ""
+;xdebug.dump.SESSION = ""
+
+; xdebug.dump_globals
+; Type: boolean, Default value: 1
+; Controls whether the values of the superglobals as defined by the xdebug.dump.* settings whould be
+; shown or not.
+;xdebug.dump_globals = 1
+
+; xdebug.dump_once
+; Type: boolean, Default value: 1
+; Controls whether the values of the superglobals should be dumped on all error situations (set to
+; Off) or only on the first (set to On).
+;xdebug.dump_once = 1
+
+; xdebug.dump_undefined
+; Type: boolean, Default value: 0
+; If you want to dump undefined values from the superglobals you should set this setting to On,
+; otherwise leave it set to Off.
+;xdebug.dump_undefined = 0
+
+; xdebug.extended_info
+; Type: integer, Default value: 1
+; Controls whether Xdebug should enforce 'extended_info' mode for the PHP parser; this allows Xdebug
+; to do file/line breakpoints with the remote debugger. When tracing or profiling scripts you
+; generally want to turn off this option as PHP's generated oparrays will increase with about a third
+; of the size slowing down your scripts. This setting can not be set in your scripts with ini_set(),
+; but only in php.ini.
+;xdebug.extended_info = 1
+
+; xdebug.file_link_format
+; Type: string, Default value: *empty string* , Introduced in Xdebug 2.1
+;
+; This setting determines the format of the links that are made in the display of stack traces where
+; file names are used. This allows IDEs to set up a link-protocol that makes it possible to go
+; directly to a line and file by clicking on the filenames that Xdebug shows in stack traces.
+;xdebug.file_link_format = ""
+
+; xdebug.idekey
+; Type: string, Default value: *complex*
+; Controls which IDE Key Xdebug should pass on to the DBGp debugger handler. The default is based on
+; environment settings. First the environment setting DBGP_IDEKEY is consulted, then USER and as last
+; USERNAME. The default is set to the first environment variable that is found. If none could be
+; found the setting has as default ''.
+;xdebug.idekey = ""
+
+; xdebug.manual_url
+; Type: string, Default value: http://www.php.net
+; This is the base url for the links from the function traces and error message to the manual pages
+; of the function from the message. It is advisable to set this setting to use the closest mirror.
+;xdebug.manual_url = "http://www.php.net"
+
+; xdebug.max_nesting_level
+; Type: integer, Default value: 100
+; Controls the protection mechanism for infinite recursion protection. The value of this setting is
+; the maximum level of nested functions that are allowed before the script will be aborted.
+;xdebug.max_nesting_level = 100
+
+; xdebug.overload_var_dump
+; Type: boolean, Default value: 1 , Introduced in Xdebug 2.1
+; By default Xdebug overloads var_dump() with its own improved version for displaying variables when
+; the html_errors php.ini setting is set to 1. In case you do not want that, you can set this setting
+; to 0, but check first if it's not smarter to turn off html_errors.
+;xdebug.overload_var_dump = 1
+
+; xdebug.profiler_append
+; Type: integer, Default value: 0
+; When this setting is set to 1, profiler files will not be overwritten when a new request would map
+; to the same file (depnding on the xdebug.profiler_output_name setting. Instead the file will be
+; appended to with the new profile.
+xdebug.profiler_append = 0
+
+; xdebug.profiler_enable
+; Type: integer, Default value: 0
+; Enables Xdebug's profiler which creates files in the profile output directory. Those files can be
+; read by KCacheGrind to visualize your data. This setting can not be set in your script with ini_set
+; ().
+xdebug.profiler_enable = 0
+
+; xdebug.profiler_enable_trigger
+; Type: integer, Default value: 0
+; When this setting is set to 1, you can trigger the generation of profiler files by using the
+; XDEBUG_PROFILE GET/POST parameter. This will then write the profiler data to defined directory.
+xdebug.profiler_enable_trigger = 0
+
+; xdebug.profiler_output_dir
+; Type: string, Default value: /tmp
+; The directory where the profiler output will be written to, make sure that the user who the PHP
+; will be running as has write permissions to that directory. This setting can not be set in your
+; script with ini_set().
+xdebug.profiler_output_dir = "d:\namp\tmp"
+
+; xdebug.profiler_output_name
+; Type: string, Default value: cachegrind.out.%p
+;
+; This setting determines the name of the file that is used to dump traces into. The setting
+; specifies the format with format specifiers, very similar to sprintf() and strftime(). There are
+; several format specifiers that can be used to format the file name.
+;
+; See the xdebug.trace_output_name documentation for the supported specifiers.
+xdebug.profiler_output_name = "xdebug_profile.%R::%u"
+
+; xdebug.remote_autostart
+; Type: boolean, Default value: 0
+; Normally you need to use a specific HTTP GET/POST variable to start remote debugging (see Remote
+; Debugging). When this setting is set to 'On' Xdebug will always attempt to start a remote debugging
+; session and try to connect to a client, even if the GET/POST/COOKIE variable was not present.
+;xdebug.remote_autostart = 0
+
+; xdebug.remote_enable
+; Type: boolean, Default value: 0
+; This switch controls whether Xdebug should try to contact a debug client which is listening on the
+; host and port as set with the settings xdebug.remote_host and xdebug.remote_port. If a connection
+; can not be established the script will just continue as if this setting was Off.
+;xdebug.remote_enable = 0
+
+; xdebug.remote_handler
+; Type: string, Default value: dbgp
+; Can be either 'php3' which selects the old PHP 3 style debugger output, 'gdb' which enables the GDB
+; like debugger interface or 'dbgp' - the brand new debugger protocol. The DBGp protocol is more
+; widely supported by clients. See more information in the introduction for Remote Debugging.
+;xdebug.remote_handler = "dbgp"
+
+; xdebug.remote_host
+; Type: string, Default value: localhost
+; Selects the host where the debug client is running, you can either use a host name or an IP
+; address.
+;xdebug.remote_host = "localhost"
+
+; xdebug.remote_log
+; Type: string, Default value: none
+; If set to a value, it is used as filename to a file to which all remote debugger communications are
+; logged. The file is always opened in append-mode, and will therefore not be overwritten by default.
+; There is no concurrency protection available.
+;xdebug.remote_log = "none"
+
+; xdebug.remote_mode
+; Type: string, Default value: req
+;
+; Selects when a debug connection is initiated. This setting can have two different values:
+;
+; req
+;     Xdebug will try to connect to the debug client as soon as the script starts.
+; jit
+;     Xdebug will only try to connect to the debug client as soon as an error condition occurs.
+;xdebug.remote_mode = "req"
+
+; xdebug.remote_port
+; Type: integer, Default value: 9000
+; The port to which Xdebug tries to connect on the remote host. Port 9000 is the default for both the
+; client and the bundled debugclient. As many clients use this port number, it is best to leave this
+; setting unchanged.
+;xdebug.remote_port = 9000
+
+; xdebug.show_exception_trace
+; Type: integer, Default value: 0
+; When this setting is set to 1, Xdebug will show a stack trace whenever an exception is raised -
+; even if this exception is actually caught.
+;xdebug.show_exception_trace = 0
+
+; xdebug.show_local_vars
+; Type: integer, Default value: 0
+; When this setting is set to something != 0 Xdebug's generated stack dumps in error situations will
+; also show all variables in the top-most scope. Beware that this might generate a lot of
+; information, and is therefore turned off by default.
+;xdebug.show_local_vars = 0
+
+; xdebug.show_mem_delta
+; Type: integer, Default value: 0
+; When this setting is set to something != 0 Xdebug's human-readable generated trace files will show
+; the difference in memory usage between function calls. If Xdebug is configured to generate
+; computer-readable trace files then they will always show this information.
+;xdebug.show_mem_delta = 0
+
+; xdebug.trace_format
+; Type: integer, Default value: 0
+; The format of the trace file.
+;
+; See the introduction of Function Traces for a few examples.
+;xdebug.trace_format = 0
+
+; xdebug.trace_options
+; Type: integer, Default value: 0
+; When set to '1' the trace files will be appended to, instead of being overwritten in subsequent
+; requests.
+;xdebug.trace_options = 0
+
+; xdebug.trace_output_dir
+; Type: string, Default value: /tmp
+; The directory where the tracing files will be written to, make sure that the user who the PHP will
+; be running as has write permissions to that directory.
+; xdebug.trace_output_name
+xdebug.trace_output_dir = "d:\namp\tmp"
+
+; Type: string, Default value: trace.%c
+;
+; This setting determines the name of the file that is used to dump traces into. The setting
+; specifies the format with format specifiers, very similar to sprintf() and strftime(). There are
+; several format specifiers that can be used to format the file name. The '.xt' extension is always
+; added automatically.
+;xdebug.trace_output_name = "trace.%c"
+
+; xdebug.var_display_max_children
+; Type: integer, Default value: 128
+; Controls the amount of array children and object's properties are shown when variables are
+; displayed with either xdebug_var_dump(), xdebug.show_local_vars or through Function Traces. This
+; setting does not have any influence on the number of children that is send to the client through
+; the Remote Debugging feature.
+;xdebug.var_display_max_children = 128
+
+; xdebug.var_display_max_data
+; Type: integer, Default value: 512
+; Controls the maximum string length that is shown when variables are displayed with either
+; xdebug_var_dump(), xdebug.show_local_vars or through Function Traces. This setting does not have
+; any influence on the amount of data that is send to the client through the Remote Debugging
+; feature.
+;xdebug.var_display_max_data = 512
+
+; xdebug.var_display_max_depth
+; Type: integer, Default value: 3
+; Controls how many nested levels of array elements and object properties are when variables are
+; displayed with either xdebug_var_dump(), xdebug.show_local_vars or through Function Traces. This
+; setting does not have any influence on the depth of children that is send to the client through the
+; Remote Debugging feature.
+;xdebug.var_display_max_depth = 3
+</pre></td></tr></table></figure>
+
+<h2 id="Apache-53ca-5176-63d2-4ef6-">Apache及其插件</h2>
+<p>Windos平台主要的更新站点是：<a href="http://www.apachelounge.com" target="_blank">http://www.apachelounge.com</a><br>最新版本更新贴是：<a href="http://www.apachelounge.com/viewtopic.php?p=24281" target="_blank">http://www.apachelounge.com/viewtopic.php?p=24281</a><br>文档还在官网：<a href="http://httpd.apache.org/docs/2.4/" target="_blank">http://httpd.apache.org/docs/2.4/</a></p>
+<blockquote>
+<p>vs11编译的版本不能在XP上使用，XP请选择VS10编译的版本</p>
+</blockquote>
+<h3 id="httpd-conf-914d-7f6e-">httpd.conf配置</h3>
+<figure class="highlight lang-apache"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+</pre></td><td class="code"><pre># 服务器信息
+ServerRoot "D:/namp/apache"
+ServerAdmin niphor@gmail.com
+ServerName localhost
+
+# 使用rewrite
+LoadModule rewrite_module modules/mod_rewrite.so
+
+#网站根目录权限设置
+DocumentRoot "D:/namp/htdocs"
+&lt;Directory "D:/namp/htdocs"&gt;
+    Options Indexes FollowSymLinks ExecCGI
+    AllowOverride ALL
+    Require all granted
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+
+# 默认页面设置
+&lt;IfModule dir_module&gt;
+    DirectoryIndex index.html index.php
+&lt;/IfModule&gt;
+
+#htaccess文件权限
+&lt;Files ".ht*"&gt;
+    Require all granted
+&lt;/Files&gt;
+
+# 配置别名
+&lt;IfModule alias_module&gt;
+    ScriptAlias /cgi-bin/ "D:/namp/cgi-bin/"
+&lt;/IfModule&gt;
+
+#添加处理句柄
+AddHandler cgi-script .cgi .pl
+&lt;Directory "D:/namp/cgi-bin"&gt;
+    AllowOverride None
+    Options None
+    Require all granted
+    SetHandler cgi-script
+&lt;/Directory&gt;
+
+#导入自定义配置
+Include conf/niphor.conf
+Include conf/niphor-vhosts.conf
+
+#Fast-CGI模式设置
+LoadModule fcgid_module modules/mod_fcgid.so
+&lt;IfModule mod_fcgid.c&gt;
+	# Define the MIME-Type for ".php" files
+	AddType application/x-httpd-php .php
+	AddHandler fcgid-script .cgi .fcgi .php
+	
+	# Where to look for the php.ini file?
+	FcgidInitialEnv PHPRC "D:/namp/php"
+	# Set PHP_FCGI_MAX_REQUESTS to greater than or equal to FcgidMaxRequestsPerProcess
+	# to prevent php-cgi process from exiting before all requests completed
+	FcgidInitialEnv PHP_FCGI_MAX_REQUESTS 1000
+	# Maximum requests a process should handle before it is terminated
+	FcgidMaxRequestsPerProcess 1000
+	# Maximum number of PHP processes
+	FcgidMaxProcesses 15
+	# Number of seconds of idle time before a php-cgi process is terminated
+	FcgidIOTimeout 120
+	FcgidIdleTimeout 120
+	#Path to php-cgi
+	FcgidMaxRequestLen 1310720
+	FcgidWrapper "D:/namp/php-nts/php-cgi.exe" .php
+	ScriptAlias /fcgi-bin/ "D:/namp/fcgi-bin/"
+
+&lt;Files ~ "\.php$&gt;"
+   SetHandler fcgid-script
+   FcgidWrapper "D:/namp/php-nts/php-cgi.exe" .php
+&lt;/Files&gt;
+
+&lt;/IfModule&gt;
+
+&lt;Directory "d:/namp/fcgi-bin"&gt;
+    AllowOverride None
+    Options None
+    Require all granted
+    SetHandler fcgid-script
+&lt;/Directory&gt;
+
+#GZip 设置
+LoadModule deflate_module modules/mod_deflate.so
+LoadModule headers_module modules/mod_headers.so
+&lt;IfModule mod_deflate.c&gt;
+	#必须的，就像一个开关一样，告诉apache对传输到浏览器的内容进行压缩
+    SetOutputFilter DEFLATE
+	
+	#设置不对后缀gif，jpg，jpeg，png的图片文件进行压缩
+    SetEnvIfNoCase Request_URI .(?:gif|jpe?g|png)$ no-gzip dont-vary
+	
+	#同上，就是设置不对exe，tgz，gz。。。的文件进行压缩
+    SetEnvIfNoCase Request_URI .(?:exe|t?gz|zip|bz2|sit|rar)$ no-gzip dont-vary 
+    SetEnvIfNoCase Request_URI .(?:pdf|mov|avi|mp3|mp4|rm)$ no-gzip dont-vary
+	
+	#设置对文件是文本的内容进行压缩，例如text/html  text/css  text/plain等
+    AddOutputFilterByType DEFLATE text/* 
+	
+	#这段代码你只需要了解application/javascript application/x-javascript这段就可以了，这段的意思是对javascript文件进行压缩
+    AddOutputFilterByType DEFLATE application/ms* application/vnd* application/postscript application/javascript application/x-javascript
+	
+	#这段是告诉apache对php类型的文件进行压缩
+    AddOutputFilterByType DEFLATE application/x-httpd-php application/x-httpd-fastphp
+	
+	# Netscape 4.x 有一些问题，所以只压缩文件类型是text/html的
+    BrowserMatch ^Mozilla/4 gzip-only-text/html 
+	
+	# Netscape 4.06-4.08 有更多的问题，所以不开启压缩
+    BrowserMatch ^Mozilla/4.0[678] no-gzip
+	
+	# IE浏览器会伪装成 Netscape ，但是事实上它没有问题
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html 
+&lt;/IfModule&gt;
+
+#最大在线人数，根据你需要的人数和你服务器机器的配置来确定
+MaxKeepAliveRequests 100
+
+#语言优先级，把中文（zh-CN zh-TW）的部分剪切放到前面（也就是将原来文件中的相应部分改成如上的）
+LanguagePriority zh-CN zh-TW en ca cs da de el eo es et fr he hr it ja ko ltz nl nn no pl pt pt-BR ru sv
+
+
+#VHost配置
+Listen 81
+&lt;VirtualHost *:81&gt;
+    ServerAdmin niphor@gmail.com
+    ServerName  dev.kern.com
+    DocumentRoot "D:/namp/htdocs/user/"
+&lt;/VirtualHost&gt;
+</pre></td></tr></table></figure>
+
+<h3 id="PHP-7684-6302-8f7d-">PHP的挂载</h3>
+<p>还是在httpd.conf中搜索LoadModule找到相关章节 ，在后面添加如下内容</p>
+<figure class="highlight lang-apache"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="comment">#注意:其中X:PHP/PHP5Apache2.dll 中的X:/PHP/是你安装PHP的路径</span>
+<span class="keyword"><span class="common">LoadModule</span></span> php5_module <span class="string">"X:/PHP/php5Apache2.dll"</span>
+<span class="keyword">AddType</span> application/x-httpd-php .php
+<span class="keyword">AddDefaultCharset</span> ISO-8859-1
+</pre></td></tr></table></figure>
+
+<h2 id="MariaDB">MariaDB</h2>
+<blockquote>
+<p>因为Mysql越来越闭源了(<a href="http://dev.mysql.com/downloads/mysql/" target="_blank">http://dev.mysql.com/downloads/mysql/</a>),所以我装了个MariaDB，其实是装B而已…</p>
+</blockquote>
+<p>官网<a href="https://downloads.mariadb.org/" target="_blank">https://downloads.mariadb.org/</a><br>数据库的使用还是要看实际的业务，默认我直接用的small的配置，实际有需求再改就行了</p>
+<h2 id="memecache">memecache</h2>
+<p>下载地址<br><a href="http://downloads.northscale.com/" target="_blank">http://downloads.northscale.com/</a><br><a href="http://blog.elijaa.org/index.php?post/2010/10/15/Memcached-for-Windows" target="_blank">http://blog.elijaa.org/index.php?post/2010/10/15/Memcached-for-Windows</a></p>
+<h2 id="-591a-4f59-6587-4ef6-7684-5220-9664-">多余文件的删除</h2>
+<blockquote>
+<p>默认情况下，下载的zip包包含了N多开发用的工具，如果不是开发需要，可以删除<br>删除后大概能节约一半的空间，效果客观= =!</p>
+</blockquote>
+<h3 id="apache">apache</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="title">include</span>文件夹
+<span class="title">lib</span>文件夹下的 *.lib库
+<span class="title">logs</span>文件夹，自己定义到统一的地方方便管理
+<span class="title">manual</span>文件夹，手册可以直接看在线的
+</pre></td></tr></table></figure>
+
+<h3 id="MariaDB-2f-MySQL">MariaDB/MySQL</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="title">bin</span> 下面的*.pdb调试符号
+<span class="title">doc</span>文件夹
+<span class="title">include</span> 文件夹
+<span class="title">lib</span> 下面的*.pdb调试符号
+<span class="title">mysql</span>-test文件夹，不是跑负载测试，可以删了
+<span class="title">sql</span>-bench文件夹，不是跑负载测试，可以删了
+<span class="title">support</span>-files
+</pre></td></tr></table></figure>
+
+<h2 id="-670d-52a1-6ce8-518c-2f-5378-8f7d-6279-5904-7406-">服务注册/卸载批处理</h2>
+<blockquote>
+<p>这边直接用的%~dp0，所以要在当前文件夹运行哦，不然路径会有问题</p>
+</blockquote>
+<h3 id="Apache">Apache</h3>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre>#注册
+@<span class="keyword">echo</span> off 
+<span class="keyword">echo</span> start Apache on localhost 
+%~dp0apache\bin\httpd.exe -k install -n namp_apache -d %~dp0apache
+<span class="winutils">net</span> start namp_apache
+<span class="keyword">pause</span>
+
+#卸载
+@<span class="keyword">echo</span> off 
+<span class="keyword">echo</span> stop Apache
+<span class="winutils">net</span> stop namp_apache
+%~dp0apache\bin\httpd.exe -k uninstall -n namp_apache
+<span class="keyword">pause</span>
+</pre></td></tr></table></figure>
+
+<h3 id="MariaDB-1">MariaDB</h3>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre>#注册
+@<span class="keyword">echo</span> off 
+<span class="keyword">echo</span> start MariaDB on localhost 
+%~dp0mariadb\bin\mysqld  --install namp_mariadb --defaults-file=%~dp0mariadb\my.ini
+<span class="winutils">net</span> start namp_mariadb
+<span class="keyword">pause</span>
+
+#卸载
+@<span class="keyword">echo</span> off 
+<span class="keyword">echo</span> stop MariaDB
+<span class="winutils">net</span> stop namp_mariadb
+%~dp0mariadb\bin\mysqld.exe --<span class="comment">remove namp_mariadb</span>
+<span class="keyword">pause</span>
+</pre></td></tr></table></figure>
+
+<h3 id="Memcached">Memcached</h3>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="code"><pre>#注册
+@<span class="keyword">echo</span> off 
+<span class="keyword">echo</span> start Memcached on localhost
+
+#这里注释掉了官方注册服务的方法，因为官方注册的服务不会带参数，还得自己改
+#而且官方的服务是不能定服务名的
+<span class="comment">rem %~dp0memcached\memcached.exe -p 11211 -c 1000 -m 128 -d install namp_memcached</span>
+<span class="comment">rem sc config memcached binpath= "\"%~dp0memcached\memcached.exe\" -p 11211 -c 1000 -m 128 -d </span>
+runservice" DisplayName= namp_memcached
+
+sc create namp_memcached binpath= "\"%~dp0memcached\memcached.exe\" -p <span class="number">11211</span> -c <span class="number">1000</span> -m <span class="number">128</span> -d runservice" start= auto
+<span class="winutils">net</span> start "namp_memcached" 
+<span class="keyword">pause</span> 
+
+#卸载
+@<span class="keyword">echo</span> off 
+<span class="keyword">echo</span> stop Memcached on localhost 
+<span class="winutils">net</span> stop "namp_memcached"
+
+# 官方卸载的方法，因为自己建的服务，不能用官方方法卸载，只能自己删除，所以这里注释掉了。
+<span class="comment">rem %~dp0memcached\memcached.exe -d uninstall "memcached"</span>
+sc delete "namp_memcached"
+<span class="keyword">pause</span>
+</pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html"><![CDATA[<blockquote>
+<p>题目起的有点大，其实是Windows平台，Linux大家直接用包好了啊…</p>
+</blockquote>
+<p>这个组合主要是跑PHP FastCGI模式( <em>虽然在windows下面没啥用</em> ),资源紧张的用户还是走传统形式吧。</p>
+<p>这个是我实际开发时的环境，主要是为了做个笔记免得自己忘记，Nginx 其实也配上了，不过Windows下面效率不高，因为没了.htaccess文件的支持，我在的项目里也用不上，再去用它实在是自找麻烦…</p>
+<p>网上也有许多打包好的包，比如PUPW,Xampp等，不过别人的始终不是太适合自用，而且改配置什么也麻烦，所以还不如自己配置一个用用，省时省力。</p>
+]]></summary>
+    
+      <category term="php" scheme="http://dev.m-78.net/tags/php/"/>
+    
+      <category term="apache" scheme="http://dev.m-78.net/tags/apache/"/>
+    
+      <category term="mariadb" scheme="http://dev.m-78.net/tags/mariadb/"/>
+    
+      <category term="mysql" scheme="http://dev.m-78.net/tags/mysql/"/>
+    
+      <category term="memcached" scheme="http://dev.m-78.net/tags/memcached/"/>
+    
+      <category term="windows" scheme="http://dev.m-78.net/tags/windows/"/>
+    
+      <category term="服务器" scheme="http://dev.m-78.net/categories/server/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Python安装配置]]></title>
+    <link href="http://dev.m-78.net/post/python/install-python.html"/>
+    <id>http://dev.m-78.net/post/python/install-python.html</id>
+    <published>2014-01-10T07:58:06.000Z</published>
+    <updated>2014-01-13T07:34:41.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Python-5b89-88c5-">Python安装</h2>
+<p>Python 中国区下载地址：<a href="http://python.org/getit/" target="_blank">http://python.org/getit/</a><br>Package库<a href="https://pypi.python.org/pypi" target="_blank">https://pypi.python.org/pypi</a></p>
+<blockquote>
+<p>在Windows上面使用<code>安装给所有用户</code>选项会使<code>pythonXX.dll</code>复制到<code>Windos/system32</code>下面。<br>这时使用virtualenv生成环境后，需要把<code>pythonXX.dll</code>拷到<code>env/Scripts</code>下面，不然在没Python的机子上可能就可能会报<code>&quot;找不到pythonXX.dll&quot;</code>的错误。</p>
+</blockquote>
+<p>安装完毕将<code>C:\python27;C:\python27\Scripts</code>添加到Path中</p>
+<blockquote>
+<p>添加后，如果使用virtualenv有可能会出现python串掉的问题。</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="-5b89-88c5-setuptools">安装setuptools</h2>
+<p><a href="https://pypi.python.org/pypi/setuptools" title="setuptools" target="_blank">官网</a>推荐的方式是下载py脚本安装</p>
+<blockquote>
+<p>1.0开始的Windows平台已经没有easy_install的安装包了</p>
+</blockquote>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="variable">$ </span>wget <span class="symbol">https:</span>/<span class="regexp">/bitbucket.org/pypa</span><span class="regexp">/setuptools/raw</span><span class="regexp">/bootstrap/ez</span>_setup.py
+<span class="variable">$ </span>[sudo] python ez_setup.py
+
+<span class="comment">#指定安装路径</span>
+setuptools-x.x<span class="variable">$ </span>python setup.py --prefix=<span class="regexp">/opt/setuptools</span>
+
+<span class="comment">#安装至本地用户</span>
+python ez_setup.py --user
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>Windows下如果报</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>File "C:\Python27\lib\mimetypes.py", line <span class="number">358</span>, <span class="flow">in</span> init
+    db.read_windows_registry()
+</pre></td></tr></table></figure>
+
+<p>打开注册表，展开HKEY_CLASSES_ROOT找到中文节点，备份下，删掉就好了</p>
+</blockquote>
+<h2 id="-5b89-88c5-pip">安装pip</h2>
+<p><code>pip</code>需要<code>setuptools</code>支持 <a href="https://pypi.python.org/pypi/pip" title="Pip" target="_blank">官网</a>,<a href="http://www.pip-installer.org/" title="pip-installer" target="_blank">pip-installer 官网</a></p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="comment">#先升级setuptools</span>
+<span class="variable">$ </span>pip install --upgrade setuptools
+<span class="comment">#get_pip.py 脚本：</span>
+<span class="variable">$ </span>wget <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/pypa</span><span class="regexp">/pip/master</span><span class="regexp">/contrib/get</span>-pip.py
+<span class="variable">$ </span>[sudo] python get-pip.py <span class="comment">#可能需要管理员权限</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>Windows上面安装完需要将<code>C:\Python2x\Scripts</code>加入系统路径中</p>
+</blockquote>
+<p>Linux 上面可以简单的使用包管理器</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="variable">#On</span> Debian <span class="literal">and</span> Ubuntu:
+$ sudo apt<span class="attribute">-get</span> install python<span class="attribute">-pip</span>
+<span class="variable">#On</span> Fedora:
+$ sudo yum install python<span class="attribute">-pip</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>安装<code>python-pip</code>一般也会直接安装好<code>python-setuptools</code></p>
+</blockquote>
+<h3 id="-4f7f-7528-pip">使用pip</h3>
+<p>安装一个包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>$ [sudo] pip install SomePackage==<span class="number">1.0</span>
+
+#如
+$ [sudo] pip install Markdown
+#安装特定版本的<span class="package"><span class="keyword">package</span>
+#通过使用==, &gt;=, &lt;=, &gt;, &lt;来指定一个版本号。
+<span class="title">$</span> [<span class="title">sudo</span>] <span class="title">pip</span> <span class="title">install</span> '<span class="title">Markdown</span>&lt;2.0'
+<span class="title">$</span> [<span class="title">sudo</span>] <span class="title">pip</span> <span class="title">install</span> '<span class="title">Markdown</span>&gt;2.0,&lt;2.0.3'</span>
+</pre></td></tr></table></figure>
+
+<p>列出安装的packages</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip freeze
+</pre></td></tr></table></figure>
+
+<p>显示包安装的文件</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">show</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">files</span> <span class="comment">SomePackage</span>
+</pre></td></tr></table></figure>
+
+<p>显示过期的包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">list</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">outdated</span>
+</pre></td></tr></table></figure>
+
+<p>升级包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="comment">#升级包到当前最新的版本，可以使用</span><span class="literal">-</span><span class="comment">U</span> <span class="comment">或者</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span>
+<span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span> <span class="comment">SomePackage</span>
+</pre></td></tr></table></figure>
+
+<p>卸载一个包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip uninstall SomePackage
+</pre></td></tr></table></figure>
+
+<p>查询包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip search <span class="string">"Markdown"</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>包安装后的py文件路径：/usr/local/lib/python2.7/dist-packages  </p>
+</blockquote>
+<h3 id="-5b89-88c5-virtualenv">安装virtualenv</h3>
+<p><a href="https://pypi.python.org/pypi/virtualenv" title="virtualenv" target="_blank">官网</a></p>
+<p>通过pip全局安装(如果pip&gt;1.3或者全局安装的话)</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip install virtualenv
+</pre></td></tr></table></figure>
+
+<p>安装Dev版本</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">$ </span>[sudo] pip install <span class="symbol">https:</span>/<span class="regexp">/github.com/pypa</span><span class="regexp">/virtualenv/tarball</span><span class="regexp">/develop</span>
+</pre></td></tr></table></figure>
+
+<p>通过代码安装</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>$ curl -O https://pypi<span class="preprocessor">.python</span><span class="preprocessor">.org</span>/packages/source/v/virtualenv/virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span><span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
+$ tar xvfz virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span><span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
+$ cd virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span>
+<span class="preprocessor">#安装到全局</span>
+$ [sudo] python setup<span class="preprocessor">.py</span> install
+<span class="preprocessor"># 或 当前用户直接使用</span>
+$ python virtualenv<span class="preprocessor">.py</span> myVE
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果本地没有可用的<code>pip/setuptools/virtualenv</code> 发行包则<code>virtualenv.py</code>是不能用的。因为有一个和<code>virtualenv.py</code>在一起的有个完整的pip和setuptools的环境发行包的<code>virtualenv_support</code>文件夹，所以上面所有的操作都是支持的</p>
+</blockquote>
+<h3 id="-4f7f-7528-virtualenv">使用virtualenv</h3>
+<p>基础用法</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">$ </span>virtualenv <span class="constant">ENV</span> <span class="comment">#ENV为文件夹路径</span>
+</pre></td></tr></table></figure>
+
+<p>创建虚拟环境，分别会建立</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>ENV/<span class="keyword">lib</span>/pythonX.X/site-packages <span class="preprocessor">#libraries文件夹</span>
+ENV/bin/python <span class="preprocessor">#python编译器</span>
+ENV/bin/pip <span class="preprocessor">#当前环境的pip，可用来安装包</span>
+</pre></td></tr></table></figure>
+
+<p>访问 <a href="https://pypi.python.org/pypi/virtualenv#environment-variables-and-configuration-files" title="environment-variables-and-configuration-files" target="_blank">#environment-variables-and-configuration-files</a>查看相关配置</p>
+<blockquote>
+<p><code>ENV\Scripts\deactivate.bat</code> 是<code>Unix</code>的换行符,<code>Windows</code>下面手动转换一下.</p>
+<p>使用<code>%~dp0</code>替换<code>ENV\Scripts\(de)activate.bat</code> 里的路径可能可以实现到处带着走</p>
+</blockquote>
+<p>如果使用<code>PowerShell</code>，则必须先设置<code>PowerShell</code>的权限才能运行</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre>#管理员方式运行PowerShell执行
+PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy AllSigned
+
+#选A以便子线程能接受输入(这会将证书加到可信证书列表里)
+PS C:\&gt; .\foo\scripts\activate
+<span class="flow">Do</span> you want to run software from this untrusted publisher?
+File C:\foo\scripts\activate.ps1 is published by E=jannis@leidel.info,
+CN=Jannis Leidel, L=Berlin, S=Berlin, C=DE, Description=<span class="number">581796</span>-Gh7xfJxkxQSIO4E0
+and is <span class="flow">not</span> trusted on your system. Only run scripts from trusted publishers.
+[V] Never run  [D] <span class="flow">Do</span> <span class="flow">not</span> run  [R] Run once  [A] Always run  [?] Help
+(default is "D"):A 
+(foo) PS C:\&gt;
+
+#或者干脆删掉签名，直接运行。
+PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy <span class="comment">RemoteSigned</span>
+</pre></td></tr></table></figure>
+
+<p>参阅：<br><a href="http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html" target="_blank">http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html</a></p>
+]]></content>
+    <summary type="html"><![CDATA[<h2 id="Python-5b89-88c5-">Python安装</h2>
+<p>Python 中国区下载地址：<a href="http://python.org/getit/" target="_blank">http://python.org/getit/</a><br>Package库<a href="https://pypi.python.org/pypi" target="_blank">https://pypi.python.org/pypi</a></p>
+<blockquote>
+<p>在Windows上面使用<code>安装给所有用户</code>选项会使<code>pythonXX.dll</code>复制到<code>Windos/system32</code>下面。<br>这时使用virtualenv生成环境后，需要把<code>pythonXX.dll</code>拷到<code>env/Scripts</code>下面，不然在没Python的机子上可能就可能会报<code>&quot;找不到pythonXX.dll&quot;</code>的错误。</p>
+</blockquote>
+<p>安装完毕将<code>C:\python27;C:\python27\Scripts</code>添加到Path中</p>
+<blockquote>
+<p>添加后，如果使用virtualenv有可能会出现python串掉的问题。</p>
+</blockquote>
+]]></summary>
+    
+      <category term="python" scheme="http://dev.m-78.net/tags/python/"/>
+    
+      <category term="Python" scheme="http://dev.m-78.net/categories/python/"/>
+    
+  </entry>
+  
+</feed>
