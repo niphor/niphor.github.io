@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://niphor.github.io/post/server/install-cacti-plugin.html</loc>
+    <lastmod>2014-01-13T10:14:23.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://niphor.github.io/post/python/install-python.html</loc>
     <lastmod>2014-01-10T07:58:06.000Z</lastmod>
   </url>

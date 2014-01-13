@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Cacti插件安装/使用 | M-78的开发小站</title>
+  <meta name="author" content="Niphor">
+  
+  <meta name="description" content="Niphor的开发文档收集贴，Blog不用了，放这吧...万年更一次...">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Cacti插件安装/使用"/>
+  <meta property="og:site_name" content="M-78的开发小站"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="M-78的开发小站" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">M-78的开发小站</a></h1>
+  <h2><a href="/">凹凸曼就是这么造出来的</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-01-13T10:14:23.000Z"><a href="/post/server/install-cacti-plugin.html">2014-01-13</a></time>
+      
+      
+  
+    <h1 class="title">Cacti插件安装/使用</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="-63d2-4ef6-5b89-88c5-">插件安装</h2>
+<p>直接将插件解压缩之后放入Cacti的Plugin目录下，注意不要目录套目录，保持这样一个层次结构。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>  cacti
+	├plugin
+	│	├插件文件夹(如settings)
+	│	│	├index.php
+	│	│	├setup.php
+	│	│	└<span class="keyword">...</span>
+	│	└<span class="keyword">...</span>
+	└<span class="keyword">...</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong> ：新版的0.8.8a PA(Plugin Architecture)已经默认集成在里面了，不需要先安装了。</p>
+</blockquote>
+<p><a id="more"></a><br>之后在Console -&gt; Plugin Management中会出现响应插件条目：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-plugin-mng-page.png" alt="插件管理界面"></p>
+<blockquote>
+<p>点击第一列的图标可以<code>安装(↓)</code>/<code>启用(←)</code>/<code>停用(⊙)</code>/<code>卸载(↑)</code>插件</p>
+</blockquote>
+<p>插件安装之后，在相应的栏目下回出现新的栏目</p>
+<h3 id="Thold-63d2-4ef6-">Thold插件</h3>
+<blockquote>
+<p>Thold插件主要用于监控报警，并用Email发送报警信息<br>Thold插件依赖于Settings插件，所以安装之前请先安装Settings插件。激活之后界面立即出现响应变化。</p>
+</blockquote>
+<h2 id="-6a21-7248-5b89-88c5-">模版安装</h2>
+<h3 id="Windows-5e73-53f0-SNMP-76d1-63a7-6a21-7248-">Windows平台SNMP监控模版</h3>
+<blockquote>
+<p>下载地址：<a href="http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195" target="_blank">http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195</a></p>
+</blockquote>
+<ul>
+<li>下载最新版本的模版,</li>
+<li>按照readme.txt中的步骤安装模版</li>
+<li>将resource目录覆盖Cacti下同名目录</li>
+<li>通过网页导入template下的模版<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-import-tpl-dialog.png" alt="插件管理界面"><blockquote>
+<p><strong>注意</strong> 如果用了Spine，可以选上<code>Hourly</code>,用的<code>CMD.php</code>的话，最低5分钟一次，选不选没区别</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Mencached-6a21-7248-5b89-88c5-">Mencached模版安装</h3>
+<blockquote>
+<p>原版地址：<a href="http://dealnews.com/developers/cacti/memcached.html" target="_blank">http://dealnews.com/developers/cacti/memcached.html</a><br>可以监控多个端口的版本：<a href="http://tag1consulting.com/blog/cacti-memcache-multi-port-templates" target="_blank">http://tag1consulting.com/blog/cacti-memcache-multi-port-templates</a></p>
+</blockquote>
+<ul>
+<li>安装Python2.7</li>
+<li>安装setuptools</li>
+<li>安装memcached py版<br><a href="http://pypi.python.org/pypi/python-memcached/" target="_blank">http://pypi.python.org/pypi/python-memcached/</a></li>
+</ul>
+<p>以多端口的Memcached监控模版为例:</p>
+<ul>
+<li>解压</li>
+<li>按照README步骤，将memcached.py拷贝至Cacti目录的scripts文件夹下</li>
+<li>导入模版template</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong> ：由于1.2.6等老版本的Memcache的Stats里面少了些数据，所以上述的memcached.py在监控1.2.6等版本的Memcache时会报错。</p>
+</blockquote>
+<h2 id="-76d1-63a7-5b9e-4f8b-">监控实例</h2>
+<h3 id="-6dfb-52a0-76d1-63a7-8bbe-5907-">添加监控设备</h3>
+<p>点击侧边栏<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-menu.png" alt="设备菜单">进入设备列表，点击右上方的<code>Add</code>来添加设备。</p>
+<p>并做一些设置，如图：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info-setting.png" alt="设置设备信息"></p>
+<p>点击保存，等待一段时间，页面跳转到主机设置界面，我们可以看到已经有部分信息获取到了：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info.png" alt="设备信息"></p>
+<blockquote>
+<p>如果snmp不通，则会显示 <strong><code>SNMP error</code></strong></p>
+</blockquote>
+<h3 id="-521b-5efa-8bbe-5907-56fe-">创建设备图</h3>
+<p>在设备详情页的下方 已经显示出了刚才指定的主机模版自带的监控项目<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-device-item.png" alt="设备监控项目"></p>
+<blockquote>
+<p>如果<code>Associated Data Queries</code>里面<code>Status</code>中显示<code>Success</code>并在后面显示出有具体数目的item和row表示数据是可以成功抓取的，如果都是<code>0</code>则表示数据没能抓取出来。</p>
+</blockquote>
+<p>点击页面右上方的<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-create-graphs.png" alt="创建图的按钮">即可创建抓取图。</p>
+<p>通过对于先前抓取的数据的观察，选择要监控的数据，在后面打钩，点击<code>Create</code>即可创建抓取图。</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-graphs-item.png" alt="设置图内容"></p>
+<h3 id="-521b-5efa-6811-">创建树</h3>
+<p>点击<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-graph-tree.png" alt="创建树的按钮">，然后点击<code>Add</code>添加一个树</p>
+<ol>
+<li>填写树的名字，选择排列方式<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-tree-name.png" alt="设置树的名字和排列方式"></li>
+<li>点击<code>Add</code>添加设备<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-add-tree-item.png" alt="设置树的项目"></li>
+<li>点击<code>Add</code>添加设备<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-tree-item.png" alt="设置树的项目的属性"></li>
+<li>点击<code>Save</code>保存树</li>
+</ol>
+<p>之后可以在最上方的<code>Graphs</code>标签中看见效果：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-tab-graphs.png" alt="树的界面"></p>
+<blockquote>
+<p><strong>注意</strong> ：没有图片出现是因为，刚添加完，可能Poller还没运行，每来得及抓取到数据，等待1-2分钟就可以了。</p>
+</blockquote>
+<p>至此一个监控实例添加完成。</p>
+<h2 id="-6ce8-610f-4e8b-9879-">注意事项</h2>
+<p>　如果对于模版、系统设置、抓取时间间隔等进行了修改，需要<code>Rebuild Poller Cache</code>，以免出现不出图片或者图片上没有数据的问题。
+　</p>
+<h2 id="-63d2-4ef6-5f00-53d1-">插件开发</h2>
+<p>插件结构包含在<a href="http://docs.cacti.net/plugins:development" target="_blank">http://docs.cacti.net/plugins:development</a></p>
+<p>插件放在<code>{cacti_root}/plugins/{plugin_name}</code>下。</p>
+<p>插件主要通过setup.php与cacti通信。</p>
+<p><code>setup.php</code>是一个方法的集合，方法名不能有大写，不能有直接执行的方法。</p>
+<p>插件通过API Hook 与Cacti进行结合。</p>
+<p>Hook API 参见：<br><a href="http://docs.cacti.net/plugins:development.hook_api_ref#hook_api_reference" target="_blank">http://docs.cacti.net/plugins:development.hook_api_ref#hook_api_reference</a></p>
+<p>setup.php例子参见：<br><a href="http://blog.sina.com.cn/s/blog_47186b8b0100jdkv.html" target="_blank">http://blog.sina.com.cn/s/blog_47186b8b0100jdkv.html</a></p>
+<p>[TOC]</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/server/">服务器</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/cacti/">cacti</a>, <a href="/tags/windows/">windows</a>, <a href="/tags/plugin/">plugin</a>
+  </div>
+
+        
+
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "24"
+        },
+        "share": {}
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89343201.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"niphor-dev"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:niphor.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/server/">服务器</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/cacti/">cacti</a><small>2</small></li>
+  
+    <li><a href="/tags/mariadb/">mariadb</a><small>1</small></li>
+  
+    <li><a href="/tags/memcached/">memcached</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Niphor
+  
+</div>
+<div class="clearfix"></div></footer>
+  <!--[if lt IE 9]>
+<script src="//lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<![endif]-->
+<script src="http://cdn.staticfile.org/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" type="text/css">
+<script src="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
