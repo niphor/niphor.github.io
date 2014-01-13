@@ -107,8 +107,10 @@ python ez_setup.py --user
 <p>Windows下如果报</p>
 <figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre>File "C:\Python27\lib\mimetypes.py", line <span class="number">358</span>, <span class="flow">in</span> init
-    db.read_windows_registry()
+3
+</pre></td><td class="code"><pre>&gt;File "C:\Python27\lib\mimetypes.py", line <span class="number">358</span>, <span class="flow">in</span> init
+&gt;    db.read_windows_registry()
+&gt;
 </pre></td></tr></table></figure>
 
 <p>打开注册表，展开HKEY_CLASSES_ROOT找到中文节点，备份下，删掉就好了</p>
@@ -246,10 +248,13 @@ ENV/bin/python <span class="preprocessor">#python编译器</span>
 ENV/bin/pip <span class="preprocessor">#当前环境的pip，可用来安装包</span>
 </pre></td></tr></table></figure>
 
-<p>访问 <a href="https://pypi.python.org/pypi/virtualenv#environment-variables-and-configuration-files" title="environment-variables-and-configuration-files" target="_blank">#environment-variables-and-configuration-files</a>查看相关配置</p>
 <blockquote>
-<p><code>ENV\Scripts\deactivate.bat</code> 是<code>Unix</code>的换行符,<code>Windows</code>下面手动转换一下.</p>
-<p>使用<code>%~dp0</code>替换<code>ENV\Scripts\(de)activate.bat</code> 里的路径可能可以实现到处带着走</p>
+<p>访问 <a href="https://pypi.python.org/pypi/virtualenv#environment-variables-and-configuration-files" title="environment-variables-and-configuration-files" target="_blank">#environment-variables-and-configuration-files</a>查看相关配置</p>
+</blockquote>
+<p>　　</p>
+<blockquote>
+<p><code>ENV\Scripts\deactivate.bat</code>是<code>Unix</code>的换行符,<code>Windows</code>下面手动转换一下.</p>
+<p>使用<code>%~dp0</code>替换<code>ENV\Scripts\(de)activate.bat</code>里的路径可能可以实现到处带着走</p>
 </blockquote>
 <p>如果使用<code>PowerShell</code>，则必须先设置<code>PowerShell</code>的权限才能运行</p>
 <figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
@@ -284,7 +289,8 @@ and is <span class="flow">not</span> trusted on your system. Only run scripts fr
 PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy <span class="comment">RemoteSigned</span>
 </pre></td></tr></table></figure>
 
-<p>参阅：<br><a href="http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html" target="_blank">http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html</a></p>
+<p>参考文章：<br><a href="http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html" target="_blank">http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html</a></p>
+<p>[TOC]</p>
 
       
     </div>
@@ -360,7 +366,7 @@ PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy <span class="comment
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
     <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:dev.m-78.net">
+    <input type="hidden" name="q" value="site:niphor.github.io">
   </form>
 </div>
 
