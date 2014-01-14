@@ -4,7 +4,7 @@
   <subtitle><![CDATA[凹凸曼就是这么造出来的]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://niphor.github.io/"/>
-  <updated>2014-01-14T08:25:58.796Z</updated>
+  <updated>2014-01-14T08:31:36.440Z</updated>
   <id>http://niphor.github.io/</id>
   
   <author>
@@ -262,10 +262,10 @@ PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy <span class="comment
   
   <entry>
     <title><![CDATA[XAMP简明部署]]></title>
-    <link href="http://niphor.github.io/posts/2013/07/install-apache-php-mariadb-mc-on-windows.html"/>
-    <id>http://niphor.github.io/posts/2013/07/install-apache-php-mariadb-mc-on-windows.html</id>
-    <published>2013-07-14T02:19:29.000Z</published>
-    <updated>2014-01-14T08:17:25.000Z</updated>
+    <link href="http://niphor.github.io/posts/2012/11/install-apache-php-mariadb-mc-on-windows.html"/>
+    <id>http://niphor.github.io/posts/2012/11/install-apache-php-mariadb-mc-on-windows.html</id>
+    <published>2012-11-14T02:19:29.000Z</published>
+    <updated>2014-01-14T08:31:17.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>题目起的有点大，其实是Windows平台，Linux大家直接用包好了啊…</p>
 </blockquote>
@@ -1536,11 +1536,158 @@ sc delete "namp_memcached"
   </entry>
   
   <entry>
+    <title><![CDATA[Cacti插件安装/使用]]></title>
+    <link href="http://niphor.github.io/posts/2012/08/install-cacti-plugin.html"/>
+    <id>http://niphor.github.io/posts/2012/08/install-cacti-plugin.html</id>
+    <published>2012-08-23T10:14:23.000Z</published>
+    <updated>2014-01-14T08:30:27.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="-63d2-4ef6-5b89-88c5-">插件安装</h2>
+<p>直接将插件解压缩之后放入Cacti的Plugin目录下，注意不要目录套目录，保持这样一个层次结构。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>  cacti
+	├plugin
+	│	├插件文件夹(如settings)
+	│	│	├index.php
+	│	│	├setup.php
+	│	│	└<span class="keyword">...</span>
+	│	└<span class="keyword">...</span>
+	└<span class="keyword">...</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong> ：新版的0.8.8a PA(Plugin Architecture)已经默认集成在里面了，不需要先安装了。</p>
+</blockquote>
+<p><a id="more"></a><br>之后在Console -&gt; Plugin Management中会出现响应插件条目：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-plugin-mng-page.png" alt="插件管理界面"></p>
+<blockquote>
+<p>点击第一列的图标可以<code>安装(↓)</code>/<code>启用(←)</code>/<code>停用(⊙)</code>/<code>卸载(↑)</code>插件</p>
+</blockquote>
+<p>插件安装之后，在相应的栏目下回出现新的栏目</p>
+<h3 id="Thold-63d2-4ef6-">Thold插件</h3>
+<blockquote>
+<p>Thold插件主要用于监控报警，并用Email发送报警信息<br>Thold插件依赖于Settings插件，所以安装之前请先安装Settings插件。激活之后界面立即出现响应变化。</p>
+</blockquote>
+<h2 id="-6a21-7248-5b89-88c5-">模版安装</h2>
+<h3 id="Windows-5e73-53f0-SNMP-76d1-63a7-6a21-7248-">Windows平台SNMP监控模版</h3>
+<blockquote>
+<p>下载地址：<a href="http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195" target="_blank">http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195</a></p>
+</blockquote>
+<ul>
+<li>下载最新版本的模版,</li>
+<li>按照readme.txt中的步骤安装模版</li>
+<li>将resource目录覆盖Cacti下同名目录</li>
+<li>通过网页导入template下的模版<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-import-tpl-dialog.png" alt="插件管理界面"><blockquote>
+<p><strong>注意</strong> 如果用了Spine，可以选上<code>Hourly</code>,用的<code>CMD.php</code>的话，最低5分钟一次，选不选没区别</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Mencached-6a21-7248-5b89-88c5-">Mencached模版安装</h3>
+<blockquote>
+<p>原版地址：<a href="http://dealnews.com/developers/cacti/memcached.html" target="_blank">http://dealnews.com/developers/cacti/memcached.html</a><br>可以监控多个端口的版本：<a href="http://tag1consulting.com/blog/cacti-memcache-multi-port-templates" target="_blank">http://tag1consulting.com/blog/cacti-memcache-multi-port-templates</a></p>
+</blockquote>
+<ul>
+<li>安装Python2.7</li>
+<li>安装setuptools</li>
+<li>安装memcached py版<br><a href="http://pypi.python.org/pypi/python-memcached/" target="_blank">http://pypi.python.org/pypi/python-memcached/</a></li>
+</ul>
+<p>以多端口的Memcached监控模版为例:</p>
+<ul>
+<li>解压</li>
+<li>按照README步骤，将memcached.py拷贝至Cacti目录的scripts文件夹下</li>
+<li>导入模版template</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong> ：由于1.2.6等老版本的Memcache的Stats里面少了些数据，所以上述的memcached.py在监控1.2.6等版本的Memcache时会报错。</p>
+</blockquote>
+<h2 id="-76d1-63a7-5b9e-4f8b-">监控实例</h2>
+<h3 id="-6dfb-52a0-76d1-63a7-8bbe-5907-">添加监控设备</h3>
+<p>点击侧边栏<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-menu.png" alt="设备菜单">进入设备列表，点击右上方的<code>Add</code>来添加设备。</p>
+<p>并做一些设置，如图：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info-setting.png" alt="设置设备信息"></p>
+<p>点击保存，等待一段时间，页面跳转到主机设置界面，我们可以看到已经有部分信息获取到了：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info.png" alt="设备信息"></p>
+<blockquote>
+<p>如果snmp不通，则会显示 <strong><code>SNMP error</code></strong></p>
+</blockquote>
+<h3 id="-521b-5efa-8bbe-5907-56fe-">创建设备图</h3>
+<p>在设备详情页的下方 已经显示出了刚才指定的主机模版自带的监控项目<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-device-item.png" alt="设备监控项目"></p>
+<blockquote>
+<p>如果<code>Associated Data Queries</code>里面<code>Status</code>中显示<code>Success</code>并在后面显示出有具体数目的item和row表示数据是可以成功抓取的，如果都是<code>0</code>则表示数据没能抓取出来。</p>
+</blockquote>
+<p>点击页面右上方的<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-create-graphs.png" alt="创建图的按钮">即可创建抓取图。</p>
+<p>通过对于先前抓取的数据的观察，选择要监控的数据，在后面打钩，点击<code>Create</code>即可创建抓取图。</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-graphs-item.png" alt="设置图内容"></p>
+<h3 id="-521b-5efa-6811-">创建树</h3>
+<p>点击<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-graph-tree.png" alt="创建树的按钮">，然后点击<code>Add</code>添加一个树</p>
+<ol>
+<li>填写树的名字，选择排列方式<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-tree-name.png" alt="设置树的名字和排列方式"></li>
+<li>点击<code>Add</code>添加设备<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-add-tree-item.png" alt="设置树的项目"></li>
+<li>点击<code>Add</code>添加设备<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-tree-item.png" alt="设置树的项目的属性"></li>
+<li>点击<code>Save</code>保存树</li>
+</ol>
+<p>之后可以在最上方的<code>Graphs</code>标签中看见效果：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-tab-graphs.png" alt="树的界面"></p>
+<blockquote>
+<p><strong>注意</strong> ：没有图片出现是因为，刚添加完，可能Poller还没运行，每来得及抓取到数据，等待1-2分钟就可以了。</p>
+</blockquote>
+<p>至此一个监控实例添加完成。</p>
+<h2 id="-6ce8-610f-4e8b-9879-">注意事项</h2>
+<p>　如果对于模版、系统设置、抓取时间间隔等进行了修改，需要<code>Rebuild Poller Cache</code>，以免出现不出图片或者图片上没有数据的问题。
+　</p>
+<h2 id="-63d2-4ef6-5f00-53d1-">插件开发</h2>
+<p>插件结构包含在<a href="http://docs.cacti.net/plugins:development" target="_blank">http://docs.cacti.net/plugins:development</a></p>
+<p>插件放在<code>{cacti_root}/plugins/{plugin_name}</code>下。</p>
+<p>插件主要通过setup.php与cacti通信。</p>
+<p><code>setup.php</code>是一个方法的集合，方法名不能有大写，不能有直接执行的方法。</p>
+<p>插件通过API Hook 与Cacti进行结合。</p>
+<p>Hook API 参见：<br><a href="http://docs.cacti.net/plugins:development.hook_api_ref#hook_api_reference" target="_blank">http://docs.cacti.net/plugins:development.hook_api_ref#hook_api_reference</a></p>
+<p>setup.php例子参见：<br><a href="http://blog.sina.com.cn/s/blog_47186b8b0100jdkv.html" target="_blank">http://blog.sina.com.cn/s/blog_47186b8b0100jdkv.html</a></p>
+<p>[TOC]</p>
+]]></content>
+    <summary type="html"><![CDATA[<h2 id="-63d2-4ef6-5b89-88c5-">插件安装</h2>
+<p>直接将插件解压缩之后放入Cacti的Plugin目录下，注意不要目录套目录，保持这样一个层次结构。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>  cacti
+	├plugin
+	│	├插件文件夹(如settings)
+	│	│	├index.php
+	│	│	├setup.php
+	│	│	└<span class="keyword">...</span>
+	│	└<span class="keyword">...</span>
+	└<span class="keyword">...</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong> ：新版的0.8.8a PA(Plugin Architecture)已经默认集成在里面了，不需要先安装了。</p>
+</blockquote>
+<p>]]></summary>
+    
+      <category term="cacti" scheme="http://niphor.github.io/tags/cacti/"/>
+    
+      <category term="windows" scheme="http://niphor.github.io/tags/windows/"/>
+    
+      <category term="plugin" scheme="http://niphor.github.io/tags/plugin/"/>
+    
+      <category term="服务器" scheme="http://niphor.github.io/categories/server/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Cacti安装]]></title>
-    <link href="http://niphor.github.io/posts/2013/03/install-cacti.html"/>
-    <id>http://niphor.github.io/posts/2013/03/install-cacti.html</id>
-    <published>2013-03-13T04:16:08.000Z</published>
-    <updated>2014-01-14T08:17:37.000Z</updated>
+    <link href="http://niphor.github.io/posts/2012/08/install-cacti.html"/>
+    <id>http://niphor.github.io/posts/2012/08/install-cacti.html</id>
+    <published>2012-08-23T04:16:08.000Z</published>
+    <updated>2014-01-14T08:30:14.000Z</updated>
     <content type="html"><![CDATA[<h2 id="-524d-671f-51c6-5907-">前期准备</h2>
 <p>这里主要说明PHP、Apache的配置，默认认为你已经安装好MySQL、PHP、Apache或其它代替工具，并做好了相应的基本配置，已可以用于开发或生产环境。如果没有请参考其它教程配置PHP、Apache、MySQL，这里不再重复了。<br><a id="more"></a></p>
 <h3 id="PHP-914d-7f6e-">PHP配置</h3>
@@ -2016,153 +2163,6 @@ chmod +s /<span class="keyword">var</span>/www/cacti/poller.php
       <category term="cacti" scheme="http://niphor.github.io/tags/cacti/"/>
     
       <category term="windows" scheme="http://niphor.github.io/tags/windows/"/>
-    
-      <category term="服务器" scheme="http://niphor.github.io/categories/server/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Cacti插件安装/使用]]></title>
-    <link href="http://niphor.github.io/posts/2013/02/install-cacti-plugin.html"/>
-    <id>http://niphor.github.io/posts/2013/02/install-cacti-plugin.html</id>
-    <published>2013-02-13T10:14:23.000Z</published>
-    <updated>2014-01-14T08:17:16.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="-63d2-4ef6-5b89-88c5-">插件安装</h2>
-<p>直接将插件解压缩之后放入Cacti的Plugin目录下，注意不要目录套目录，保持这样一个层次结构。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>  cacti
-	├plugin
-	│	├插件文件夹(如settings)
-	│	│	├index.php
-	│	│	├setup.php
-	│	│	└<span class="keyword">...</span>
-	│	└<span class="keyword">...</span>
-	└<span class="keyword">...</span>
-</pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>注意</strong> ：新版的0.8.8a PA(Plugin Architecture)已经默认集成在里面了，不需要先安装了。</p>
-</blockquote>
-<p><a id="more"></a><br>之后在Console -&gt; Plugin Management中会出现响应插件条目：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-plugin-mng-page.png" alt="插件管理界面"></p>
-<blockquote>
-<p>点击第一列的图标可以<code>安装(↓)</code>/<code>启用(←)</code>/<code>停用(⊙)</code>/<code>卸载(↑)</code>插件</p>
-</blockquote>
-<p>插件安装之后，在相应的栏目下回出现新的栏目</p>
-<h3 id="Thold-63d2-4ef6-">Thold插件</h3>
-<blockquote>
-<p>Thold插件主要用于监控报警，并用Email发送报警信息<br>Thold插件依赖于Settings插件，所以安装之前请先安装Settings插件。激活之后界面立即出现响应变化。</p>
-</blockquote>
-<h2 id="-6a21-7248-5b89-88c5-">模版安装</h2>
-<h3 id="Windows-5e73-53f0-SNMP-76d1-63a7-6a21-7248-">Windows平台SNMP监控模版</h3>
-<blockquote>
-<p>下载地址：<a href="http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195" target="_blank">http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195</a></p>
-</blockquote>
-<ul>
-<li>下载最新版本的模版,</li>
-<li>按照readme.txt中的步骤安装模版</li>
-<li>将resource目录覆盖Cacti下同名目录</li>
-<li>通过网页导入template下的模版<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-import-tpl-dialog.png" alt="插件管理界面"><blockquote>
-<p><strong>注意</strong> 如果用了Spine，可以选上<code>Hourly</code>,用的<code>CMD.php</code>的话，最低5分钟一次，选不选没区别</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="Mencached-6a21-7248-5b89-88c5-">Mencached模版安装</h3>
-<blockquote>
-<p>原版地址：<a href="http://dealnews.com/developers/cacti/memcached.html" target="_blank">http://dealnews.com/developers/cacti/memcached.html</a><br>可以监控多个端口的版本：<a href="http://tag1consulting.com/blog/cacti-memcache-multi-port-templates" target="_blank">http://tag1consulting.com/blog/cacti-memcache-multi-port-templates</a></p>
-</blockquote>
-<ul>
-<li>安装Python2.7</li>
-<li>安装setuptools</li>
-<li>安装memcached py版<br><a href="http://pypi.python.org/pypi/python-memcached/" target="_blank">http://pypi.python.org/pypi/python-memcached/</a></li>
-</ul>
-<p>以多端口的Memcached监控模版为例:</p>
-<ul>
-<li>解压</li>
-<li>按照README步骤，将memcached.py拷贝至Cacti目录的scripts文件夹下</li>
-<li>导入模版template</li>
-</ul>
-<blockquote>
-<p><strong>注意</strong> ：由于1.2.6等老版本的Memcache的Stats里面少了些数据，所以上述的memcached.py在监控1.2.6等版本的Memcache时会报错。</p>
-</blockquote>
-<h2 id="-76d1-63a7-5b9e-4f8b-">监控实例</h2>
-<h3 id="-6dfb-52a0-76d1-63a7-8bbe-5907-">添加监控设备</h3>
-<p>点击侧边栏<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-menu.png" alt="设备菜单">进入设备列表，点击右上方的<code>Add</code>来添加设备。</p>
-<p>并做一些设置，如图：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info-setting.png" alt="设置设备信息"></p>
-<p>点击保存，等待一段时间，页面跳转到主机设置界面，我们可以看到已经有部分信息获取到了：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info.png" alt="设备信息"></p>
-<blockquote>
-<p>如果snmp不通，则会显示 <strong><code>SNMP error</code></strong></p>
-</blockquote>
-<h3 id="-521b-5efa-8bbe-5907-56fe-">创建设备图</h3>
-<p>在设备详情页的下方 已经显示出了刚才指定的主机模版自带的监控项目<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-device-item.png" alt="设备监控项目"></p>
-<blockquote>
-<p>如果<code>Associated Data Queries</code>里面<code>Status</code>中显示<code>Success</code>并在后面显示出有具体数目的item和row表示数据是可以成功抓取的，如果都是<code>0</code>则表示数据没能抓取出来。</p>
-</blockquote>
-<p>点击页面右上方的<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-create-graphs.png" alt="创建图的按钮">即可创建抓取图。</p>
-<p>通过对于先前抓取的数据的观察，选择要监控的数据，在后面打钩，点击<code>Create</code>即可创建抓取图。</p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-graphs-item.png" alt="设置图内容"></p>
-<h3 id="-521b-5efa-6811-">创建树</h3>
-<p>点击<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-graph-tree.png" alt="创建树的按钮">，然后点击<code>Add</code>添加一个树</p>
-<ol>
-<li>填写树的名字，选择排列方式<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-tree-name.png" alt="设置树的名字和排列方式"></li>
-<li>点击<code>Add</code>添加设备<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-add-tree-item.png" alt="设置树的项目"></li>
-<li>点击<code>Add</code>添加设备<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-tree-item.png" alt="设置树的项目的属性"></li>
-<li>点击<code>Save</code>保存树</li>
-</ol>
-<p>之后可以在最上方的<code>Graphs</code>标签中看见效果：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-tab-graphs.png" alt="树的界面"></p>
-<blockquote>
-<p><strong>注意</strong> ：没有图片出现是因为，刚添加完，可能Poller还没运行，每来得及抓取到数据，等待1-2分钟就可以了。</p>
-</blockquote>
-<p>至此一个监控实例添加完成。</p>
-<h2 id="-6ce8-610f-4e8b-9879-">注意事项</h2>
-<p>　如果对于模版、系统设置、抓取时间间隔等进行了修改，需要<code>Rebuild Poller Cache</code>，以免出现不出图片或者图片上没有数据的问题。
-　</p>
-<h2 id="-63d2-4ef6-5f00-53d1-">插件开发</h2>
-<p>插件结构包含在<a href="http://docs.cacti.net/plugins:development" target="_blank">http://docs.cacti.net/plugins:development</a></p>
-<p>插件放在<code>{cacti_root}/plugins/{plugin_name}</code>下。</p>
-<p>插件主要通过setup.php与cacti通信。</p>
-<p><code>setup.php</code>是一个方法的集合，方法名不能有大写，不能有直接执行的方法。</p>
-<p>插件通过API Hook 与Cacti进行结合。</p>
-<p>Hook API 参见：<br><a href="http://docs.cacti.net/plugins:development.hook_api_ref#hook_api_reference" target="_blank">http://docs.cacti.net/plugins:development.hook_api_ref#hook_api_reference</a></p>
-<p>setup.php例子参见：<br><a href="http://blog.sina.com.cn/s/blog_47186b8b0100jdkv.html" target="_blank">http://blog.sina.com.cn/s/blog_47186b8b0100jdkv.html</a></p>
-<p>[TOC]</p>
-]]></content>
-    <summary type="html"><![CDATA[<h2 id="-63d2-4ef6-5b89-88c5-">插件安装</h2>
-<p>直接将插件解压缩之后放入Cacti的Plugin目录下，注意不要目录套目录，保持这样一个层次结构。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>  cacti
-	├plugin
-	│	├插件文件夹(如settings)
-	│	│	├index.php
-	│	│	├setup.php
-	│	│	└<span class="keyword">...</span>
-	│	└<span class="keyword">...</span>
-	└<span class="keyword">...</span>
-</pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>注意</strong> ：新版的0.8.8a PA(Plugin Architecture)已经默认集成在里面了，不需要先安装了。</p>
-</blockquote>
-<p>]]></summary>
-    
-      <category term="cacti" scheme="http://niphor.github.io/tags/cacti/"/>
-    
-      <category term="windows" scheme="http://niphor.github.io/tags/windows/"/>
-    
-      <category term="plugin" scheme="http://niphor.github.io/tags/plugin/"/>
     
       <category term="服务器" scheme="http://niphor.github.io/categories/server/"/>
     
@@ -2822,7 +2822,7 @@ chmod +s /<span class="keyword">var</span>/www/cacti/poller.php
     
       <category term="src" scheme="http://niphor.github.io/tags/src/"/>
     
-      <category term="原创" scheme="http://niphor.github.io/categories/%E5%8E%9F%E5%88%9B/"/>
+      <category term="原创" scheme="http://niphor.github.io/categories/original/"/>
     
   </entry>
   
