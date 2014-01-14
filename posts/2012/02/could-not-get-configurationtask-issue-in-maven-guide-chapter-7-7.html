@@ -1,0 +1,515 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Maven权威指南 第七章数据库生成不了的解决方法 | M-78的开发小站</title>
+  <meta name="author" content="Niphor">
+  
+  <meta name="description" content="Niphor的开发文档收集贴，Blog不用了，放这吧...万年更一次...">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Maven权威指南 第七章数据库生成不了的解决方法"/>
+  <meta property="og:site_name" content="M-78的开发小站"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="M-78的开发小站" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">M-78的开发小站</a></h1>
+  <h2><a href="/">凹凸曼就是这么造出来的</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-02-06T07:23:11.000Z"><a href="/posts/2012/02/could-not-get-configurationtask-issue-in-maven-guide-chapter-7-7.html">2012-02-06</a></time>
+      
+      
+  
+    <h1 class="title">Maven权威指南 第七章数据库生成不了的解决方法</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>　　初学Maven,必然是看\&lt;\<Maven权威指南\>>,这书很全面也有中文版本,sonatype官网,和GitHub上面都有,下载也很方便( <em>我是GitHub上抓的</em> ),不过我看到第七章7.7节,实际遇到了些问题。<br><a id="more"></a><br>书中7.7节原文写到:</p>
+<blockquote>
+<p>7.7. 运行这个Web应用<br>   为了运行这个web应用，你首先需要使用Hibernate3插件构造数据库。为此，在项目simple-webapp目录下运行如下命令：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre>&gt;<span class="comment">$</span> <span class="comment">mvn</span> <span class="comment">hibernate3:hbm2ddl</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Scanning</span> <span class="comment">for</span> <span class="comment">projects</span><span class="string">.</span><span class="string">.</span><span class="string">.</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Searching</span> <span class="comment">repository</span> <span class="comment">for</span> <span class="comment">plugin</span> <span class="comment">with</span> <span class="comment">prefix:</span> &gt;<span class="comment">'hibernate3'</span><span class="string">.</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">org</span><span class="string">.</span><span class="comment">codehaus</span><span class="string">.</span><span class="comment">mojo:</span> <span class="comment">checking</span> <span class="comment">for</span> <span class="comment">updates</span> <span class="comment">from</span> <span class="comment">central</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Building</span> <span class="comment">Chapter</span> <span class="comment">7</span> <span class="comment">Simple</span> <span class="comment">Web</span> <span class="comment">Application</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">task</span><span class="literal">-</span><span class="comment">segment:</span> <span class="title">[</span><span class="comment">hibernate3:hbm2ddl</span><span class="title">]</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Preparing</span> <span class="comment">hibernate3:hbm2ddl</span>
+&gt;<span class="string">.</span><span class="string">.</span><span class="string">.</span>
+&gt;<span class="comment">10:24:56</span><span class="string">,</span><span class="comment">151</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">tool</span><span class="string">.</span><span class="comment">hbm2ddl</span><span class="string">.</span><span class="comment">SchemaExport</span> <span class="literal">-</span> <span class="comment">export</span> <span class="comment">complete</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">BUILD</span> <span class="comment">SUCCESSFUL</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+&gt;
+</pre></td></tr></table></figure>
+
+</blockquote>
+<p>实际上并非如此,直接用随书附带的源码,会得到如下提示:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="code"><pre><span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Scanning</span> <span class="comment">for</span> <span class="comment">projects</span><span class="string">.</span><span class="string">.</span><span class="string">.</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Building</span> <span class="comment">Chapter</span> <span class="comment">7</span> <span class="comment">Simple</span> <span class="comment">Web</span> <span class="comment">Application</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">task</span><span class="literal">-</span><span class="comment">segment:</span> <span class="title">[</span><span class="comment">hibernate3:hbm2ddl</span><span class="title">]</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Preparing</span> <span class="comment">hibernate3:hbm2ddl</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="title">[</span><span class="comment">resources:resources</span> <span class="comment">{execution:</span> <span class="comment">default</span><span class="literal">-</span><span class="comment">resources}</span><span class="title">]</span>
+<span class="title">[</span><span class="comment">WARNING</span><span class="title">]</span> <span class="comment">Using</span> <span class="comment">platform</span> <span class="comment">encoding</span> <span class="comment">(GBK</span> <span class="comment">actually)</span> <span class="comment">to</span> <span class="comment">copy</span> <span class="comment">filtered</span> <span class="comment">resources</span><span class="string">,</span> <span class="comment">i</span><span class="string">.</span><span class="comment">e</span><span class="string">.</span> <span class="comment">build</span> <span class="comment">is</span> <span class="comment">platform</span> <span class="comment">dependent!</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">skip</span> <span class="comment">non</span> <span class="comment">existing</span> <span class="comment">resourceDirectory</span> <span class="comment">E:\simple</span><span class="literal">-</span><span class="comment">parent\simple</span><span class="literal">-</span><span class="comment">webapp\src\main\resources</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="title">[</span><span class="comment">hibernate3:hbm2ddl</span> <span class="comment">{execution:</span> <span class="comment">default</span><span class="literal">-</span><span class="comment">cli}</span><span class="title">]</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">ERROR</span><span class="title">]</span> <span class="comment">BUILD</span> <span class="comment">ERROR</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Could</span> <span class="comment">not</span> <span class="comment">get</span> <span class="comment">ConfigurationTask</span><span class="string">.</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">For</span> <span class="comment">more</span> <span class="comment">information</span><span class="string">,</span> <span class="comment">run</span> <span class="comment">Maven</span> <span class="comment">with</span> <span class="comment">the</span> <span class="literal">-</span><span class="comment">e</span> <span class="comment">switch</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Total</span> <span class="comment">time:</span> <span class="comment">2</span> <span class="comment">seconds</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Finished</span> <span class="comment">at:</span> <span class="comment">Mon</span> <span class="comment">Feb</span> <span class="comment">06</span> <span class="comment">12:42:29</span> <span class="comment">CST</span> <span class="comment">2012</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Final</span> <span class="comment">Memory:</span> <span class="comment">10M/25M</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+</pre></td></tr></table></figure>
+
+<p><code>Could not get ConfigurationTask.</code>这个错误我Google了一下,只找到一个相关的页面,页面上是系统变量的JDK写错了,和我这边似乎没什么关系。</p>
+<p>如果我去除POM中的hibernate3-maven-plugin,则运行时候会显示如下错误:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="code"><pre><span class="comment">simple</span><span class="literal">-</span><span class="comment">webapp</span>&gt;<span class="comment">mvn</span> <span class="comment">hibernate3:hbm2ddl</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Scanning</span> <span class="comment">for</span> <span class="comment">projects</span><span class="string">.</span><span class="string">.</span><span class="string">.</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Searching</span> <span class="comment">repository</span> <span class="comment">for</span> <span class="comment">plugin</span> <span class="comment">with</span> <span class="comment">prefix:</span> <span class="comment">'hibernate3'</span><span class="string">.</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Building</span> <span class="comment">Chapter</span> <span class="comment">7</span> <span class="comment">Simple</span> <span class="comment">Web</span> <span class="comment">Application</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">task</span><span class="literal">-</span><span class="comment">segment:</span> <span class="title">[</span><span class="comment">hibernate3:hbm2ddl</span><span class="title">]</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Preparing</span> <span class="comment">hibernate3:hbm2ddl</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="title">[</span><span class="comment">resources:resources</span> <span class="comment">{execution:</span> <span class="comment">default</span><span class="literal">-</span><span class="comment">resources}</span><span class="title">]</span>
+<span class="title">[</span><span class="comment">WARNING</span><span class="title">]</span> <span class="comment">Using</span> <span class="comment">platform</span> <span class="comment">encoding</span> <span class="comment">(GBK</span> <span class="comment">actually)</span> <span class="comment">to</span> <span class="comment">copy</span> <span class="comment">filtered</span> <span class="comment">resources</span><span class="string">,</span> <span class="comment">i</span><span class="string">.</span><span class="comment">e</span><span class="string">.</span> <span class="comment">build</span> <span class="comment">is</span> <span class="comment">platform</span> <span class="comment">dependent!</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">skip</span> <span class="comment">non</span> <span class="comment">existing</span> <span class="comment">resourceDirectory</span> <span class="comment">E:\simple</span><span class="literal">-</span><span class="comment">parent\simple</span><span class="literal">-</span><span class="comment">webapp\src\main\resources</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="title">[</span><span class="comment">hibernate3:hbm2ddl</span> <span class="comment">{execution:</span> <span class="comment">default</span><span class="literal">-</span><span class="comment">cli}</span><span class="title">]</span>
+<span class="comment">12:59:55</span><span class="string">,</span><span class="comment">351</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">Environment</span> <span class="literal">-</span> <span class="comment">Hibernate</span> <span class="comment">3</span><span class="string">.</span><span class="comment">3</span><span class="string">.</span><span class="comment">1</span><span class="string">.</span><span class="comment">GA</span>
+<span class="comment">12:59:55</span><span class="string">,</span><span class="comment">357</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">Environment</span> <span class="literal">-</span> <span class="comment">hibernate</span><span class="string">.</span><span class="comment">properties</span> <span class="comment">not</span> <span class="comment">found</span>
+<span class="comment">12:59:55</span><span class="string">,</span><span class="comment">362</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">Environment</span> <span class="literal">-</span> <span class="comment">Bytecode</span> <span class="comment">provider</span> <span class="comment">name</span> <span class="comment">:</span> <span class="comment">javassist</span>
+<span class="comment">12:59:55</span><span class="string">,</span><span class="comment">367</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">Environment</span> <span class="literal">-</span> <span class="comment">using</span> <span class="comment">JDK</span> <span class="comment">1</span><span class="string">.</span><span class="comment">4</span> <span class="comment">java</span><span class="string">.</span><span class="comment">sql</span><span class="string">.</span><span class="comment">Timestamp</span> <span class="comment">handling</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Configuration</span> <span class="comment">XML</span> <span class="comment">file</span> <span class="comment">loaded:</span> <span class="comment">jar:file:/C:/Users/Niphor/</span><span class="string">.</span><span class="comment">m2/repository/org/sonatype/mavenbook/ch07/simple</span><span class="literal">-</span><span class="comment">persist/0</span><span class="string">.</span><span class="comment">6</span><span class="literal">-</span><span class="comment">SNAPSHOT/simple</span><span class="literal">-</span><span class="comment">persist</span><span class="literal">-</span><span class="comment">0</span><span class="string">.</span><span class="comment">6</span><span class="literal">-</span><span class="comment">SNAPSHOT</span><span class="string">.</span><span class="comment">jar!/hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">xml</span>
+<span class="comment">12:59:55</span><span class="string">,</span><span class="comment">418</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">Configuration</span> <span class="literal">-</span> <span class="comment">configuring</span> <span class="comment">from</span> <span class="comment">url:</span> <span class="comment">jar:file:/C:/Users/Niphor/</span><span class="string">.</span><span class="comment">m2/repository/org/sonatype/mavenbook/ch07/simple</span><span class="literal">-</span><span class="comment">persist/0</span><span class="string">.</span><span class="comment">6</span><span class="literal">-</span><span class="comment">SNAPSHOT/simple</span><span class="literal">-</span><span class="comment">persist</span><span class="literal">-</span><span class="comment">0</span><span class="string">.</span><span class="comment">6</span><span class="literal">-</span><span class="comment">SNAPSHOT</span><span class="string">.</span><span class="comment">jar!/hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">xml</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">ERROR</span><span class="title">]</span> <span class="comment">FATAL</span> <span class="comment">ERROR</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">An</span> <span class="comment">AnnotationConfiguration</span> <span class="comment">instance</span> <span class="comment">is</span> <span class="comment">required</span> <span class="comment">to</span> <span class="comment">use</span> &lt;<span class="comment">mapping</span> <span class="comment">class="org</span><span class="string">.</span><span class="comment">sonatype</span><span class="string">.</span><span class="comment">mavenbook</span><span class="string">.</span><span class="comment">weather</span><span class="string">.</span><span class="comment">model</span><span class="string">.</span><span class="comment">Atmosphere"/</span>&gt;
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+</pre></td></tr></table></figure>
+
+<p>看样子是没标明用<code>annotation</code>,所以提示要<code>annotationConfiguration</code>的实例。</p>
+<p>Google<code>&quot;hibernate3:hbm2ddl&quot;</code>你会得到一些中文开发者的解决方法,一般都是:</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">plugin</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.codehaus.mojo<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>hibernate3-maven-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">configuration</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">componentProperties</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">jdk5</span>&gt;</span>true<span class="tag">&lt;/<span class="title">jdk5</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">implementation</span>&gt;</span>annotationconfiguration<span class="tag">&lt;/<span class="title">implementation</span>&gt;</span>
+　　<span class="tag">&lt;/<span class="title">componentProperties</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">configuration</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">dependencies</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>hsqldb<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>hsqldb<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">version</span>&gt;</span>1.8.0.7<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+　　<span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">dependencies</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">plugin</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>而源码上是</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">plugin</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.codehaus.mojo<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>hibernate3-maven-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">configuration</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">components</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">component</span>&gt;</span>
+　　　　<span class="tag">&lt;<span class="title">name</span>&gt;</span>hbm2ddl<span class="tag">&lt;/<span class="title">name</span>&gt;</span>
+　　　　<span class="tag">&lt;<span class="title">implementation</span>&gt;</span>annotationconfiguration<span class="tag">&lt;/<span class="title">implementation</span>&gt;</span>
+　　　<span class="tag">&lt;/<span class="title">component</span>&gt;</span>
+　　<span class="tag">&lt;/<span class="title">components</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">configuration</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">dependencies</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>hsqldb<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>hsqldb<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">version</span>&gt;</span>1.8.0.7<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+　　<span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">dependencies</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">plugin</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>我把</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">componentProperties</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">jdk5</span>&gt;</span>true<span class="tag">&lt;/<span class="title">jdk5</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">implementation</span>&gt;</span>annotationconfiguration<span class="tag">&lt;/<span class="title">implementation</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">componentProperties</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>替换成了</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">components</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">component</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">name</span>&gt;</span>hbm2ddl<span class="tag">&lt;/<span class="title">name</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">implementation</span>&gt;</span>annotationconfiguration<span class="tag">&lt;/<span class="title">implementation</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">component</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">components</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>结果不行,报错依旧,最后我发现插件版本网上2.2,而我的源码是2.1,改成2.2立即成功,且完全不需要去写</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">jdk5</span>&gt;</span>true<span class="tag">&lt;/<span class="title">jdk5</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>即</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+<span class="tag">&lt;<span class="title">configuration</span>&gt;</span>
+<span class="tag">&lt;<span class="title">components</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">component</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">name</span>&gt;</span>hbm2ddl<span class="tag">&lt;/<span class="title">name</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">implementation</span>&gt;</span>annotationconfiguration<span class="tag">&lt;/<span class="title">implementation</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">component</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">components</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">configuration</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>直接这样就可以了…</p>
+<p>为了这个恼人的Bug我用了数小时，结果居然是这样的…让我直接很悲哀啊… </p>
+<p>[TOC]</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/note/">笔记</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/maven/">maven</a>, <a href="/tags/java/">java</a>
+  </div>
+
+        
+
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "24"
+        },
+        "share": {}
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89343201.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"niphor-dev"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:niphor.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/原创/">原创</a><small>1</small></li>
+  
+    <li><a href="/categories/server/">服务器</a><small>4</small></li>
+  
+    <li><a href="/categories/note/">笔记</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Indeo/">Indeo</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/cacti/">cacti</a><small>3</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>1</small></li>
+  
+    <li><a href="/tags/filezilla/">filezilla</a><small>1</small></li>
+  
+    <li><a href="/tags/hd/">hd</a><small>1</small></li>
+  
+    <li><a href="/tags/ipv6/">ipv6</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/tags/mariadb/">mariadb</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/memcached/">memcached</a><small>1</small></li>
+  
+    <li><a href="/tags/mp_/">mp_</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
+  
+    <li><a href="/tags/src/">src</a><small>1</small></li>
+  
+    <li><a href="/tags/umemaro/">umemaro</a><small>1</small></li>
+  
+    <li><a href="/tags/win7/">win7</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Niphor
+  
+</div>
+<div class="clearfix"></div></footer>
+  <!--[if lt IE 9]>
+<script src="//lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<![endif]-->
+<script src="http://cdn.staticfile.org/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" type="text/css">
+<script src="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <subtitle><![CDATA[凹凸曼就是这么造出来的]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://niphor.github.io/"/>
-  <updated>2014-01-13T14:09:19.325Z</updated>
+  <updated>2014-01-14T08:18:12.141Z</updated>
   <id>http://niphor.github.io/</id>
   
   <author>
@@ -15,429 +15,27 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Cacti插件安装/使用]]></title>
-    <link href="http://niphor.github.io/post/server/install-cacti-plugin.html"/>
-    <id>http://niphor.github.io/post/server/install-cacti-plugin.html</id>
-    <published>2014-01-13T10:14:23.000Z</published>
-    <updated>2014-01-13T14:09:04.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="-63d2-4ef6-5b89-88c5-">插件安装</h2>
-<p>直接将插件解压缩之后放入Cacti的Plugin目录下，注意不要目录套目录，保持这样一个层次结构。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>  cacti
-	├plugin
-	│	├插件文件夹(如settings)
-	│	│	├index.php
-	│	│	├setup.php
-	│	│	└<span class="keyword">...</span>
-	│	└<span class="keyword">...</span>
-	└<span class="keyword">...</span>
-</pre></td></tr></table></figure>
+    <title><![CDATA[Python安装配置]]></title>
+    <link href="http://niphor.github.io/posts/2014/01/install-python.html"/>
+    <id>http://niphor.github.io/posts/2014/01/install-python.html</id>
+    <published>2014-01-10T07:58:06.000Z</published>
+    <updated>2014-01-13T08:22:40.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Python-5b89-88c5-">Python安装</h2>
+<p>Python 中国区下载地址：<a href="http://python.org/getit/" target="_blank">http://python.org/getit/</a><br>Package库<a href="https://pypi.python.org/pypi" target="_blank">https://pypi.python.org/pypi</a></p>
+<blockquote>
+<p>在Windows上面使用<code>安装给所有用户</code>选项会使<code>pythonXX.dll</code>复制到<code>Windos/system32</code>下面。<br>这时使用virtualenv生成环境后，需要把<code>pythonXX.dll</code>拷到<code>env/Scripts</code>下面，不然在没Python的机子上可能就可能会报<code>&quot;找不到pythonXX.dll&quot;</code>的错误。</p>
+</blockquote>
+<p>安装完毕将<code>C:\python27;C:\python27\Scripts</code>添加到Path中</p>
+<blockquote>
+<p>添加后，如果使用virtualenv有可能会出现python串掉的问题。</p>
+</blockquote>
+<a id="more"></a>
 
+<h2 id="-5b89-88c5-setuptools">安装setuptools</h2>
+<p><a href="https://pypi.python.org/pypi/setuptools" title="setuptools" target="_blank">官网</a>推荐的方式是下载py脚本安装</p>
 <blockquote>
-<p><strong>注意</strong> ：新版的0.8.8a PA(Plugin Architecture)已经默认集成在里面了，不需要先安装了。</p>
+<p>1.0开始的Windows平台已经没有easy_install的安装包了</p>
 </blockquote>
-<p><a id="more"></a><br>之后在Console -&gt; Plugin Management中会出现响应插件条目：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-plugin-mng-page.png" alt="插件管理界面"></p>
-<blockquote>
-<p>点击第一列的图标可以<code>安装(↓)</code>/<code>启用(←)</code>/<code>停用(⊙)</code>/<code>卸载(↑)</code>插件</p>
-</blockquote>
-<p>插件安装之后，在相应的栏目下回出现新的栏目</p>
-<h3 id="Thold-63d2-4ef6-">Thold插件</h3>
-<blockquote>
-<p>Thold插件主要用于监控报警，并用Email发送报警信息<br>Thold插件依赖于Settings插件，所以安装之前请先安装Settings插件。激活之后界面立即出现响应变化。</p>
-</blockquote>
-<h2 id="-6a21-7248-5b89-88c5-">模版安装</h2>
-<h3 id="Windows-5e73-53f0-SNMP-76d1-63a7-6a21-7248-">Windows平台SNMP监控模版</h3>
-<blockquote>
-<p>下载地址：<a href="http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195" target="_blank">http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195</a></p>
-</blockquote>
-<ul>
-<li>下载最新版本的模版,</li>
-<li>按照readme.txt中的步骤安装模版</li>
-<li>将resource目录覆盖Cacti下同名目录</li>
-<li>通过网页导入template下的模版<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-import-tpl-dialog.png" alt="插件管理界面"><blockquote>
-<p><strong>注意</strong> 如果用了Spine，可以选上<code>Hourly</code>,用的<code>CMD.php</code>的话，最低5分钟一次，选不选没区别</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="Mencached-6a21-7248-5b89-88c5-">Mencached模版安装</h3>
-<blockquote>
-<p>原版地址：<a href="http://dealnews.com/developers/cacti/memcached.html" target="_blank">http://dealnews.com/developers/cacti/memcached.html</a><br>可以监控多个端口的版本：<a href="http://tag1consulting.com/blog/cacti-memcache-multi-port-templates" target="_blank">http://tag1consulting.com/blog/cacti-memcache-multi-port-templates</a></p>
-</blockquote>
-<ul>
-<li>安装Python2.7</li>
-<li>安装setuptools</li>
-<li>安装memcached py版<br><a href="http://pypi.python.org/pypi/python-memcached/" target="_blank">http://pypi.python.org/pypi/python-memcached/</a></li>
-</ul>
-<p>以多端口的Memcached监控模版为例:</p>
-<ul>
-<li>解压</li>
-<li>按照README步骤，将memcached.py拷贝至Cacti目录的scripts文件夹下</li>
-<li>导入模版template</li>
-</ul>
-<blockquote>
-<p><strong>注意</strong> ：由于1.2.6等老版本的Memcache的Stats里面少了些数据，所以上述的memcached.py在监控1.2.6等版本的Memcache时会报错。</p>
-</blockquote>
-<h2 id="-76d1-63a7-5b9e-4f8b-">监控实例</h2>
-<h3 id="-6dfb-52a0-76d1-63a7-8bbe-5907-">添加监控设备</h3>
-<p>点击侧边栏<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-menu.png" alt="设备菜单">进入设备列表，点击右上方的<code>Add</code>来添加设备。</p>
-<p>并做一些设置，如图：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info-setting.png" alt="设置设备信息"></p>
-<p>点击保存，等待一段时间，页面跳转到主机设置界面，我们可以看到已经有部分信息获取到了：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info.png" alt="设备信息"></p>
-<blockquote>
-<p>如果snmp不通，则会显示 <strong><code>SNMP error</code></strong></p>
-</blockquote>
-<h3 id="-521b-5efa-8bbe-5907-56fe-">创建设备图</h3>
-<p>在设备详情页的下方 已经显示出了刚才指定的主机模版自带的监控项目<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-device-item.png" alt="设备监控项目"></p>
-<blockquote>
-<p>如果<code>Associated Data Queries</code>里面<code>Status</code>中显示<code>Success</code>并在后面显示出有具体数目的item和row表示数据是可以成功抓取的，如果都是<code>0</code>则表示数据没能抓取出来。</p>
-</blockquote>
-<p>点击页面右上方的<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-create-graphs.png" alt="创建图的按钮">即可创建抓取图。</p>
-<p>通过对于先前抓取的数据的观察，选择要监控的数据，在后面打钩，点击<code>Create</code>即可创建抓取图。</p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-graphs-item.png" alt="设置图内容"></p>
-<h3 id="-521b-5efa-6811-">创建树</h3>
-<p>点击<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-graph-tree.png" alt="创建树的按钮">，然后点击<code>Add</code>添加一个树</p>
-<ol>
-<li>填写树的名字，选择排列方式<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-tree-name.png" alt="设置树的名字和排列方式"></li>
-<li>点击<code>Add</code>添加设备<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-add-tree-item.png" alt="设置树的项目"></li>
-<li>点击<code>Add</code>添加设备<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-tree-item.png" alt="设置树的项目的属性"></li>
-<li>点击<code>Save</code>保存树</li>
-</ol>
-<p>之后可以在最上方的<code>Graphs</code>标签中看见效果：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-tab-graphs.png" alt="树的界面"></p>
-<blockquote>
-<p><strong>注意</strong> ：没有图片出现是因为，刚添加完，可能Poller还没运行，每来得及抓取到数据，等待1-2分钟就可以了。</p>
-</blockquote>
-<p>至此一个监控实例添加完成。</p>
-<h2 id="-6ce8-610f-4e8b-9879-">注意事项</h2>
-<p>　如果对于模版、系统设置、抓取时间间隔等进行了修改，需要<code>Rebuild Poller Cache</code>，以免出现不出图片或者图片上没有数据的问题。
-　</p>
-<h2 id="-63d2-4ef6-5f00-53d1-">插件开发</h2>
-<p>插件结构包含在<a href="http://docs.cacti.net/plugins:development" target="_blank">http://docs.cacti.net/plugins:development</a></p>
-<p>插件放在<code>{cacti_root}/plugins/{plugin_name}</code>下。</p>
-<p>插件主要通过setup.php与cacti通信。</p>
-<p><code>setup.php</code>是一个方法的集合，方法名不能有大写，不能有直接执行的方法。</p>
-<p>插件通过API Hook 与Cacti进行结合。</p>
-<p>Hook API 参见：<br><a href="http://docs.cacti.net/plugins:development.hook_api_ref#hook_api_reference" target="_blank">http://docs.cacti.net/plugins:development.hook_api_ref#hook_api_reference</a></p>
-<p>setup.php例子参见：<br><a href="http://blog.sina.com.cn/s/blog_47186b8b0100jdkv.html" target="_blank">http://blog.sina.com.cn/s/blog_47186b8b0100jdkv.html</a></p>
-<p>[TOC]</p>
-]]></content>
-    <summary type="html"><![CDATA[<h2 id="-63d2-4ef6-5b89-88c5-">插件安装</h2>
-<p>直接将插件解压缩之后放入Cacti的Plugin目录下，注意不要目录套目录，保持这样一个层次结构。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>  cacti
-	├plugin
-	│	├插件文件夹(如settings)
-	│	│	├index.php
-	│	│	├setup.php
-	│	│	└<span class="keyword">...</span>
-	│	└<span class="keyword">...</span>
-	└<span class="keyword">...</span>
-</pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>注意</strong> ：新版的0.8.8a PA(Plugin Architecture)已经默认集成在里面了，不需要先安装了。</p>
-</blockquote>
-<p>]]></summary>
-    
-      <category term="cacti" scheme="http://niphor.github.io/tags/cacti/"/>
-    
-      <category term="windows" scheme="http://niphor.github.io/tags/windows/"/>
-    
-      <category term="plugin" scheme="http://niphor.github.io/tags/plugin/"/>
-    
-      <category term="服务器" scheme="http://niphor.github.io/categories/server/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Cacti安装]]></title>
-    <link href="http://niphor.github.io/post/server/install-cacti.html"/>
-    <id>http://niphor.github.io/post/server/install-cacti.html</id>
-    <published>2014-01-13T04:16:08.000Z</published>
-    <updated>2014-01-13T07:34:16.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="-524d-671f-51c6-5907-">前期准备</h2>
-<p>这里主要说明PHP、Apache的配置，默认认为你已经安装好MySQL、PHP、Apache或其它代替工具，并做好了相应的基本配置，已可以用于开发或生产环境。如果没有请参考其它教程配置PHP、Apache、MySQL，这里不再重复了。<br><a id="more"></a></p>
-<h3 id="PHP-914d-7f6e-">PHP配置</h3>
-<h4 id="-914d-7f6e-PHPRC">配置PHPRC</h4>
-<p>指向你php安装目录</p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-phprc.png" alt="设置PHPRC"></p>
-<h4 id="-914d-7f6e-MIBDIRS">配置MIBDIRS</h4>
-<p>指向php目录下面的extras的mibs文件夹</p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-mibdirs.png" alt="设置MIBDIRS"></p>
-<blockquote>
-<p>有的PHP版本安装完之后并不会包含这个文件夹，这时候找个有这个目录的php，拷贝过来即可</p>
-</blockquote>
-<h4 id="-4fee-6539-Path-53d8-91cf-ff0c-6dfb-52a0-PHP-8def-5f84-28-975e-5fc5-987b-29-">修改Path变量，添加PHP路径(非必须)</h4>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-php-path.png" alt="设置PATH"></p>
-<h4 id="-4fee-6539-php-ini">修改php.ini</h4>
-<p>修改/配置如下参数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre></td><td class="code"><pre><span class="xml"><span class="tag"><span class="attribute">fastcgi.impersonate</span> = <span class="attribute">1</span>
-<span class="attribute">register_argc_argv</span> = <span class="attribute">On</span>
-<span class="attribute">safe_mode</span> = <span class="attribute">Off</span>
-<span class="attribute">cgi.fix_pathinfo</span> = <span class="attribute">1</span>
-<span class="attribute">cgi.force_redirect</span> = <span class="attribute">0</span>
-<span class="attribute">upload_tmp_dir</span> = "<span class="attribute">tmp</span>文件夹路径"
-<span class="attribute">session.save_path</span>=<span class="value">"Session文件夹路径"</span>
-
-//根据主机实际情况调整
-<span class="attribute">max_execution_time</span> = <span class="attribute">60</span> ;
-<span class="attribute">max_input_time</span> = <span class="attribute">120</span> ;
-<span class="attribute">memory_limit</span> = <span class="attribute">128M</span> ;</span></span>
-</pre></td></tr></table></figure>
-
-<h4 id="-4fee-6539-6743-9650-">修改权限</h4>
-<p>给计划任务执行账户 修改<code>php目录\extras\mibs\</code>文件夹的权限</p>
-<p>如果使用IIS：<br>修改<code>tmp文件夹路径</code>和<code>Session文件夹路径</code>的NTFS权限，给<code>IUSR_</code>和<code>IIS_WPG</code>用户修改此文件夹内文件的权限</p>
-<h3 id="Apache-914d-7f6e-">Apache配置</h3>
-<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>#确保已开启以下模块的使用
-extension=php_mysql.dll
-extension=php_snmp.dll
-extension=php_sockets.dll
-</pre></td></tr></table></figure>
-
-<h3 id="-8f6f-4ef6-4e0b-8f7d-">软件下载</h3>
-<ul>
-<li>Cacti主程序<br>  <a href="http://www.cacti.net/download_cacti.php" target="_blank">http://www.cacti.net/download_cacti.php</a><br>  下载Windows in ZIP format包</li>
-<li>Spine 程序<br>  <a href="http://www.cacti.net/spine_download.php" target="_blank">http://www.cacti.net/spine_download.php</a><br>  下载Spine Binaries for Windows包</li>
-<li>RRDtool程序<br>  <a href="http://oss.oetiker.ch/rrdtool/download.en.html" target="_blank">http://oss.oetiker.ch/rrdtool/download.en.html</a><br>  下载Cygwin Windows包</li>
-<li>Net-SNMP程序<br>  <a href="http://www.net-snmp.org/download.html" target="_blank">http://www.net-snmp.org/download.html</a><br>  下载Binary 包</li>
-<li>ActivePerl程序<br>  <a href="http://www.activestate.com/activeperl/downloads" target="_blank">http://www.activestate.com/activeperl/downloads</a><br>  下载对应平台的安装包</li>
-</ul>
-<blockquote>
-<p>Spine前身为Cactid,用来轮询的，默认Cacti使用CMD.php，最小只能5分钟，效率较低，换成Spine之后可以1分钟轮询一次。</p>
-<p>RRDtool最新的为1.4.X版本的，但是默认编译好的Windows平台的只有1.2.X版本，如果使用最新的版本需要自行安装Cygwin（ <a href="http://www.cygwin.com/" target="_blank">http://www.cygwin.com/</a> ）编译新版本的源码。1.2.X编译好的版本在Windows下面不能支持中文。</p>
-<p>由于Cacti自带某些perl脚本来查询，所以需要安装ActivePerl，但若你确定自己不会用到perl脚本来查询，则可以不安装。</p>
-</blockquote>
-<h2 id="-8f6f-4ef6-5b89-88c5-">软件安装</h2>
-<h3 id="Spine">Spine</h3>
-<p>Spine为免安装工具，解压到你想要放置的地方( <em>如：c:\spine</em> )</p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-spine.png" alt="放置Spine程序文件"></p>
-<p>复制一份<code>spine.conf.dist</code>，并改名为<code>spine.conf</code>并用编辑器打开，对cacti所使用的数据库进行配置</p>
-<blockquote>
-<p>Windows平台MySQL的地址需要使用IP地址！</p>
-</blockquote>
-<h3 id="RRDtool">RRDtool</h3>
-<p>RRDtool也是绿色软件，解压到你想放置的地方( <em>如：c:\rrdtool</em> )</p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-rrdtool.png" alt="放置RRDtool程序文件"></p>
-<h3 id="Net-SNMP">Net-SNMP</h3>
-<p>Net-SNMP为安装程序，直接下一步，下一步安装到你想放置的地方( <em>如：c:\net-snmp</em> )<br><em>我安装在默认位置c:\usr下</em></p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-net-snmp.png" alt="安装Net-SNMP程序"></p>
-<h3 id="ActivePerl">ActivePerl</h3>
-<p>ActivePerl直接默认安装即可</p>
-<blockquote>
-<p>安装完之后确认系统变量中已经包含了perl，如果没有则自己添加一下。<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-perl-path.png" alt="确认perl在PATH里"></p>
-</blockquote>
-<h3 id="Cacti">Cacti</h3>
-<p>Cacti 主程序为PHP的WebApp,解压到Apache或代替软件的网站目录下( <em>如：D:\wamp\htdocs</em> )，或者自行建立虚拟主机，或者虚拟目录，然后解压进去。</p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti.png" alt="放置Cacti程序文件"></p>
-<h4 id="MySQL-6570-636e-5e93-914d-7f6e-">MySQL数据库配置</h4>
-<p>这里创建的数据库即为<code>Spine</code>和<code>Cacti</code>使用的数据库</p>
-<blockquote>
-<p>cacti.sql在cacti的根目录下面，数据库名称和数据库用户可以自己定义。</p>
-</blockquote>
-<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>//创建cacti数据库
-mysql&gt; <span class="operator"><span class="keyword">create</span> database cacti;</span>
-//创建cactiuser用户并付给cacti表权限
-mysql&gt; <span class="operator"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">on</span> cacti.* <span class="keyword">to</span> cactiuser@localhost identified <span class="keyword">by</span> “cactiuser”;</span>
-mysql&gt;flush privileges;
-//导入cacti数据库sql
-mysql&gt;use cacti
-mysql&gt;source d:/wamp/htdocs/cacti/cacti.sql
-</pre></td></tr></table></figure>
-
-<p>打开Cacti目录下的<code>include\config.php</code>,配置数据库地址</p>
-<figure class="highlight lang-php"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="variable">$database_type</span> = <span class="string">"mysql"</span>;
-<span class="variable">$database_default</span> = <span class="string">"cacti"</span>;
-<span class="variable">$database_hostname</span> = <span class="string">"127.0.0.1"</span>;
-<span class="variable">$database_username</span> = <span class="string">"cactiuser"</span>;
-<span class="variable">$database_password</span> = <span class="string">"cactiuser"</span>;
-<span class="variable">$database_port</span> = <span class="string">"3306"</span>;
-<span class="variable">$database_ssl</span> = <span class="keyword">false</span>;
-</pre></td></tr></table></figure>
-
-<h4 id="-5b89-88c5-Cacti">安装Cacti</h4>
-<ol>
-<li>在浏览器中打开cacti(<a href="http://your-url/install/index.php" target="_blank">http://your-url/install/index.php</a>)<br><em>比如我放在了<a href="http://localhost/cacti/install/index.php" target="_blank">http://localhost/cacti/install/index.php</a></em><br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-1.png" alt="安装Cacti 第一步"><br>点击 <code>Next&gt;&gt;</code> 进入下一步</li>
-<li><p>选择全新安装</p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-2.png" alt="安装Cacti 第二步"><br>点击 <code>Next&gt;&gt;</code> 进入下一步</p>
-</li>
-<li>配置路径<br>如图所示配置好各个程序所在的路径<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-3.png" alt="安装Cacti 第三步"><br>点击 <code>Finish</code> 完成</li>
-<li>重置密码  <ol>
-<li>完成后转入登陆窗口，填写用户名密码 admin/admin 进行登陆<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-4.png" alt="安装Cacti 第四步(1)">  </li>
-<li>填写新密码<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-5.png" alt="安装Cacti 第四步(2)"><blockquote>
-<p>Cacti不提供密码找回功能，所以修改之后的密码一定要牢记！</p>
-</blockquote>
-</li>
-</ol>
-</li>
-</ol>
-<p>至此Cacti安装完成。</p>
-<h4 id="-8bbe-7f6e-Cacti">设置Cacti</h4>
-<h5 id="-8bbe-7f6e-8def-5f84-">设置路径</h5>
-<p>在Paths选项卡中，如图填入spine和其它组件的绝对路径</p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-cacti-set-abspath.png" alt="设置abspath"></p>
-<h5 id="-8bbe-7f6e-Poller">设置Poller</h5>
-<p>因为我们安装了<code>Spine</code>，将<code>Poller Type</code>选为<code>spine</code>,并将<code>Poller Interval</code>和<code>Cron interval</code>都设置为<code>Every Minute</code>。</p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-cacti-set-poller.png" alt="设置Poller"></p>
-<blockquote>
-<p><code>Poller Interval</code>和<code>Cron interval</code>这是指查询间隔。<br>因为使用了spine所以可以设置为1分钟一次。<br>如果使用默认的CMD.php， <strong>请不要低于5分钟</strong> 。</p>
-</blockquote>
-<p>同时修改左侧<code>Data Templates</code>选项卡里模板的<code>step</code>( <em>采样时间</em> )为 <strong>60</strong> ，<code>heartbeat</code>( <em>超时</em> )为 <strong>120</strong></p>
-<blockquote>
-<p>如果模板太多，可以简单用SQL命令修改：  </p>
-<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="operator"><span class="keyword">UPDATE</span> data_template_data <span class="keyword">SET</span> rrd_step=<span class="number">60</span> <span class="keyword">WHERE</span> rrd_step=<span class="number">300</span>;</span>
-<span class="operator"><span class="keyword">UPDATE</span> data_template_rrd <span class="keyword">SET</span> rrd_heartbeat=<span class="number">120</span> <span class="keyword">WHERE</span> rrd_heartbeat=<span class="number">600</span>;</span>
-</pre></td></tr></table></figure>
-
-</blockquote>
-<p>修改Data Templates 为需要以分钟为单位收集数据的模版选上<code>Hourly (1 Minute Average)</code></p>
-<blockquote>
-<p>如果模板太多，可以简单用SQL命令修改：</p>
-<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> data_template_data_rra(<span class="string">`data_template_data_id`</span>,<span class="string">`rra_id`</span>) <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> dtdr.data_template_data_id,<span class="number">5</span> <span class="keyword">FROM</span> data_template_data_rra dtdr</span>
-</pre></td></tr></table></figure>
-
-</blockquote>
-<h2 id="-8bbe-7f6e-8ba1-5212-4efb-52a1-">设置计划任务</h2>
-<p>打开控制面板里面的计划任务，点击添加计划任务</p>
-<p>任务的运行中，填写<code>php.exe</code>所在路径并加上参数<code>–f cacti路径/poller.php</code></p>
-<p>起始目录请指定为<code>cacti</code>所在目录。</p>
-<p>修改任务的计划，使其 <strong>每天24小时每隔1分钟执行一次</strong> 。 </p>
-<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-win-task-1.png" alt="设置Windows计划任务(1)"><br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-win-task-2.png" alt="设置Windows计划任务(2)"></p>
-<h2 id="Linux-7aef-">Linux端</h2>
-<blockquote>
-<p>因为虽然是不同的系统，但是配置都差不多，所以参照Windows的配置，Linux端就写的简短些了</p>
-</blockquote>
-<h3 id="-524d-671f-51c6-5907--1">前期准备</h3>
-<h4 id="-914d-7f6e-597d-Web-73af-5883-28-PHP-ff0c-MySQL-29-ff0c-5982-6700-57fa-672c-7684-LAMP-ff1a-">配置好Web环境(PHP，MySQL)，如最基本的LAMP：</h4>
-<ul>
-<li>httpd</li>
-<li>php</li>
-<li>php-mysql</li>
-<li>php-snmp</li>
-<li>php-ldap ( <em>当使用 LDAP authentication 时需要</em> )</li>
-<li>php-xml</li>
-<li>mysql</li>
-<li>mysql-server</li>
-<li>net-snmp ( <em>根据不同的distro ，也许需要安装net-snmp-utils</em> )</li>
-<li>crond (cron, cronie or the like)</li>
-</ul>
-<blockquote>
-<p>如果要安装官方的修补补丁则还需要有以下的包：</p>
-<ul>
-<li>wget</li>
-<li>patch</li>
-</ul>
-</blockquote>
-<h4 id="-8bbe-7f6e-PHP">设置PHP</h4>
-<h5 id="-4fee-6539-php-ini-1">修改php.ini</h5>
-<p>修改/配置如下参数</p>
-<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre></td><td class="code"><pre>fastcgi.impersonate = 1
-register_argc_argv = On
-safe_mode = Off
-cgi.fix_pathinfo = 1
-cgi.force_redirect = 0
-upload_tmp_dir = "tmp文件夹路径"
-session.save_path="Session文件夹路径"
-
-//根据主机实际情况调整
-max_execution_time = 60 ;
-max_input_time = 120 ;
-memory_limit = 128M ;
-</pre></td></tr></table></figure>
-
-<p><strong>确保已经安装了php-mysql、php-snmp、php-ldap、php-xml</strong></p>
-<blockquote>
-<p>同时由于要使用<code>php-snmp</code>，必须指定<code>MIBDIRS</code>的位置<br>搜索系统中<code>mibs</code>文件夹，并将其设置为系统变量<br>如<code>export MIBDIRS=/path/to/:/path2/to</code></p>
-</blockquote>
-<h5 id="-914d-7f6e-Apache">配置Apache</h5>
-<p>确保已开启以下模块的使用：</p>
-<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="setting">extension=<span class="value">php_mysql.dll</span></span>
-<span class="setting">extension=<span class="value">php_snmp.dll</span></span>
-<span class="setting">extension=<span class="value">php_sockets.dll</span></span>
-</pre></td></tr></table></figure>
-
-<h3 id="-8f6f-4ef6-5b89-88c5--1">软件安装</h3>
-<h4 id="Cacti-1">Cacti</h4>
-<p>推荐使用<code>apt-get install cacti</code>来安装编译好的二进制版本</p>
-<blockquote>
-<p>也可以从<a href="http://www.cacti.net/download_cacti.php" target="_blank">http://www.cacti.net/download_cacti.php</a>下载源码包，编译安装</p>
-</blockquote>
-<p>我使用自己下载安装来介绍</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre><span class="preprocessor">#解压下载的安装包</span>
-tar xzvf cacti-<span class="number">0.8</span><span class="number">.8</span>a.tar.gz
-
-<span class="preprocessor">#将解压出来的文件夹移动到apache的相应目录，如：我这直接放www下</span>
-mv ./cacti-<span class="number">0.8</span><span class="number">.8</span>a /<span class="keyword">var</span>/www/cacti
-</pre></td></tr></table></figure>
-
-<h4 id="Spine-1">Spine</h4>
-<p>从<a href="http://www.cacti.net/spine_download.php" target="_blank">http://www.cacti.net/spine_download.php</a>处下载<code>Spine Source</code>包,手动编译安装。</p>
 <figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -446,73 +44,171 @@ mv ./cacti-<span class="number">0.8</span><span class="number">.8</span>a /<span
 6
 7
 8
-9
-10
-11
-12
-13
-</pre></td><td class="code"><pre><span class="preprocessor">#解压下载的安装包</span>
-tar xzvf cacti-spine-<span class="number">0.8</span><span class="number">.8</span>a<span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
+</pre></td><td class="code"><pre><span class="variable">$ </span>wget <span class="symbol">https:</span>/<span class="regexp">/bitbucket.org/pypa</span><span class="regexp">/setuptools/raw</span><span class="regexp">/bootstrap/ez</span>_setup.py
+<span class="variable">$ </span>[sudo] python ez_setup.py
 
-<span class="preprocessor">#进入目录 编译安装</span>
-sudo ./configure
-sudo make
-sudo make install
+<span class="comment">#指定安装路径</span>
+setuptools-x.x<span class="variable">$ </span>python setup.py --prefix=<span class="regexp">/opt/setuptools</span>
 
-<span class="preprocessor">#拷贝配置文件到安装目录</span>
-sudo <span class="keyword">cp</span> /usr/local/spine/etc/spine<span class="preprocessor">.conf</span><span class="preprocessor">.dist</span> /usr/local/spine/bin/spine<span class="preprocessor">.conf</span>
-
-<span class="preprocessor">#修改配置文件</span>
-sudo vi /usr/local/spine/bin/spine<span class="preprocessor">.conf</span>
+<span class="comment">#安装至本地用户</span>
+python ez_setup.py --user
 </pre></td></tr></table></figure>
 
-<h4 id="RRDtool-1">RRDtool</h4>
-<p>推荐使用<code>apt-get install rrdtool</code>来安装编译好的二进制版本</p>
 <blockquote>
-<p>也可以从<a href="http://oss.oetiker.ch/rrdtool/download.en.html" target="_blank">http://oss.oetiker.ch/rrdtool/download.en.html</a>下载Debian包，编译安装</p>
+<p>Windows下如果报</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>&gt;File "C:\Python27\lib\mimetypes.py", line <span class="number">358</span>, <span class="flow">in</span> init
+&gt;    db.read_windows_registry()
+&gt;
+</pre></td></tr></table></figure>
+
+<p>打开注册表，展开HKEY_CLASSES_ROOT找到中文节点，备份下，删掉就好了</p>
 </blockquote>
-<p>设置RRDtool显示中文</p>
+<h2 id="-5b89-88c5-pip">安装pip</h2>
+<p><code>pip</code>需要<code>setuptools</code>支持 <a href="https://pypi.python.org/pypi/pip" title="Pip" target="_blank">官网</a>,<a href="http://www.pip-installer.org/" title="pip-installer" target="_blank">pip-installer 官网</a></p>
 <figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
 5
-</pre></td><td class="code"><pre><span class="comment">#更改系统中rrdtool为 rrdtool.local</span>
-<span class="built_in">sudo</span> mv /usr/bin/rrdtool /usr/bin/rrdtool.local
-
-<span class="comment">#创建个脚本，指定系统字符集，并将参数传给rrdtool.local</span>
-<span class="built_in">sudo</span> vim/usr/bin/rrdtool
+</pre></td><td class="code"><pre><span class="comment">#先升级setuptools</span>
+<span class="variable">$ </span>pip install --upgrade setuptools
+<span class="comment">#get_pip.py 脚本：</span>
+<span class="variable">$ </span>wget <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/pypa</span><span class="regexp">/pip/master</span><span class="regexp">/contrib/get</span>-pip.py
+<span class="variable">$ </span>[sudo] python get-pip.py <span class="comment">#可能需要管理员权限</span>
 </pre></td></tr></table></figure>
 
-<p>填写如下内容</p>
+<blockquote>
+<p>Windows上面安装完需要将<code>C:\Python2x\Scripts</code>加入系统路径中</p>
+</blockquote>
+<p>Linux 上面可以简单的使用包管理器</p>
 <figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
-</pre></td><td class="code"><pre><span class="shebang">#! /bin/sh
- </span>
-<span class="keyword">export</span> LANG=zh_CN.utf8
-/usr/bin/rrdtool.local <span class="string">"<span class="variable">$@</span>"</span>
+</pre></td><td class="code"><pre><span class="variable">#On</span> Debian <span class="literal">and</span> Ubuntu:
+$ sudo apt<span class="attribute">-get</span> install python<span class="attribute">-pip</span>
+<span class="variable">#On</span> Fedora:
+$ sudo yum install python<span class="attribute">-pip</span>
 </pre></td></tr></table></figure>
 
+<blockquote>
+<p>安装<code>python-pip</code>一般也会直接安装好<code>python-setuptools</code></p>
+</blockquote>
+<h3 id="-4f7f-7528-pip">使用pip</h3>
+<p>安装一个包</p>
 <figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre><span class="comment">#修改权限，使其能执行</span>
-<span class="built_in">sudo</span> chmod <span class="number">755</span> /usr/bin/rrdtool
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>$ [sudo] pip install SomePackage==<span class="number">1.0</span>
+
+#如
+$ [sudo] pip install Markdown
+#安装特定版本的<span class="package"><span class="keyword">package</span>
+#通过使用==, &gt;=, &lt;=, &gt;, &lt;来指定一个版本号。
+<span class="title">$</span> [<span class="title">sudo</span>] <span class="title">pip</span> <span class="title">install</span> '<span class="title">Markdown</span>&lt;2.0'
+<span class="title">$</span> [<span class="title">sudo</span>] <span class="title">pip</span> <span class="title">install</span> '<span class="title">Markdown</span>&gt;2.0,&lt;2.0.3'</span>
 </pre></td></tr></table></figure>
 
-<h4 id="Net-SNMP-1">Net-SNMP</h4>
-<p>推荐使用<code>apt-get install snmp snmpd</code>来安装编译好的二进制版本</p>
-<blockquote>
-<p>也可以从<a href="http://www.net-snmp.org/download.html" target="_blank">http://www.net-snmp.org/download.html</a>下载源码包，编译安装</p>
-</blockquote>
-<h3 id="Cacti-5b89-88c5-2f-914d-7f6e-">Cacti安装/配置</h3>
-<blockquote>
-<p>参见Windows下的安装配置</p>
-<p>注意：RRDtool的版本此时应该选择为1.4.X！</p>
-</blockquote>
-<p>Linux下需要设置文件夹权限</p>
+<p>列出安装的packages</p>
 <figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip freeze
+</pre></td></tr></table></figure>
+
+<p>显示包安装的文件</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">show</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">files</span> <span class="comment">SomePackage</span>
+</pre></td></tr></table></figure>
+
+<p>显示过期的包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">list</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">outdated</span>
+</pre></td></tr></table></figure>
+
+<p>升级包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="comment">#升级包到当前最新的版本，可以使用</span><span class="literal">-</span><span class="comment">U</span> <span class="comment">或者</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span>
+<span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span> <span class="comment">SomePackage</span>
+</pre></td></tr></table></figure>
+
+<p>卸载一个包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip uninstall SomePackage
+</pre></td></tr></table></figure>
+
+<p>查询包</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip search <span class="string">"Markdown"</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>包安装后的py文件路径：/usr/local/lib/python2.7/dist-packages  </p>
+</blockquote>
+<h3 id="-5b89-88c5-virtualenv">安装virtualenv</h3>
+<p><a href="https://pypi.python.org/pypi/virtualenv" title="virtualenv" target="_blank">官网</a></p>
+<p>通过pip全局安装(如果pip&gt;1.3或者全局安装的话)</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip install virtualenv
+</pre></td></tr></table></figure>
+
+<p>安装Dev版本</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">$ </span>[sudo] pip install <span class="symbol">https:</span>/<span class="regexp">/github.com/pypa</span><span class="regexp">/virtualenv/tarball</span><span class="regexp">/develop</span>
+</pre></td></tr></table></figure>
+
+<p>通过代码安装</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>$ curl -O https://pypi<span class="preprocessor">.python</span><span class="preprocessor">.org</span>/packages/source/v/virtualenv/virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span><span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
+$ tar xvfz virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span><span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
+$ cd virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span>
+<span class="preprocessor">#安装到全局</span>
+$ [sudo] python setup<span class="preprocessor">.py</span> install
+<span class="preprocessor"># 或 当前用户直接使用</span>
+$ python virtualenv<span class="preprocessor">.py</span> myVE
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果本地没有可用的<code>pip/setuptools/virtualenv</code> 发行包则<code>virtualenv.py</code>是不能用的。因为有一个和<code>virtualenv.py</code>在一起的有个完整的pip和setuptools的环境发行包的<code>virtualenv_support</code>文件夹，所以上面所有的操作都是支持的</p>
+</blockquote>
+<h3 id="-4f7f-7528-virtualenv">使用virtualenv</h3>
+<p>基础用法</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">$ </span>virtualenv <span class="constant">ENV</span> <span class="comment">#ENV为文件夹路径</span>
+</pre></td></tr></table></figure>
+
+<p>创建虚拟环境，分别会建立</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>ENV/<span class="keyword">lib</span>/pythonX.X/site-packages <span class="preprocessor">#libraries文件夹</span>
+ENV/bin/python <span class="preprocessor">#python编译器</span>
+ENV/bin/pip <span class="preprocessor">#当前环境的pip，可用来安装包</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>访问 <a href="https://pypi.python.org/pypi/virtualenv#environment-variables-and-configuration-files" title="environment-variables-and-configuration-files" target="_blank">#environment-variables-and-configuration-files</a>查看相关配置</p>
+</blockquote>
+<p>　　</p>
+<blockquote>
+<p><code>ENV\Scripts\deactivate.bat</code>是<code>Unix</code>的换行符,<code>Windows</code>下面手动转换一下.</p>
+<p>使用<code>%~dp0</code>替换<code>ENV\Scripts\(de)activate.bat</code>里的路径可能可以实现到处带着走</p>
+</blockquote>
+<p>如果使用<code>PowerShell</code>，则必须先设置<code>PowerShell</code>的权限才能运行</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -527,132 +223,49 @@ sudo vi /usr/local/spine/bin/spine<span class="preprocessor">.conf</span>
 13
 14
 15
-</pre></td><td class="code"><pre><span class="preprocessor">#给日志文件夹读写权限</span>
-chmod <span class="number">777</span> /<span class="keyword">var</span>/www/cacti/log
+</pre></td><td class="code"><pre>#管理员方式运行PowerShell执行
+PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy AllSigned
 
-<span class="preprocessor">#给rra文件夹读写权限</span>
-chmod <span class="number">777</span> /<span class="keyword">var</span>/www/cacti/rra
+#选A以便子线程能接受输入(这会将证书加到可信证书列表里)
+PS C:\&gt; .\foo\scripts\activate
+<span class="flow">Do</span> you want to run software from this untrusted publisher?
+File C:\foo\scripts\activate.ps1 is published by E=jannis@leidel.info,
+CN=Jannis Leidel, L=Berlin, S=Berlin, C=DE, Description=<span class="number">581796</span>-Gh7xfJxkxQSIO4E0
+and is <span class="flow">not</span> trusted on your system. Only run scripts from trusted publishers.
+[V] Never run  [D] <span class="flow">Do</span> <span class="flow">not</span> run  [R] Run once  [A] Always run  [?] Help
+(default is "D"):A 
+(foo) PS C:\&gt;
 
-<span class="preprocessor">#给script文件夹执行权限</span>
-chmod <span class="number">755</span> /<span class="keyword">var</span>/www/cacti/script
-
-<span class="preprocessor">#给cacti 主文件夹执行权限</span>
-chmod <span class="number">755</span> /<span class="keyword">var</span>/www/cacti
-
-<span class="preprocessor">#给Poller以root用户root用户组的权限并给他root执行的权限</span>
-chown root:root /<span class="keyword">var</span>/www/cacti
-chmod +s /<span class="keyword">var</span>/www/cacti/poller.php
+#或者干脆删掉签名，直接运行。
+PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy <span class="comment">RemoteSigned</span>
 </pre></td></tr></table></figure>
 
-<h3 id="-8ba1-5212-4efb-52a1-914d-7f6e-">计划任务配置</h3>
-<p>使用<code>sudo crontab –e</code>命令编辑任务，在最后添加一行：</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="comment"># */1表示 每1分钟执行1次</span>
-*<span class="regexp">/1 *  * * * /usr</span><span class="regexp">/bin/php</span> /var/www/cacti/poller.php &gt;<span class="regexp">/dev/null</span> <span class="number">2</span>&gt;&<span class="number">1</span>
-</pre></td></tr></table></figure>
-
-<p>Ctrl+X 退出保存</p>
-<h2 id="-88ab-76d1-63a7-7aef-">被监控端</h2>
-<h3 id="Window-5e73-53f0-">Window平台</h3>
-<p>安装Information-std<br>官方下载地址：<a href="http://www.wtcs.org/informant/download.htm" target="_blank">http://www.wtcs.org/informant/download.htm</a><br>不需要做配置</p>
-<blockquote>
-<p>这是由于由于Windows自带的SNMP提供的信息不足以让Cacti监控到主机的信息，所以需要安装</p>
-</blockquote>
-<h3 id="Linux-5e73-53f0-">Linux平台</h3>
-<p>Linux平台需要开启<code>SNMP</code>服务</p>
-<p>使用<code>apt-get install snmpd</code>安装<code>snmpd</code>服务</p>
-<blockquote>
-<p>如果服务器自带的MIB不足以让Cacti获得它所需要的信息<br>使用<code>apt-get install snmp-mibs-downloader</code>下载mibs文件。</p>
-</blockquote>
-<p>如果服务器有<code>iptables</code>，需要将<code>upd</code>的<code>161端口</code>设置为<code>可以接受传入</code></p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="variable">#iptables</span> <span class="attribute">-A</span> INPUT <span class="attribute">-i</span> eth0 <span class="attribute">-p</span> udp <span class="attribute">-s</span> 监控服务器IP –dport <span class="number">161</span> <span class="attribute">-j</span> ACCEPT
-</pre></td></tr></table></figure>
-
-<p>如果是Ubuntu平台 修改<code>/etc/default/snmpd</code></p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>snmpDOPTS<span class="subst">=</span>’<span class="attribute">-Lsd</span> <span class="attribute">-Lf</span> <span class="subst">/</span>dev<span class="subst">/</span><span class="built_in">null</span> <span class="attribute">-u</span> snmp <span class="attribute">-I</span> <span class="attribute">-smux</span> <span class="attribute">-p</span> <span class="subst">/</span><span class="built_in">var</span><span class="subst">/</span>run<span class="subst">/</span>snmpd<span class="built_in">.</span>pid <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>’
-</pre></td></tr></table></figure>
-
-<p>将之修改为：</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>snmpDOPTS<span class="subst">=</span>’<span class="attribute">-Lsd</span> <span class="attribute">-Lf</span> <span class="subst">/</span>dev<span class="subst">/</span><span class="built_in">null</span> <span class="attribute">-u</span> snmp <span class="attribute">-I</span> <span class="attribute">-smux</span> <span class="attribute">-p</span> <span class="subst">/</span><span class="built_in">var</span><span class="subst">/</span>run<span class="subst">/</span>snmpd<span class="built_in">.</span>pid’
-</pre></td></tr></table></figure>
-
-<p>然后执行<code>sudo service snmd restart</code>重启服务</p>
-<h2 id="-5176-4ed6-95ee-9898-">其他问题</h2>
-<h3 id="Net-SNMP-627e-4e0d-5230-libnetsnmp-so-7684-95ee-9898-">Net-SNMP找不到libnetsnmp.so的问题</h3>
-<p>尝试添加系统变量<code>export LD_LIBRARY_PATH=/usr/local/lib</code><br>如果问题依旧使用如下方式：</p>
-<ul>
-<li>创建一个文件<code>/etc/ld.so.conf.d/local.conf</code></li>
-<li>编辑文件，写入<code>/usr/local/lib</code>保存</li>
-<li>运行”ldconfig”</li>
-</ul>
-<h3 id="-4fee-6539-rrd-6587-4ef6-65f6-95f4-95f4-9694-">修改rrd文件时间间隔</h3>
-<blockquote>
-<p>以修改为60 即1分钟为例</p>
-</blockquote>
-<ul>
-<li><p>用<code>rrdtool dump</code>将rrd库dump成一个xml文件  </p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>sudo rrdtool dump /www/webdev/cacti/rra/<span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.rrd</span> &gt;~/<span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.xml</span>
-</pre></td></tr></table></figure>
-</li>
-<li><p>用手动编辑的方法修改xml文件中的step值</p>
-<blockquote>
-<p>如本例，将300修改成60</p>
-<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-	<span class="doctype">&lt;!DOCTYPE rrd SYSTEM "http://oss.oetiker.ch/rrdtool/rrdtool.dtd"&gt;</span>
-	<span class="comment">&lt;!-- Round Robin Database Dump --&gt;</span>
-	<span class="tag">&lt;<span class="title">rrd</span>&gt;</span>
-	。。。。。。。。
-	<span class="tag">&lt;<span class="title">step</span>&gt;</span>300改成60<span class="tag">&lt;/<span class="title">step</span>&gt;</span> <span class="comment">&lt;!-- Seconds --&gt;</span>
-	。。。。。。。。。。。。
-</pre></td></tr></table></figure>
-</blockquote>
-</li>
-<li><p>保存文件</p>
-</li>
-<li><p>将xml文件用rrd restore存成一个新的rrd库</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>rrdtool restore <span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.xml</span> <span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.rrd</span>
-</pre></td></tr></table></figure>
-</li>
-<li><p>再用新的库文件覆盖旧的rrd库文件</p>
-</li>
-</ul>
-<p>这时刷新cacti图形已经变更过来了</p>
-<blockquote>
-<p>建议先备份就的库文件，如果没有效果，检查数据/图像模板刷新时间是否已经修改为60了。</p>
-<p>来源：<a href="http://www.mayj.net/article/linux/57.htm" target="_blank">http://www.mayj.net/article/linux/57.htm</a></p>
-</blockquote>
+<p>参考文章：<br><a href="http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html" target="_blank">http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html</a></p>
 <p>[TOC]</p>
 ]]></content>
-    <summary type="html"><![CDATA[<h2 id="-524d-671f-51c6-5907-">前期准备</h2>
-<p>这里主要说明PHP、Apache的配置，默认认为你已经安装好MySQL、PHP、Apache或其它代替工具，并做好了相应的基本配置，已可以用于开发或生产环境。如果没有请参考其它教程配置PHP、Apache、MySQL，这里不再重复了。<br>]]></summary>
+    <summary type="html"><![CDATA[<h2 id="Python-5b89-88c5-">Python安装</h2>
+<p>Python 中国区下载地址：<a href="http://python.org/getit/" target="_blank">http://python.org/getit/</a><br>Package库<a href="https://pypi.python.org/pypi" target="_blank">https://pypi.python.org/pypi</a></p>
+<blockquote>
+<p>在Windows上面使用<code>安装给所有用户</code>选项会使<code>pythonXX.dll</code>复制到<code>Windos/system32</code>下面。<br>这时使用virtualenv生成环境后，需要把<code>pythonXX.dll</code>拷到<code>env/Scripts</code>下面，不然在没Python的机子上可能就可能会报<code>&quot;找不到pythonXX.dll&quot;</code>的错误。</p>
+</blockquote>
+<p>安装完毕将<code>C:\python27;C:\python27\Scripts</code>添加到Path中</p>
+<blockquote>
+<p>添加后，如果使用virtualenv有可能会出现python串掉的问题。</p>
+</blockquote>
+]]></summary>
     
-      <category term="cacti" scheme="http://niphor.github.io/tags/cacti/"/>
+      <category term="python" scheme="http://niphor.github.io/tags/python/"/>
     
-      <category term="windows" scheme="http://niphor.github.io/tags/windows/"/>
-    
-      <category term="服务器" scheme="http://niphor.github.io/categories/server/"/>
+      <category term="Python" scheme="http://niphor.github.io/categories/python/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[XAMP简明部署]]></title>
-    <link href="http://niphor.github.io/post/server/install-apache-php-mariadb-mc-on-windows.html"/>
-    <id>http://niphor.github.io/post/server/install-apache-php-mariadb-mc-on-windows.html</id>
-    <published>2014-01-13T02:19:29.000Z</published>
-    <updated>2014-01-13T08:13:18.000Z</updated>
+    <link href="http://niphor.github.io/posts/2013/07/install-apache-php-mariadb-mc-on-windows.html"/>
+    <id>http://niphor.github.io/posts/2013/07/install-apache-php-mariadb-mc-on-windows.html</id>
+    <published>2013-07-14T02:19:29.000Z</published>
+    <updated>2014-01-14T08:17:25.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>题目起的有点大，其实是Windows平台，Linux大家直接用包好了啊…</p>
 </blockquote>
@@ -1923,27 +1536,282 @@ sc delete "namp_memcached"
   </entry>
   
   <entry>
-    <title><![CDATA[Python安装配置]]></title>
-    <link href="http://niphor.github.io/post/python/install-python.html"/>
-    <id>http://niphor.github.io/post/python/install-python.html</id>
-    <published>2014-01-10T07:58:06.000Z</published>
-    <updated>2014-01-13T08:22:40.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="Python-5b89-88c5-">Python安装</h2>
-<p>Python 中国区下载地址：<a href="http://python.org/getit/" target="_blank">http://python.org/getit/</a><br>Package库<a href="https://pypi.python.org/pypi" target="_blank">https://pypi.python.org/pypi</a></p>
+    <title><![CDATA[Cacti安装]]></title>
+    <link href="http://niphor.github.io/posts/2013/03/install-cacti.html"/>
+    <id>http://niphor.github.io/posts/2013/03/install-cacti.html</id>
+    <published>2013-03-13T04:16:08.000Z</published>
+    <updated>2014-01-14T08:17:37.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="-524d-671f-51c6-5907-">前期准备</h2>
+<p>这里主要说明PHP、Apache的配置，默认认为你已经安装好MySQL、PHP、Apache或其它代替工具，并做好了相应的基本配置，已可以用于开发或生产环境。如果没有请参考其它教程配置PHP、Apache、MySQL，这里不再重复了。<br><a id="more"></a></p>
+<h3 id="PHP-914d-7f6e-">PHP配置</h3>
+<h4 id="-914d-7f6e-PHPRC">配置PHPRC</h4>
+<p>指向你php安装目录</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-phprc.png" alt="设置PHPRC"></p>
+<h4 id="-914d-7f6e-MIBDIRS">配置MIBDIRS</h4>
+<p>指向php目录下面的extras的mibs文件夹</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-mibdirs.png" alt="设置MIBDIRS"></p>
 <blockquote>
-<p>在Windows上面使用<code>安装给所有用户</code>选项会使<code>pythonXX.dll</code>复制到<code>Windos/system32</code>下面。<br>这时使用virtualenv生成环境后，需要把<code>pythonXX.dll</code>拷到<code>env/Scripts</code>下面，不然在没Python的机子上可能就可能会报<code>&quot;找不到pythonXX.dll&quot;</code>的错误。</p>
+<p>有的PHP版本安装完之后并不会包含这个文件夹，这时候找个有这个目录的php，拷贝过来即可</p>
 </blockquote>
-<p>安装完毕将<code>C:\python27;C:\python27\Scripts</code>添加到Path中</p>
-<blockquote>
-<p>添加后，如果使用virtualenv有可能会出现python串掉的问题。</p>
-</blockquote>
-<a id="more"></a>
+<h4 id="-4fee-6539-Path-53d8-91cf-ff0c-6dfb-52a0-PHP-8def-5f84-28-975e-5fc5-987b-29-">修改Path变量，添加PHP路径(非必须)</h4>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-php-path.png" alt="设置PATH"></p>
+<h4 id="-4fee-6539-php-ini">修改php.ini</h4>
+<p>修改/配置如下参数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="title">fastcgi</span>.impersonate = <span class="number">1</span>
+<span class="title">register_argc_argv</span> = <span class="type">On</span>
+<span class="title">safe_mode</span> = <span class="type">Off</span>
+<span class="title">cgi</span>.fix_pathinfo = <span class="number">1</span>
+<span class="title">cgi</span>.force_redirect = <span class="number">0</span>
+<span class="title">upload_tmp_dir</span> = <span class="string">"tmp文件夹路径"</span>
+<span class="title">session</span>.save_path=<span class="string">"Session文件夹路径"</span>
 
-<h2 id="-5b89-88c5-setuptools">安装setuptools</h2>
-<p><a href="https://pypi.python.org/pypi/setuptools" title="setuptools" target="_blank">官网</a>推荐的方式是下载py脚本安装</p>
+//根据主机实际情况调整
+<span class="title">max_execution_time</span> = <span class="number">60</span> ;
+<span class="title">max_input_time</span> = <span class="number">120</span> ;
+<span class="title">memory_limit</span> = <span class="number">128</span>M ;
+</pre></td></tr></table></figure>
+
+<h4 id="-4fee-6539-6743-9650-">修改权限</h4>
+<p>给计划任务执行账户 修改<code>php目录\extras\mibs\</code>文件夹的权限</p>
+<p>如果使用IIS：<br>修改<code>tmp文件夹路径</code>和<code>Session文件夹路径</code>的NTFS权限，给<code>IUSR_</code>和<code>IIS_WPG</code>用户修改此文件夹内文件的权限</p>
+<h3 id="Apache-914d-7f6e-">Apache配置</h3>
+<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>#确保已开启以下模块的使用
+extension=php_mysql.dll
+extension=php_snmp.dll
+extension=php_sockets.dll
+</pre></td></tr></table></figure>
+
+<h3 id="-8f6f-4ef6-4e0b-8f7d-">软件下载</h3>
+<ul>
+<li>Cacti主程序<br>  <a href="http://www.cacti.net/download_cacti.php" target="_blank">http://www.cacti.net/download_cacti.php</a><br>  下载Windows in ZIP format包</li>
+<li>Spine 程序<br>  <a href="http://www.cacti.net/spine_download.php" target="_blank">http://www.cacti.net/spine_download.php</a><br>  下载Spine Binaries for Windows包</li>
+<li>RRDtool程序<br>  <a href="http://oss.oetiker.ch/rrdtool/download.en.html" target="_blank">http://oss.oetiker.ch/rrdtool/download.en.html</a><br>  下载Cygwin Windows包</li>
+<li>Net-SNMP程序<br>  <a href="http://www.net-snmp.org/download.html" target="_blank">http://www.net-snmp.org/download.html</a><br>  下载Binary 包</li>
+<li>ActivePerl程序<br>  <a href="http://www.activestate.com/activeperl/downloads" target="_blank">http://www.activestate.com/activeperl/downloads</a><br>  下载对应平台的安装包</li>
+</ul>
 <blockquote>
-<p>1.0开始的Windows平台已经没有easy_install的安装包了</p>
+<p>Spine前身为Cactid,用来轮询的，默认Cacti使用CMD.php，最小只能5分钟，效率较低，换成Spine之后可以1分钟轮询一次。</p>
+<p>RRDtool最新的为1.4.X版本的，但是默认编译好的Windows平台的只有1.2.X版本，如果使用最新的版本需要自行安装Cygwin（ <a href="http://www.cygwin.com/" target="_blank">http://www.cygwin.com/</a> ）编译新版本的源码。1.2.X编译好的版本在Windows下面不能支持中文。</p>
+<p>由于Cacti自带某些perl脚本来查询，所以需要安装ActivePerl，但若你确定自己不会用到perl脚本来查询，则可以不安装。</p>
 </blockquote>
+<h2 id="-8f6f-4ef6-5b89-88c5-">软件安装</h2>
+<h3 id="Spine">Spine</h3>
+<p>Spine为免安装工具，解压到你想要放置的地方( <em>如：c:\spine</em> )</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-spine.png" alt="放置Spine程序文件"></p>
+<p>复制一份<code>spine.conf.dist</code>，并改名为<code>spine.conf</code>并用编辑器打开，对cacti所使用的数据库进行配置</p>
+<blockquote>
+<p>Windows平台MySQL的地址需要使用IP地址！</p>
+</blockquote>
+<h3 id="RRDtool">RRDtool</h3>
+<p>RRDtool也是绿色软件，解压到你想放置的地方( <em>如：c:\rrdtool</em> )</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-rrdtool.png" alt="放置RRDtool程序文件"></p>
+<h3 id="Net-SNMP">Net-SNMP</h3>
+<p>Net-SNMP为安装程序，直接下一步，下一步安装到你想放置的地方( <em>如：c:\net-snmp</em> )<br><em>我安装在默认位置c:\usr下</em></p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-net-snmp.png" alt="安装Net-SNMP程序"></p>
+<h3 id="ActivePerl">ActivePerl</h3>
+<p>ActivePerl直接默认安装即可</p>
+<blockquote>
+<p>安装完之后确认系统变量中已经包含了perl，如果没有则自己添加一下。<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-perl-path.png" alt="确认perl在PATH里"></p>
+</blockquote>
+<h3 id="Cacti">Cacti</h3>
+<p>Cacti 主程序为PHP的WebApp,解压到Apache或代替软件的网站目录下( <em>如：D:\wamp\htdocs</em> )，或者自行建立虚拟主机，或者虚拟目录，然后解压进去。</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti.png" alt="放置Cacti程序文件"></p>
+<h4 id="MySQL-6570-636e-5e93-914d-7f6e-">MySQL数据库配置</h4>
+<p>这里创建的数据库即为<code>Spine</code>和<code>Cacti</code>使用的数据库</p>
+<blockquote>
+<p>cacti.sql在cacti的根目录下面，数据库名称和数据库用户可以自己定义。</p>
+</blockquote>
+<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>//创建cacti数据库
+mysql&gt; <span class="operator"><span class="keyword">create</span> database cacti;</span>
+//创建cactiuser用户并付给cacti表权限
+mysql&gt; <span class="operator"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">on</span> cacti.* <span class="keyword">to</span> cactiuser@localhost identified <span class="keyword">by</span> “cactiuser”;</span>
+mysql&gt;flush privileges;
+//导入cacti数据库sql
+mysql&gt;use cacti
+mysql&gt;source d:/wamp/htdocs/cacti/cacti.sql
+</pre></td></tr></table></figure>
+
+<p>打开Cacti目录下的<code>include\config.php</code>,配置数据库地址</p>
+<figure class="highlight lang-php"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="variable">$database_type</span> = <span class="string">"mysql"</span>;
+<span class="variable">$database_default</span> = <span class="string">"cacti"</span>;
+<span class="variable">$database_hostname</span> = <span class="string">"127.0.0.1"</span>;
+<span class="variable">$database_username</span> = <span class="string">"cactiuser"</span>;
+<span class="variable">$database_password</span> = <span class="string">"cactiuser"</span>;
+<span class="variable">$database_port</span> = <span class="string">"3306"</span>;
+<span class="variable">$database_ssl</span> = <span class="keyword">false</span>;
+</pre></td></tr></table></figure>
+
+<h4 id="-5b89-88c5-Cacti">安装Cacti</h4>
+<ol>
+<li>在浏览器中打开cacti(<a href="http://your-url/install/index.php" target="_blank">http://your-url/install/index.php</a>)<br><em>比如我放在了<a href="http://localhost/cacti/install/index.php" target="_blank">http://localhost/cacti/install/index.php</a></em><br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-1.png" alt="安装Cacti 第一步"><br>点击 <code>Next&gt;&gt;</code> 进入下一步</li>
+<li><p>选择全新安装</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-2.png" alt="安装Cacti 第二步"><br>点击 <code>Next&gt;&gt;</code> 进入下一步</p>
+</li>
+<li>配置路径<br>如图所示配置好各个程序所在的路径<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-3.png" alt="安装Cacti 第三步"><br>点击 <code>Finish</code> 完成</li>
+<li>重置密码  <ol>
+<li>完成后转入登陆窗口，填写用户名密码 admin/admin 进行登陆<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-4.png" alt="安装Cacti 第四步(1)">  </li>
+<li>填写新密码<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-5.png" alt="安装Cacti 第四步(2)"><blockquote>
+<p>Cacti不提供密码找回功能，所以修改之后的密码一定要牢记！</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
+<p>至此Cacti安装完成。</p>
+<h4 id="-8bbe-7f6e-Cacti">设置Cacti</h4>
+<h5 id="-8bbe-7f6e-8def-5f84-">设置路径</h5>
+<p>在Paths选项卡中，如图填入spine和其它组件的绝对路径</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-cacti-set-abspath.png" alt="设置abspath"></p>
+<h5 id="-8bbe-7f6e-Poller">设置Poller</h5>
+<p>因为我们安装了<code>Spine</code>，将<code>Poller Type</code>选为<code>spine</code>,并将<code>Poller Interval</code>和<code>Cron interval</code>都设置为<code>Every Minute</code>。</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-cacti-set-poller.png" alt="设置Poller"></p>
+<blockquote>
+<p><code>Poller Interval</code>和<code>Cron interval</code>这是指查询间隔。<br>因为使用了spine所以可以设置为1分钟一次。<br>如果使用默认的CMD.php， <strong>请不要低于5分钟</strong> 。</p>
+</blockquote>
+<p>同时修改左侧<code>Data Templates</code>选项卡里模板的<code>step</code>( <em>采样时间</em> )为 <strong>60</strong> ，<code>heartbeat</code>( <em>超时</em> )为 <strong>120</strong></p>
+<blockquote>
+<p>如果模板太多，可以简单用SQL命令修改：  </p>
+<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="operator"><span class="keyword">UPDATE</span> data_template_data <span class="keyword">SET</span> rrd_step=<span class="number">60</span> <span class="keyword">WHERE</span> rrd_step=<span class="number">300</span>;</span>
+<span class="operator"><span class="keyword">UPDATE</span> data_template_rrd <span class="keyword">SET</span> rrd_heartbeat=<span class="number">120</span> <span class="keyword">WHERE</span> rrd_heartbeat=<span class="number">600</span>;</span>
+</pre></td></tr></table></figure>
+
+</blockquote>
+<p>修改Data Templates 为需要以分钟为单位收集数据的模版选上<code>Hourly (1 Minute Average)</code></p>
+<blockquote>
+<p>如果模板太多，可以简单用SQL命令修改：</p>
+<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> data_template_data_rra(<span class="string">`data_template_data_id`</span>,<span class="string">`rra_id`</span>) <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> dtdr.data_template_data_id,<span class="number">5</span> <span class="keyword">FROM</span> data_template_data_rra dtdr</span>
+</pre></td></tr></table></figure>
+
+</blockquote>
+<h2 id="-8bbe-7f6e-8ba1-5212-4efb-52a1-">设置计划任务</h2>
+<p>打开控制面板里面的计划任务，点击添加计划任务</p>
+<p>任务的运行中，填写<code>php.exe</code>所在路径并加上参数<code>–f cacti路径/poller.php</code></p>
+<p>起始目录请指定为<code>cacti</code>所在目录。</p>
+<p>修改任务的计划，使其 <strong>每天24小时每隔1分钟执行一次</strong> 。 </p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-win-task-1.png" alt="设置Windows计划任务(1)"><br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-win-task-2.png" alt="设置Windows计划任务(2)"></p>
+<h2 id="Linux-7aef-">Linux端</h2>
+<blockquote>
+<p>因为虽然是不同的系统，但是配置都差不多，所以参照Windows的配置，Linux端就写的简短些了</p>
+</blockquote>
+<h3 id="-524d-671f-51c6-5907--1">前期准备</h3>
+<h4 id="-914d-7f6e-597d-Web-73af-5883-28-PHP-ff0c-MySQL-29-ff0c-5982-6700-57fa-672c-7684-LAMP-ff1a-">配置好Web环境(PHP，MySQL)，如最基本的LAMP：</h4>
+<ul>
+<li>httpd</li>
+<li>php</li>
+<li>php-mysql</li>
+<li>php-snmp</li>
+<li>php-ldap ( <em>当使用 LDAP authentication 时需要</em> )</li>
+<li>php-xml</li>
+<li>mysql</li>
+<li>mysql-server</li>
+<li>net-snmp ( <em>根据不同的distro ，也许需要安装net-snmp-utils</em> )</li>
+<li>crond (cron, cronie or the like)</li>
+</ul>
+<blockquote>
+<p>如果要安装官方的修补补丁则还需要有以下的包：</p>
+<ul>
+<li>wget</li>
+<li>patch</li>
+</ul>
+</blockquote>
+<h4 id="-8bbe-7f6e-PHP">设置PHP</h4>
+<h5 id="-4fee-6539-php-ini-1">修改php.ini</h5>
+<p>修改/配置如下参数</p>
+<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre>fastcgi.impersonate = 1
+register_argc_argv = On
+safe_mode = Off
+cgi.fix_pathinfo = 1
+cgi.force_redirect = 0
+upload_tmp_dir = "tmp文件夹路径"
+session.save_path="Session文件夹路径"
+
+//根据主机实际情况调整
+max_execution_time = 60 ;
+max_input_time = 120 ;
+memory_limit = 128M ;
+</pre></td></tr></table></figure>
+
+<p><strong>确保已经安装了php-mysql、php-snmp、php-ldap、php-xml</strong></p>
+<blockquote>
+<p>同时由于要使用<code>php-snmp</code>，必须指定<code>MIBDIRS</code>的位置<br>搜索系统中<code>mibs</code>文件夹，并将其设置为系统变量<br>如<code>export MIBDIRS=/path/to/:/path2/to</code></p>
+</blockquote>
+<h5 id="-914d-7f6e-Apache">配置Apache</h5>
+<p>确保已开启以下模块的使用：</p>
+<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="setting">extension=<span class="value">php_mysql.dll</span></span>
+<span class="setting">extension=<span class="value">php_snmp.dll</span></span>
+<span class="setting">extension=<span class="value">php_sockets.dll</span></span>
+</pre></td></tr></table></figure>
+
+<h3 id="-8f6f-4ef6-5b89-88c5--1">软件安装</h3>
+<h4 id="Cacti-1">Cacti</h4>
+<p>推荐使用<code>apt-get install cacti</code>来安装编译好的二进制版本</p>
+<blockquote>
+<p>也可以从<a href="http://www.cacti.net/download_cacti.php" target="_blank">http://www.cacti.net/download_cacti.php</a>下载源码包，编译安装</p>
+</blockquote>
+<p>我使用自己下载安装来介绍</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="preprocessor">#解压下载的安装包</span>
+tar xzvf cacti-<span class="number">0.8</span><span class="number">.8</span>a.tar.gz
+
+<span class="preprocessor">#将解压出来的文件夹移动到apache的相应目录，如：我这直接放www下</span>
+mv ./cacti-<span class="number">0.8</span><span class="number">.8</span>a /<span class="keyword">var</span>/www/cacti
+</pre></td></tr></table></figure>
+
+<h4 id="Spine-1">Spine</h4>
+<p>从<a href="http://www.cacti.net/spine_download.php" target="_blank">http://www.cacti.net/spine_download.php</a>处下载<code>Spine Source</code>包,手动编译安装。</p>
 <figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -1952,171 +1820,73 @@ sc delete "namp_memcached"
 6
 7
 8
-</pre></td><td class="code"><pre><span class="variable">$ </span>wget <span class="symbol">https:</span>/<span class="regexp">/bitbucket.org/pypa</span><span class="regexp">/setuptools/raw</span><span class="regexp">/bootstrap/ez</span>_setup.py
-<span class="variable">$ </span>[sudo] python ez_setup.py
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="preprocessor">#解压下载的安装包</span>
+tar xzvf cacti-spine-<span class="number">0.8</span><span class="number">.8</span>a<span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
 
-<span class="comment">#指定安装路径</span>
-setuptools-x.x<span class="variable">$ </span>python setup.py --prefix=<span class="regexp">/opt/setuptools</span>
+<span class="preprocessor">#进入目录 编译安装</span>
+sudo ./configure
+sudo make
+sudo make install
 
-<span class="comment">#安装至本地用户</span>
-python ez_setup.py --user
+<span class="preprocessor">#拷贝配置文件到安装目录</span>
+sudo <span class="keyword">cp</span> /usr/local/spine/etc/spine<span class="preprocessor">.conf</span><span class="preprocessor">.dist</span> /usr/local/spine/bin/spine<span class="preprocessor">.conf</span>
+
+<span class="preprocessor">#修改配置文件</span>
+sudo vi /usr/local/spine/bin/spine<span class="preprocessor">.conf</span>
 </pre></td></tr></table></figure>
 
+<h4 id="RRDtool-1">RRDtool</h4>
+<p>推荐使用<code>apt-get install rrdtool</code>来安装编译好的二进制版本</p>
 <blockquote>
-<p>Windows下如果报</p>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>&gt;File "C:\Python27\lib\mimetypes.py", line <span class="number">358</span>, <span class="flow">in</span> init
-&gt;    db.read_windows_registry()
-&gt;
-</pre></td></tr></table></figure>
-
-<p>打开注册表，展开HKEY_CLASSES_ROOT找到中文节点，备份下，删掉就好了</p>
+<p>也可以从<a href="http://oss.oetiker.ch/rrdtool/download.en.html" target="_blank">http://oss.oetiker.ch/rrdtool/download.en.html</a>下载Debian包，编译安装</p>
 </blockquote>
-<h2 id="-5b89-88c5-pip">安装pip</h2>
-<p><code>pip</code>需要<code>setuptools</code>支持 <a href="https://pypi.python.org/pypi/pip" title="Pip" target="_blank">官网</a>,<a href="http://www.pip-installer.org/" title="pip-installer" target="_blank">pip-installer 官网</a></p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre><span class="comment">#先升级setuptools</span>
-<span class="variable">$ </span>pip install --upgrade setuptools
-<span class="comment">#get_pip.py 脚本：</span>
-<span class="variable">$ </span>wget <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/pypa</span><span class="regexp">/pip/master</span><span class="regexp">/contrib/get</span>-pip.py
-<span class="variable">$ </span>[sudo] python get-pip.py <span class="comment">#可能需要管理员权限</span>
-</pre></td></tr></table></figure>
-
-<blockquote>
-<p>Windows上面安装完需要将<code>C:\Python2x\Scripts</code>加入系统路径中</p>
-</blockquote>
-<p>Linux 上面可以简单的使用包管理器</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="variable">#On</span> Debian <span class="literal">and</span> Ubuntu:
-$ sudo apt<span class="attribute">-get</span> install python<span class="attribute">-pip</span>
-<span class="variable">#On</span> Fedora:
-$ sudo yum install python<span class="attribute">-pip</span>
-</pre></td></tr></table></figure>
-
-<blockquote>
-<p>安装<code>python-pip</code>一般也会直接安装好<code>python-setuptools</code></p>
-</blockquote>
-<h3 id="-4f7f-7528-pip">使用pip</h3>
-<p>安装一个包</p>
+<p>设置RRDtool显示中文</p>
 <figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
 5
-6
-7
-8
-</pre></td><td class="code"><pre>$ [sudo] pip install SomePackage==<span class="number">1.0</span>
+</pre></td><td class="code"><pre><span class="comment">#更改系统中rrdtool为 rrdtool.local</span>
+<span class="built_in">sudo</span> mv /usr/bin/rrdtool /usr/bin/rrdtool.local
 
-#如
-$ [sudo] pip install Markdown
-#安装特定版本的<span class="package"><span class="keyword">package</span>
-#通过使用==, &gt;=, &lt;=, &gt;, &lt;来指定一个版本号。
-<span class="title">$</span> [<span class="title">sudo</span>] <span class="title">pip</span> <span class="title">install</span> '<span class="title">Markdown</span>&lt;2.0'
-<span class="title">$</span> [<span class="title">sudo</span>] <span class="title">pip</span> <span class="title">install</span> '<span class="title">Markdown</span>&gt;2.0,&lt;2.0.3'</span>
+<span class="comment">#创建个脚本，指定系统字符集，并将参数传给rrdtool.local</span>
+<span class="built_in">sudo</span> vim/usr/bin/rrdtool
 </pre></td></tr></table></figure>
 
-<p>列出安装的packages</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip freeze
-</pre></td></tr></table></figure>
-
-<p>显示包安装的文件</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">show</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">files</span> <span class="comment">SomePackage</span>
-</pre></td></tr></table></figure>
-
-<p>显示过期的包</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">list</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">outdated</span>
-</pre></td></tr></table></figure>
-
-<p>升级包</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="comment">#升级包到当前最新的版本，可以使用</span><span class="literal">-</span><span class="comment">U</span> <span class="comment">或者</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span>
-<span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span> <span class="comment">SomePackage</span>
-</pre></td></tr></table></figure>
-
-<p>卸载一个包</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip uninstall SomePackage
-</pre></td></tr></table></figure>
-
-<p>查询包</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip search <span class="string">"Markdown"</span>
-</pre></td></tr></table></figure>
-
-<blockquote>
-<p>包安装后的py文件路径：/usr/local/lib/python2.7/dist-packages  </p>
-</blockquote>
-<h3 id="-5b89-88c5-virtualenv">安装virtualenv</h3>
-<p><a href="https://pypi.python.org/pypi/virtualenv" title="virtualenv" target="_blank">官网</a></p>
-<p>通过pip全局安装(如果pip&gt;1.3或者全局安装的话)</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip install virtualenv
-</pre></td></tr></table></figure>
-
-<p>安装Dev版本</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="variable">$ </span>[sudo] pip install <span class="symbol">https:</span>/<span class="regexp">/github.com/pypa</span><span class="regexp">/virtualenv/tarball</span><span class="regexp">/develop</span>
-</pre></td></tr></table></figure>
-
-<p>通过代码安装</p>
+<p>填写如下内容</p>
 <figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
-5
-6
-7
-</pre></td><td class="code"><pre>$ curl -O https://pypi<span class="preprocessor">.python</span><span class="preprocessor">.org</span>/packages/source/v/virtualenv/virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span><span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
-$ tar xvfz virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span><span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
-$ cd virtualenv-<span class="built_in">X</span><span class="preprocessor">.X</span>
-<span class="preprocessor">#安装到全局</span>
-$ [sudo] python setup<span class="preprocessor">.py</span> install
-<span class="preprocessor"># 或 当前用户直接使用</span>
-$ python virtualenv<span class="preprocessor">.py</span> myVE
+</pre></td><td class="code"><pre><span class="shebang">#! /bin/sh
+ </span>
+<span class="keyword">export</span> LANG=zh_CN.utf8
+/usr/bin/rrdtool.local <span class="string">"<span class="variable">$@</span>"</span>
 </pre></td></tr></table></figure>
 
-<blockquote>
-<p>如果本地没有可用的<code>pip/setuptools/virtualenv</code> 发行包则<code>virtualenv.py</code>是不能用的。因为有一个和<code>virtualenv.py</code>在一起的有个完整的pip和setuptools的环境发行包的<code>virtualenv_support</code>文件夹，所以上面所有的操作都是支持的</p>
-</blockquote>
-<h3 id="-4f7f-7528-virtualenv">使用virtualenv</h3>
-<p>基础用法</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="variable">$ </span>virtualenv <span class="constant">ENV</span> <span class="comment">#ENV为文件夹路径</span>
-</pre></td></tr></table></figure>
-
-<p>创建虚拟环境，分别会建立</p>
 <figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
 2
-3
-</pre></td><td class="code"><pre>ENV/<span class="keyword">lib</span>/pythonX.X/site-packages <span class="preprocessor">#libraries文件夹</span>
-ENV/bin/python <span class="preprocessor">#python编译器</span>
-ENV/bin/pip <span class="preprocessor">#当前环境的pip，可用来安装包</span>
+</pre></td><td class="code"><pre><span class="comment">#修改权限，使其能执行</span>
+<span class="built_in">sudo</span> chmod <span class="number">755</span> /usr/bin/rrdtool
 </pre></td></tr></table></figure>
 
+<h4 id="Net-SNMP-1">Net-SNMP</h4>
+<p>推荐使用<code>apt-get install snmp snmpd</code>来安装编译好的二进制版本</p>
 <blockquote>
-<p>访问 <a href="https://pypi.python.org/pypi/virtualenv#environment-variables-and-configuration-files" title="environment-variables-and-configuration-files" target="_blank">#environment-variables-and-configuration-files</a>查看相关配置</p>
+<p>也可以从<a href="http://www.net-snmp.org/download.html" target="_blank">http://www.net-snmp.org/download.html</a>下载源码包，编译安装</p>
 </blockquote>
-<p>　　</p>
+<h3 id="Cacti-5b89-88c5-2f-914d-7f6e-">Cacti安装/配置</h3>
 <blockquote>
-<p><code>ENV\Scripts\deactivate.bat</code>是<code>Unix</code>的换行符,<code>Windows</code>下面手动转换一下.</p>
-<p>使用<code>%~dp0</code>替换<code>ENV\Scripts\(de)activate.bat</code>里的路径可能可以实现到处带着走</p>
+<p>参见Windows下的安装配置</p>
+<p>注意：RRDtool的版本此时应该选择为1.4.X！</p>
 </blockquote>
-<p>如果使用<code>PowerShell</code>，则必须先设置<code>PowerShell</code>的权限才能运行</p>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<p>Linux下需要设置文件夹权限</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -2131,40 +1901,1206 @@ ENV/bin/pip <span class="preprocessor">#当前环境的pip，可用来安装包<
 13
 14
 15
-</pre></td><td class="code"><pre>#管理员方式运行PowerShell执行
-PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy AllSigned
+</pre></td><td class="code"><pre><span class="preprocessor">#给日志文件夹读写权限</span>
+chmod <span class="number">777</span> /<span class="keyword">var</span>/www/cacti/log
 
-#选A以便子线程能接受输入(这会将证书加到可信证书列表里)
-PS C:\&gt; .\foo\scripts\activate
-<span class="flow">Do</span> you want to run software from this untrusted publisher?
-File C:\foo\scripts\activate.ps1 is published by E=jannis@leidel.info,
-CN=Jannis Leidel, L=Berlin, S=Berlin, C=DE, Description=<span class="number">581796</span>-Gh7xfJxkxQSIO4E0
-and is <span class="flow">not</span> trusted on your system. Only run scripts from trusted publishers.
-[V] Never run  [D] <span class="flow">Do</span> <span class="flow">not</span> run  [R] Run once  [A] Always run  [?] Help
-(default is "D"):A 
-(foo) PS C:\&gt;
+<span class="preprocessor">#给rra文件夹读写权限</span>
+chmod <span class="number">777</span> /<span class="keyword">var</span>/www/cacti/rra
 
-#或者干脆删掉签名，直接运行。
-PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy <span class="comment">RemoteSigned</span>
+<span class="preprocessor">#给script文件夹执行权限</span>
+chmod <span class="number">755</span> /<span class="keyword">var</span>/www/cacti/script
+
+<span class="preprocessor">#给cacti 主文件夹执行权限</span>
+chmod <span class="number">755</span> /<span class="keyword">var</span>/www/cacti
+
+<span class="preprocessor">#给Poller以root用户root用户组的权限并给他root执行的权限</span>
+chown root:root /<span class="keyword">var</span>/www/cacti
+chmod +s /<span class="keyword">var</span>/www/cacti/poller.php
 </pre></td></tr></table></figure>
 
-<p>参考文章：<br><a href="http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html" target="_blank">http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html</a></p>
+<h3 id="-8ba1-5212-4efb-52a1-914d-7f6e-">计划任务配置</h3>
+<p>使用<code>sudo crontab –e</code>命令编辑任务，在最后添加一行：</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="comment"># */1表示 每1分钟执行1次</span>
+*<span class="regexp">/1 *  * * * /usr</span><span class="regexp">/bin/php</span> /var/www/cacti/poller.php &gt;<span class="regexp">/dev/null</span> <span class="number">2</span>&gt;&<span class="number">1</span>
+</pre></td></tr></table></figure>
+
+<p>Ctrl+X 退出保存</p>
+<h2 id="-88ab-76d1-63a7-7aef-">被监控端</h2>
+<h3 id="Window-5e73-53f0-">Window平台</h3>
+<p>安装Information-std<br>官方下载地址：<a href="http://www.wtcs.org/informant/download.htm" target="_blank">http://www.wtcs.org/informant/download.htm</a><br>不需要做配置</p>
+<blockquote>
+<p>这是由于由于Windows自带的SNMP提供的信息不足以让Cacti监控到主机的信息，所以需要安装</p>
+</blockquote>
+<h3 id="Linux-5e73-53f0-">Linux平台</h3>
+<p>Linux平台需要开启<code>SNMP</code>服务</p>
+<p>使用<code>apt-get install snmpd</code>安装<code>snmpd</code>服务</p>
+<blockquote>
+<p>如果服务器自带的MIB不足以让Cacti获得它所需要的信息<br>使用<code>apt-get install snmp-mibs-downloader</code>下载mibs文件。</p>
+</blockquote>
+<p>如果服务器有<code>iptables</code>，需要将<code>upd</code>的<code>161端口</code>设置为<code>可以接受传入</code></p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">#iptables</span> <span class="attribute">-A</span> INPUT <span class="attribute">-i</span> eth0 <span class="attribute">-p</span> udp <span class="attribute">-s</span> 监控服务器IP –dport <span class="number">161</span> <span class="attribute">-j</span> ACCEPT
+</pre></td></tr></table></figure>
+
+<p>如果是Ubuntu平台 修改<code>/etc/default/snmpd</code></p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>snmpDOPTS<span class="subst">=</span>’<span class="attribute">-Lsd</span> <span class="attribute">-Lf</span> <span class="subst">/</span>dev<span class="subst">/</span><span class="built_in">null</span> <span class="attribute">-u</span> snmp <span class="attribute">-I</span> <span class="attribute">-smux</span> <span class="attribute">-p</span> <span class="subst">/</span><span class="built_in">var</span><span class="subst">/</span>run<span class="subst">/</span>snmpd<span class="built_in">.</span>pid <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>’
+</pre></td></tr></table></figure>
+
+<p>将之修改为：</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>snmpDOPTS<span class="subst">=</span>’<span class="attribute">-Lsd</span> <span class="attribute">-Lf</span> <span class="subst">/</span>dev<span class="subst">/</span><span class="built_in">null</span> <span class="attribute">-u</span> snmp <span class="attribute">-I</span> <span class="attribute">-smux</span> <span class="attribute">-p</span> <span class="subst">/</span><span class="built_in">var</span><span class="subst">/</span>run<span class="subst">/</span>snmpd<span class="built_in">.</span>pid’
+</pre></td></tr></table></figure>
+
+<p>然后执行<code>sudo service snmd restart</code>重启服务</p>
+<h2 id="-5176-4ed6-95ee-9898-">其他问题</h2>
+<h3 id="Net-SNMP-627e-4e0d-5230-libnetsnmp-so-7684-95ee-9898-">Net-SNMP找不到libnetsnmp.so的问题</h3>
+<p>尝试添加系统变量<code>export LD_LIBRARY_PATH=/usr/local/lib</code><br>如果问题依旧使用如下方式：</p>
+<ul>
+<li>创建一个文件<code>/etc/ld.so.conf.d/local.conf</code></li>
+<li>编辑文件，写入<code>/usr/local/lib</code>保存</li>
+<li>运行”ldconfig”</li>
+</ul>
+<h3 id="-4fee-6539-rrd-6587-4ef6-65f6-95f4-95f4-9694-">修改rrd文件时间间隔</h3>
+<blockquote>
+<p>以修改为60 即1分钟为例</p>
+</blockquote>
+<ul>
+<li><p>用<code>rrdtool dump</code>将rrd库dump成一个xml文件  </p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>sudo rrdtool dump /www/webdev/cacti/rra/<span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.rrd</span> &gt;~/<span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.xml</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>用手动编辑的方法修改xml文件中的step值</p>
+<blockquote>
+<p>如本例，将300修改成60</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+	<span class="doctype">&lt;!DOCTYPE rrd SYSTEM "http://oss.oetiker.ch/rrdtool/rrdtool.dtd"&gt;</span>
+	<span class="comment">&lt;!-- Round Robin Database Dump --&gt;</span>
+	<span class="tag">&lt;<span class="title">rrd</span>&gt;</span>
+	。。。。。。。。
+	<span class="tag">&lt;<span class="title">step</span>&gt;</span>300改成60<span class="tag">&lt;/<span class="title">step</span>&gt;</span> <span class="comment">&lt;!-- Seconds --&gt;</span>
+	。。。。。。。。。。。。
+</pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>保存文件</p>
+</li>
+<li><p>将xml文件用rrd restore存成一个新的rrd库</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>rrdtool restore <span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.xml</span> <span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.rrd</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>再用新的库文件覆盖旧的rrd库文件</p>
+</li>
+</ul>
+<p>这时刷新cacti图形已经变更过来了</p>
+<blockquote>
+<p>建议先备份就的库文件，如果没有效果，检查数据/图像模板刷新时间是否已经修改为60了。</p>
+<p>来源：<a href="http://www.mayj.net/article/linux/57.htm" target="_blank">http://www.mayj.net/article/linux/57.htm</a></p>
+</blockquote>
 <p>[TOC]</p>
 ]]></content>
-    <summary type="html"><![CDATA[<h2 id="Python-5b89-88c5-">Python安装</h2>
-<p>Python 中国区下载地址：<a href="http://python.org/getit/" target="_blank">http://python.org/getit/</a><br>Package库<a href="https://pypi.python.org/pypi" target="_blank">https://pypi.python.org/pypi</a></p>
-<blockquote>
-<p>在Windows上面使用<code>安装给所有用户</code>选项会使<code>pythonXX.dll</code>复制到<code>Windos/system32</code>下面。<br>这时使用virtualenv生成环境后，需要把<code>pythonXX.dll</code>拷到<code>env/Scripts</code>下面，不然在没Python的机子上可能就可能会报<code>&quot;找不到pythonXX.dll&quot;</code>的错误。</p>
-</blockquote>
-<p>安装完毕将<code>C:\python27;C:\python27\Scripts</code>添加到Path中</p>
-<blockquote>
-<p>添加后，如果使用virtualenv有可能会出现python串掉的问题。</p>
-</blockquote>
-]]></summary>
+    <summary type="html"><![CDATA[<h2 id="-524d-671f-51c6-5907-">前期准备</h2>
+<p>这里主要说明PHP、Apache的配置，默认认为你已经安装好MySQL、PHP、Apache或其它代替工具，并做好了相应的基本配置，已可以用于开发或生产环境。如果没有请参考其它教程配置PHP、Apache、MySQL，这里不再重复了。<br>]]></summary>
     
-      <category term="python" scheme="http://niphor.github.io/tags/python/"/>
+      <category term="cacti" scheme="http://niphor.github.io/tags/cacti/"/>
     
-      <category term="Python" scheme="http://niphor.github.io/categories/python/"/>
+      <category term="windows" scheme="http://niphor.github.io/tags/windows/"/>
+    
+      <category term="服务器" scheme="http://niphor.github.io/categories/server/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Cacti插件安装/使用]]></title>
+    <link href="http://niphor.github.io/posts/2013/02/install-cacti-plugin.html"/>
+    <id>http://niphor.github.io/posts/2013/02/install-cacti-plugin.html</id>
+    <published>2013-02-13T10:14:23.000Z</published>
+    <updated>2014-01-14T08:17:16.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="-63d2-4ef6-5b89-88c5-">插件安装</h2>
+<p>直接将插件解压缩之后放入Cacti的Plugin目录下，注意不要目录套目录，保持这样一个层次结构。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>  cacti
+	├plugin
+	│	├插件文件夹(如settings)
+	│	│	├index.php
+	│	│	├setup.php
+	│	│	└<span class="keyword">...</span>
+	│	└<span class="keyword">...</span>
+	└<span class="keyword">...</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong> ：新版的0.8.8a PA(Plugin Architecture)已经默认集成在里面了，不需要先安装了。</p>
+</blockquote>
+<p><a id="more"></a><br>之后在Console -&gt; Plugin Management中会出现响应插件条目：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-plugin-mng-page.png" alt="插件管理界面"></p>
+<blockquote>
+<p>点击第一列的图标可以<code>安装(↓)</code>/<code>启用(←)</code>/<code>停用(⊙)</code>/<code>卸载(↑)</code>插件</p>
+</blockquote>
+<p>插件安装之后，在相应的栏目下回出现新的栏目</p>
+<h3 id="Thold-63d2-4ef6-">Thold插件</h3>
+<blockquote>
+<p>Thold插件主要用于监控报警，并用Email发送报警信息<br>Thold插件依赖于Settings插件，所以安装之前请先安装Settings插件。激活之后界面立即出现响应变化。</p>
+</blockquote>
+<h2 id="-6a21-7248-5b89-88c5-">模版安装</h2>
+<h3 id="Windows-5e73-53f0-SNMP-76d1-63a7-6a21-7248-">Windows平台SNMP监控模版</h3>
+<blockquote>
+<p>下载地址：<a href="http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195" target="_blank">http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195</a></p>
+</blockquote>
+<ul>
+<li>下载最新版本的模版,</li>
+<li>按照readme.txt中的步骤安装模版</li>
+<li>将resource目录覆盖Cacti下同名目录</li>
+<li>通过网页导入template下的模版<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-import-tpl-dialog.png" alt="插件管理界面"><blockquote>
+<p><strong>注意</strong> 如果用了Spine，可以选上<code>Hourly</code>,用的<code>CMD.php</code>的话，最低5分钟一次，选不选没区别</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Mencached-6a21-7248-5b89-88c5-">Mencached模版安装</h3>
+<blockquote>
+<p>原版地址：<a href="http://dealnews.com/developers/cacti/memcached.html" target="_blank">http://dealnews.com/developers/cacti/memcached.html</a><br>可以监控多个端口的版本：<a href="http://tag1consulting.com/blog/cacti-memcache-multi-port-templates" target="_blank">http://tag1consulting.com/blog/cacti-memcache-multi-port-templates</a></p>
+</blockquote>
+<ul>
+<li>安装Python2.7</li>
+<li>安装setuptools</li>
+<li>安装memcached py版<br><a href="http://pypi.python.org/pypi/python-memcached/" target="_blank">http://pypi.python.org/pypi/python-memcached/</a></li>
+</ul>
+<p>以多端口的Memcached监控模版为例:</p>
+<ul>
+<li>解压</li>
+<li>按照README步骤，将memcached.py拷贝至Cacti目录的scripts文件夹下</li>
+<li>导入模版template</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong> ：由于1.2.6等老版本的Memcache的Stats里面少了些数据，所以上述的memcached.py在监控1.2.6等版本的Memcache时会报错。</p>
+</blockquote>
+<h2 id="-76d1-63a7-5b9e-4f8b-">监控实例</h2>
+<h3 id="-6dfb-52a0-76d1-63a7-8bbe-5907-">添加监控设备</h3>
+<p>点击侧边栏<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-menu.png" alt="设备菜单">进入设备列表，点击右上方的<code>Add</code>来添加设备。</p>
+<p>并做一些设置，如图：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info-setting.png" alt="设置设备信息"></p>
+<p>点击保存，等待一段时间，页面跳转到主机设置界面，我们可以看到已经有部分信息获取到了：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info.png" alt="设备信息"></p>
+<blockquote>
+<p>如果snmp不通，则会显示 <strong><code>SNMP error</code></strong></p>
+</blockquote>
+<h3 id="-521b-5efa-8bbe-5907-56fe-">创建设备图</h3>
+<p>在设备详情页的下方 已经显示出了刚才指定的主机模版自带的监控项目<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-device-item.png" alt="设备监控项目"></p>
+<blockquote>
+<p>如果<code>Associated Data Queries</code>里面<code>Status</code>中显示<code>Success</code>并在后面显示出有具体数目的item和row表示数据是可以成功抓取的，如果都是<code>0</code>则表示数据没能抓取出来。</p>
+</blockquote>
+<p>点击页面右上方的<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-create-graphs.png" alt="创建图的按钮">即可创建抓取图。</p>
+<p>通过对于先前抓取的数据的观察，选择要监控的数据，在后面打钩，点击<code>Create</code>即可创建抓取图。</p>
+<p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-graphs-item.png" alt="设置图内容"></p>
+<h3 id="-521b-5efa-6811-">创建树</h3>
+<p>点击<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-graph-tree.png" alt="创建树的按钮">，然后点击<code>Add</code>添加一个树</p>
+<ol>
+<li>填写树的名字，选择排列方式<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-tree-name.png" alt="设置树的名字和排列方式"></li>
+<li>点击<code>Add</code>添加设备<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-add-tree-item.png" alt="设置树的项目"></li>
+<li>点击<code>Add</code>添加设备<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-tree-item.png" alt="设置树的项目的属性"></li>
+<li>点击<code>Save</code>保存树</li>
+</ol>
+<p>之后可以在最上方的<code>Graphs</code>标签中看见效果：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-tab-graphs.png" alt="树的界面"></p>
+<blockquote>
+<p><strong>注意</strong> ：没有图片出现是因为，刚添加完，可能Poller还没运行，每来得及抓取到数据，等待1-2分钟就可以了。</p>
+</blockquote>
+<p>至此一个监控实例添加完成。</p>
+<h2 id="-6ce8-610f-4e8b-9879-">注意事项</h2>
+<p>　如果对于模版、系统设置、抓取时间间隔等进行了修改，需要<code>Rebuild Poller Cache</code>，以免出现不出图片或者图片上没有数据的问题。
+　</p>
+<h2 id="-63d2-4ef6-5f00-53d1-">插件开发</h2>
+<p>插件结构包含在<a href="http://docs.cacti.net/plugins:development" target="_blank">http://docs.cacti.net/plugins:development</a></p>
+<p>插件放在<code>{cacti_root}/plugins/{plugin_name}</code>下。</p>
+<p>插件主要通过setup.php与cacti通信。</p>
+<p><code>setup.php</code>是一个方法的集合，方法名不能有大写，不能有直接执行的方法。</p>
+<p>插件通过API Hook 与Cacti进行结合。</p>
+<p>Hook API 参见：<br><a href="http://docs.cacti.net/plugins:development.hook_api_ref#hook_api_reference" target="_blank">http://docs.cacti.net/plugins:development.hook_api_ref#hook_api_reference</a></p>
+<p>setup.php例子参见：<br><a href="http://blog.sina.com.cn/s/blog_47186b8b0100jdkv.html" target="_blank">http://blog.sina.com.cn/s/blog_47186b8b0100jdkv.html</a></p>
+<p>[TOC]</p>
+]]></content>
+    <summary type="html"><![CDATA[<h2 id="-63d2-4ef6-5b89-88c5-">插件安装</h2>
+<p>直接将插件解压缩之后放入Cacti的Plugin目录下，注意不要目录套目录，保持这样一个层次结构。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>  cacti
+	├plugin
+	│	├插件文件夹(如settings)
+	│	│	├index.php
+	│	│	├setup.php
+	│	│	└<span class="keyword">...</span>
+	│	└<span class="keyword">...</span>
+	└<span class="keyword">...</span>
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong> ：新版的0.8.8a PA(Plugin Architecture)已经默认集成在里面了，不需要先安装了。</p>
+</blockquote>
+<p>]]></summary>
+    
+      <category term="cacti" scheme="http://niphor.github.io/tags/cacti/"/>
+    
+      <category term="windows" scheme="http://niphor.github.io/tags/windows/"/>
+    
+      <category term="plugin" scheme="http://niphor.github.io/tags/plugin/"/>
+    
+      <category term="服务器" scheme="http://niphor.github.io/categories/server/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Cacti Memcached监控脚本报错的问题]]></title>
+    <link href="http://niphor.github.io/posts/2012/08/cacti-plugin-py-error-on-memcached-1-2-6.html"/>
+    <id>http://niphor.github.io/posts/2012/08/cacti-plugin-py-error-on-memcached-1-2-6.html</id>
+    <published>2012-08-22T07:13:32.000Z</published>
+    <updated>2014-01-14T07:51:05.000Z</updated>
+    <content type="html"><![CDATA[<p>　　Cacti是常用的一款比较流行的服务器及网络监控工具，和Nagios一样有着许多插件，最近我在使用Cacti监控Memcached的时候遇到了一些问题。</p>
+<p>　　使用Python版的Memcached监控端的时候，如果监控的Memcached的版本<code>&lt;=1.2.6</code>会报错。</p>
+<blockquote>
+<p>原版地址：<a href="http://dealnews.com/developers/cacti/memcached.html" target="_blank">http://dealnews.com/developers/cacti/memcached.html</a><br>可以监控多个端口的版本：<a href="http://tag1consulting.com/blog/cacti-memcache-multi-port-templates" target="_blank">http://tag1consulting.com/blog/cacti-memcache-multi-port-templates</a><br><a id="more"></a></p>
+</blockquote>
+<p>　　问题的原因其实是作者在编写代码时候欠缺考虑造成的。但是也不能怪作者，谁让我们还苦逼的抱死在1.2.6版本之前的Memcached上。</p>
+<blockquote>
+<p><strong>注意</strong> ：以下都是Windows平台的，如果你是Linux平台的，Memcached装个新版本的，没有这种问题！</p>
+</blockquote>
+<p>查看Cacti的日志，我们发现memcached.py返回的是空数据。实际直接CMD里运行，则报如下错误：</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>&gt;python memcached.py -p <span class="number">11211</span> <span class="number">192</span>.<span class="number">168</span>.<span class="number">1</span>.<span class="number">54</span>
+　 Traceback (most recent <span class="flow">call</span> last):
+　 　 File "memcached.py", line <span class="number">44</span>, <span class="flow">in</span>
+　 　 　 stats[key] = float(mstat[key])
+　 KeyError: 'rusage_user'
+</pre></td></tr></table></figure>
+
+<p>　 　 查看代码很容易发现，作者定义了一个基本字典stats，然后循环stats，用mstat里面的值替换，最后输出stats。可是蛋疼的是<code>rusage_user</code>和<code>rusage_system</code>其实是没有的…</p>
+<p>　 　 于是就很好处理了,循环时直接交换下<code>status</code>和<code>mstat</code>,这里只需要注意Version是个字符串。</p>
+<p>问题解决。</p>
+<p>[TOC]</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>　　Cacti是常用的一款比较流行的服务器及网络监控工具，和Nagios一样有着许多插件，最近我在使用Cacti监控Memcached的时候遇到了一些问题。</p>
+<p>　　使用Python版的Memcached监控端的时候，如果监控的Memcached的版本<code>&lt;=1.2.6</code>会报错。</p>
+<blockquote>
+<p>原版地址：<a href="http://dealnews.com/developers/cacti/memcached.html" target="_blank">http://dealnews.com/developers/cacti/memcached.html</a><br>可以监控多个端口的版本：<a href="http://tag1consulting.com/blog/cacti-memcache-multi-port-templates" target="_blank">http://tag1consulting.com/blog/cacti-memcache-multi-port-templates</a><br>]]></summary>
+    
+      <category term="cacti" scheme="http://niphor.github.io/tags/cacti/"/>
+    
+      <category term="plugin" scheme="http://niphor.github.io/tags/plugin/"/>
+    
+      <category term="服务器" scheme="http://niphor.github.io/categories/server/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Maven权威指南 第七章数据库生成不了的解决方法]]></title>
+    <link href="http://niphor.github.io/posts/2012/02/could-not-get-configurationtask-issue-in-maven-guide-chapter-7-7.html"/>
+    <id>http://niphor.github.io/posts/2012/02/could-not-get-configurationtask-issue-in-maven-guide-chapter-7-7.html</id>
+    <published>2012-02-06T07:23:11.000Z</published>
+    <updated>2014-01-14T07:51:09.000Z</updated>
+    <content type="html"><![CDATA[<p>　　初学Maven,必然是看\&lt;\<Maven权威指南\>>,这书很全面也有中文版本,sonatype官网,和GitHub上面都有,下载也很方便( <em>我是GitHub上抓的</em> ),不过我看到第七章7.7节,实际遇到了些问题。<br><a id="more"></a><br>书中7.7节原文写到:</p>
+<blockquote>
+<p>7.7. 运行这个Web应用<br>   为了运行这个web应用，你首先需要使用Hibernate3插件构造数据库。为此，在项目simple-webapp目录下运行如下命令：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre>&gt;<span class="comment">$</span> <span class="comment">mvn</span> <span class="comment">hibernate3:hbm2ddl</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Scanning</span> <span class="comment">for</span> <span class="comment">projects</span><span class="string">.</span><span class="string">.</span><span class="string">.</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Searching</span> <span class="comment">repository</span> <span class="comment">for</span> <span class="comment">plugin</span> <span class="comment">with</span> <span class="comment">prefix:</span> &gt;<span class="comment">'hibernate3'</span><span class="string">.</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">org</span><span class="string">.</span><span class="comment">codehaus</span><span class="string">.</span><span class="comment">mojo:</span> <span class="comment">checking</span> <span class="comment">for</span> <span class="comment">updates</span> <span class="comment">from</span> <span class="comment">central</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Building</span> <span class="comment">Chapter</span> <span class="comment">7</span> <span class="comment">Simple</span> <span class="comment">Web</span> <span class="comment">Application</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">task</span><span class="literal">-</span><span class="comment">segment:</span> <span class="title">[</span><span class="comment">hibernate3:hbm2ddl</span><span class="title">]</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Preparing</span> <span class="comment">hibernate3:hbm2ddl</span>
+&gt;<span class="string">.</span><span class="string">.</span><span class="string">.</span>
+&gt;<span class="comment">10:24:56</span><span class="string">,</span><span class="comment">151</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">tool</span><span class="string">.</span><span class="comment">hbm2ddl</span><span class="string">.</span><span class="comment">SchemaExport</span> <span class="literal">-</span> <span class="comment">export</span> <span class="comment">complete</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">BUILD</span> <span class="comment">SUCCESSFUL</span>
+&gt;<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+&gt;
+</pre></td></tr></table></figure>
+
+</blockquote>
+<p>实际上并非如此,直接用随书附带的源码,会得到如下提示:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="code"><pre><span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Scanning</span> <span class="comment">for</span> <span class="comment">projects</span><span class="string">.</span><span class="string">.</span><span class="string">.</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Building</span> <span class="comment">Chapter</span> <span class="comment">7</span> <span class="comment">Simple</span> <span class="comment">Web</span> <span class="comment">Application</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">task</span><span class="literal">-</span><span class="comment">segment:</span> <span class="title">[</span><span class="comment">hibernate3:hbm2ddl</span><span class="title">]</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Preparing</span> <span class="comment">hibernate3:hbm2ddl</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="title">[</span><span class="comment">resources:resources</span> <span class="comment">{execution:</span> <span class="comment">default</span><span class="literal">-</span><span class="comment">resources}</span><span class="title">]</span>
+<span class="title">[</span><span class="comment">WARNING</span><span class="title">]</span> <span class="comment">Using</span> <span class="comment">platform</span> <span class="comment">encoding</span> <span class="comment">(GBK</span> <span class="comment">actually)</span> <span class="comment">to</span> <span class="comment">copy</span> <span class="comment">filtered</span> <span class="comment">resources</span><span class="string">,</span> <span class="comment">i</span><span class="string">.</span><span class="comment">e</span><span class="string">.</span> <span class="comment">build</span> <span class="comment">is</span> <span class="comment">platform</span> <span class="comment">dependent!</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">skip</span> <span class="comment">non</span> <span class="comment">existing</span> <span class="comment">resourceDirectory</span> <span class="comment">E:\simple</span><span class="literal">-</span><span class="comment">parent\simple</span><span class="literal">-</span><span class="comment">webapp\src\main\resources</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="title">[</span><span class="comment">hibernate3:hbm2ddl</span> <span class="comment">{execution:</span> <span class="comment">default</span><span class="literal">-</span><span class="comment">cli}</span><span class="title">]</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">ERROR</span><span class="title">]</span> <span class="comment">BUILD</span> <span class="comment">ERROR</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Could</span> <span class="comment">not</span> <span class="comment">get</span> <span class="comment">ConfigurationTask</span><span class="string">.</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">For</span> <span class="comment">more</span> <span class="comment">information</span><span class="string">,</span> <span class="comment">run</span> <span class="comment">Maven</span> <span class="comment">with</span> <span class="comment">the</span> <span class="literal">-</span><span class="comment">e</span> <span class="comment">switch</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Total</span> <span class="comment">time:</span> <span class="comment">2</span> <span class="comment">seconds</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Finished</span> <span class="comment">at:</span> <span class="comment">Mon</span> <span class="comment">Feb</span> <span class="comment">06</span> <span class="comment">12:42:29</span> <span class="comment">CST</span> <span class="comment">2012</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Final</span> <span class="comment">Memory:</span> <span class="comment">10M/25M</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+</pre></td></tr></table></figure>
+
+<p><code>Could not get ConfigurationTask.</code>这个错误我Google了一下,只找到一个相关的页面,页面上是系统变量的JDK写错了,和我这边似乎没什么关系。</p>
+<p>如果我去除POM中的hibernate3-maven-plugin,则运行时候会显示如下错误:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="code"><pre><span class="comment">simple</span><span class="literal">-</span><span class="comment">webapp</span>&gt;<span class="comment">mvn</span> <span class="comment">hibernate3:hbm2ddl</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Scanning</span> <span class="comment">for</span> <span class="comment">projects</span><span class="string">.</span><span class="string">.</span><span class="string">.</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Searching</span> <span class="comment">repository</span> <span class="comment">for</span> <span class="comment">plugin</span> <span class="comment">with</span> <span class="comment">prefix:</span> <span class="comment">'hibernate3'</span><span class="string">.</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Building</span> <span class="comment">Chapter</span> <span class="comment">7</span> <span class="comment">Simple</span> <span class="comment">Web</span> <span class="comment">Application</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">task</span><span class="literal">-</span><span class="comment">segment:</span> <span class="title">[</span><span class="comment">hibernate3:hbm2ddl</span><span class="title">]</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Preparing</span> <span class="comment">hibernate3:hbm2ddl</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="title">[</span><span class="comment">resources:resources</span> <span class="comment">{execution:</span> <span class="comment">default</span><span class="literal">-</span><span class="comment">resources}</span><span class="title">]</span>
+<span class="title">[</span><span class="comment">WARNING</span><span class="title">]</span> <span class="comment">Using</span> <span class="comment">platform</span> <span class="comment">encoding</span> <span class="comment">(GBK</span> <span class="comment">actually)</span> <span class="comment">to</span> <span class="comment">copy</span> <span class="comment">filtered</span> <span class="comment">resources</span><span class="string">,</span> <span class="comment">i</span><span class="string">.</span><span class="comment">e</span><span class="string">.</span> <span class="comment">build</span> <span class="comment">is</span> <span class="comment">platform</span> <span class="comment">dependent!</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">skip</span> <span class="comment">non</span> <span class="comment">existing</span> <span class="comment">resourceDirectory</span> <span class="comment">E:\simple</span><span class="literal">-</span><span class="comment">parent\simple</span><span class="literal">-</span><span class="comment">webapp\src\main\resources</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="title">[</span><span class="comment">hibernate3:hbm2ddl</span> <span class="comment">{execution:</span> <span class="comment">default</span><span class="literal">-</span><span class="comment">cli}</span><span class="title">]</span>
+<span class="comment">12:59:55</span><span class="string">,</span><span class="comment">351</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">Environment</span> <span class="literal">-</span> <span class="comment">Hibernate</span> <span class="comment">3</span><span class="string">.</span><span class="comment">3</span><span class="string">.</span><span class="comment">1</span><span class="string">.</span><span class="comment">GA</span>
+<span class="comment">12:59:55</span><span class="string">,</span><span class="comment">357</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">Environment</span> <span class="literal">-</span> <span class="comment">hibernate</span><span class="string">.</span><span class="comment">properties</span> <span class="comment">not</span> <span class="comment">found</span>
+<span class="comment">12:59:55</span><span class="string">,</span><span class="comment">362</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">Environment</span> <span class="literal">-</span> <span class="comment">Bytecode</span> <span class="comment">provider</span> <span class="comment">name</span> <span class="comment">:</span> <span class="comment">javassist</span>
+<span class="comment">12:59:55</span><span class="string">,</span><span class="comment">367</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">Environment</span> <span class="literal">-</span> <span class="comment">using</span> <span class="comment">JDK</span> <span class="comment">1</span><span class="string">.</span><span class="comment">4</span> <span class="comment">java</span><span class="string">.</span><span class="comment">sql</span><span class="string">.</span><span class="comment">Timestamp</span> <span class="comment">handling</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">Configuration</span> <span class="comment">XML</span> <span class="comment">file</span> <span class="comment">loaded:</span> <span class="comment">jar:file:/C:/Users/Niphor/</span><span class="string">.</span><span class="comment">m2/repository/org/sonatype/mavenbook/ch07/simple</span><span class="literal">-</span><span class="comment">persist/0</span><span class="string">.</span><span class="comment">6</span><span class="literal">-</span><span class="comment">SNAPSHOT/simple</span><span class="literal">-</span><span class="comment">persist</span><span class="literal">-</span><span class="comment">0</span><span class="string">.</span><span class="comment">6</span><span class="literal">-</span><span class="comment">SNAPSHOT</span><span class="string">.</span><span class="comment">jar!/hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">xml</span>
+<span class="comment">12:59:55</span><span class="string">,</span><span class="comment">418</span> <span class="comment">INFO</span> <span class="comment">org</span><span class="string">.</span><span class="comment">hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">Configuration</span> <span class="literal">-</span> <span class="comment">configuring</span> <span class="comment">from</span> <span class="comment">url:</span> <span class="comment">jar:file:/C:/Users/Niphor/</span><span class="string">.</span><span class="comment">m2/repository/org/sonatype/mavenbook/ch07/simple</span><span class="literal">-</span><span class="comment">persist/0</span><span class="string">.</span><span class="comment">6</span><span class="literal">-</span><span class="comment">SNAPSHOT/simple</span><span class="literal">-</span><span class="comment">persist</span><span class="literal">-</span><span class="comment">0</span><span class="string">.</span><span class="comment">6</span><span class="literal">-</span><span class="comment">SNAPSHOT</span><span class="string">.</span><span class="comment">jar!/hibernate</span><span class="string">.</span><span class="comment">cfg</span><span class="string">.</span><span class="comment">xml</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">ERROR</span><span class="title">]</span> <span class="comment">FATAL</span> <span class="comment">ERROR</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="comment">An</span> <span class="comment">AnnotationConfiguration</span> <span class="comment">instance</span> <span class="comment">is</span> <span class="comment">required</span> <span class="comment">to</span> <span class="comment">use</span> &lt;<span class="comment">mapping</span> <span class="comment">class="org</span><span class="string">.</span><span class="comment">sonatype</span><span class="string">.</span><span class="comment">mavenbook</span><span class="string">.</span><span class="comment">weather</span><span class="string">.</span><span class="comment">model</span><span class="string">.</span><span class="comment">Atmosphere"/</span>&gt;
+<span class="title">[</span><span class="comment">INFO</span><span class="title">]</span> <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+</pre></td></tr></table></figure>
+
+<p>看样子是没标明用<code>annotation</code>,所以提示要<code>annotationConfiguration</code>的实例。</p>
+<p>Google<code>&quot;hibernate3:hbm2ddl&quot;</code>你会得到一些中文开发者的解决方法,一般都是:</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">plugin</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.codehaus.mojo<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>hibernate3-maven-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">configuration</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">componentProperties</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">jdk5</span>&gt;</span>true<span class="tag">&lt;/<span class="title">jdk5</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">implementation</span>&gt;</span>annotationconfiguration<span class="tag">&lt;/<span class="title">implementation</span>&gt;</span>
+　　<span class="tag">&lt;/<span class="title">componentProperties</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">configuration</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">dependencies</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>hsqldb<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>hsqldb<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">version</span>&gt;</span>1.8.0.7<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+　　<span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">dependencies</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">plugin</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>而源码上是</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">plugin</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.codehaus.mojo<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>hibernate3-maven-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">configuration</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">components</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">component</span>&gt;</span>
+　　　　<span class="tag">&lt;<span class="title">name</span>&gt;</span>hbm2ddl<span class="tag">&lt;/<span class="title">name</span>&gt;</span>
+　　　　<span class="tag">&lt;<span class="title">implementation</span>&gt;</span>annotationconfiguration<span class="tag">&lt;/<span class="title">implementation</span>&gt;</span>
+　　　<span class="tag">&lt;/<span class="title">component</span>&gt;</span>
+　　<span class="tag">&lt;/<span class="title">components</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">configuration</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">dependencies</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>hsqldb<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>hsqldb<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+　　　<span class="tag">&lt;<span class="title">version</span>&gt;</span>1.8.0.7<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+　　<span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">dependencies</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">plugin</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>我把</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">componentProperties</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">jdk5</span>&gt;</span>true<span class="tag">&lt;/<span class="title">jdk5</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">implementation</span>&gt;</span>annotationconfiguration<span class="tag">&lt;/<span class="title">implementation</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">componentProperties</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>替换成了</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">components</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">component</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">name</span>&gt;</span>hbm2ddl<span class="tag">&lt;/<span class="title">name</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">implementation</span>&gt;</span>annotationconfiguration<span class="tag">&lt;/<span class="title">implementation</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">component</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">components</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>结果不行,报错依旧,最后我发现插件版本网上2.2,而我的源码是2.1,改成2.2立即成功,且完全不需要去写</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">jdk5</span>&gt;</span>true<span class="tag">&lt;/<span class="title">jdk5</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>即</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+<span class="tag">&lt;<span class="title">configuration</span>&gt;</span>
+<span class="tag">&lt;<span class="title">components</span>&gt;</span>
+　<span class="tag">&lt;<span class="title">component</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">name</span>&gt;</span>hbm2ddl<span class="tag">&lt;/<span class="title">name</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">implementation</span>&gt;</span>annotationconfiguration<span class="tag">&lt;/<span class="title">implementation</span>&gt;</span>
+　<span class="tag">&lt;/<span class="title">component</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">components</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">configuration</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>直接这样就可以了…</p>
+<p>为了这个恼人的Bug我用了数小时，结果居然是这样的…让我直接很悲哀啊… </p>
+<p>[TOC]</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>　　初学Maven,必然是看\&lt;\<Maven权威指南\>>,这书很全面也有中文版本,sonatype官网,和GitHub上面都有,下载也很方便( <em>我是GitHub上抓的</em> ),不过我看到第七章7.7节,实际遇到了些问题。<br>]]></summary>
+    
+      <category term="maven" scheme="http://niphor.github.io/tags/maven/"/>
+    
+      <category term="java" scheme="http://niphor.github.io/tags/java/"/>
+    
+      <category term="笔记" scheme="http://niphor.github.io/categories/note/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[用mklink修改Chrome的用户数据目录位置]]></title>
+    <link href="http://niphor.github.io/posts/2011/10/using-mklink-to-change-chrome-profile-folder-location.html"/>
+    <id>http://niphor.github.io/posts/2011/10/using-mklink-to-change-chrome-profile-folder-location.html</id>
+    <published>2011-10-08T06:54:27.000Z</published>
+    <updated>2014-01-14T08:14:13.000Z</updated>
+    <content type="html"><![CDATA[<p>　　正值十一黄金周，我给笔记本重新安装了一下系统。一般为了避免重装后的数据丢失，各种软件的用户数据我都保存在别的分区，不过就像大家都知道的一样，Chrome并不能修改默认的Profile文件夹位置。</p>
+<p>　　一般Chrome只能在快捷方式中加上如<code>-User-data-dir=E:/UserData</code>的参数来指定具体目录，不过这样有个明显的缺点： <strong>不能设置Chrome为默认浏览器</strong> </p>
+<p><a id="more"></a><br>　　因为当设为默认之后，系统调用时候并不是去调用你那个快捷方式，而是直接调用Chrome.exe这个程序，可见改变Profile位置这种事情实在是有得必有失。</p>
+<blockquote>
+<p>这点FireFox就做得稍微好点，只是配置文件都存在系统盘里面，重装后就没了。</p>
+</blockquote>
+<p>　　于是我又搜索了一番，在这篇文章中找到了比较好的解决方法，这个解决方式就是Vista及以上系统中自带的<code>mklink</code>方法。</p>
+<p>具体步骤如下：</p>
+<ol>
+<li><p>复制你的Profile到想要放置的位置( <em>如：我放置在E:\Cache下，改名为<code>Chrome</code></em> )  </p>
+<blockquote>
+<p>一般Profile是<code>%USERPROFILE%\AppData\Local\Google\Chrome\User Data</code>文件夹</p>
+</blockquote>
+</li>
+<li><p>创建软链</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>mklink /D "<span class="envvar">%USERPROFILE%</span>\AppData\Local\Google\Chrome\User Data\" "E:\Cache\Chrome"
+</pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>这样就做完了，之后操作你就可以像神马都没发生一样操作使用Chrome了，而所有的用户数据则都讲保存在<code>E:\Cache\Chrome</code>下面。</p>
+<p>XP的同学没有<code>mklink</code>也别气馁，微软的小工具集里面已经包含了相应的工具<code>Junction</code>了!</p>
+<p>具体步骤是一致的，只是在最后执行命令时换成了：</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>Junction "链接目录" "目标目录"
+</pre></td></tr></table></figure>
+
+<blockquote>
+<p>XP下Chrome的Profile在<code>%USERPROFILE%\Local Settings\Application Data\Google\Chrome\User Data</code><br>下载地址：<a href="http://download.sysinternals.com/Files/Junction.zip" target="_blank">http://download.sysinternals.com/Files/Junction.zip</a></p>
+</blockquote>
+<p><code>mklink</code>更深入的用法请参考：<br><a href="http://ilwave.wordpress.com/2010/02/19/mklink-exe用法及参数详解" target="_blank">http://ilwave.wordpress.com/2010/02/19/mklink-exe用法及参数详解</a></p>
+<p>[TOC]</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>　　正值十一黄金周，我给笔记本重新安装了一下系统。一般为了避免重装后的数据丢失，各种软件的用户数据我都保存在别的分区，不过就像大家都知道的一样，Chrome并不能修改默认的Profile文件夹位置。</p>
+<p>　　一般Chrome只能在快捷方式中加上如<code>-User-data-dir=E:/UserData</code>的参数来指定具体目录，不过这样有个明显的缺点： <strong>不能设置Chrome为默认浏览器</strong> </p>
+<p>]]></summary>
+    
+      <category term="chrome" scheme="http://niphor.github.io/tags/chrome/"/>
+    
+      <category term="windows" scheme="http://niphor.github.io/tags/windows/"/>
+    
+      <category term="笔记" scheme="http://niphor.github.io/categories/note/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[梅麻吕 MP_文件简易转换工具]]></title>
+    <link href="http://niphor.github.io/posts/2011/01/mp_-to-mpg-tool.html"/>
+    <id>http://niphor.github.io/posts/2011/01/mp_-to-mpg-tool.html</id>
+    <published>2011-01-01T09:49:10.000Z</published>
+    <updated>2014-01-14T06:20:51.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://niphor-dev.qiniudn.com/post-umemaro3d_logo.jpg" alt="Umemaro3D"></p>
+<p>　　昨天 尝试了一下 杉本女医の淫乱痴療，很蛋疼，不能直接用播放器播放，点得都手酸了，而且有点隐藏剧情得loop个5-10遍才能播放。于是乎在新年之际，搞了个这个小工具来转换，据贴吧@kakurukia说可以此方法可以用于<code>Intou游戏Ω(前编)</code><del>只能说是里面大部分，个别的识别的头不太一样，下面会在手工中贴出来，不过再之前是是否是如此的文件结构，还是大家自己去尝试下吧。</del></p>
+<p><a id="more"></a></p>
+<blockquote>
+<p>原理：<br>　　梅麻吕的第十弹不能直接用播放器播放，影像文件为后缀为“mp<em>”的文件。实际是格式是MPEG-PS的mpg文件，但是梅麻吕把文件分为了2部分（以下假设为A和B），原来mpg文件顺序为AB，但是mp</em>的文件顺序却是BA。所以我们只要将顺序调转回来就能直接用播放器放。</p>
+</blockquote>
+<h2 id="-624b-5de5-65b9-5f0f-3a-">手工方式:</h2>
+<ul>
+<li>工具：WinHex</li>
+</ul>
+<p>搜索 000001B9000001BA剪切文件头到000001B9这一块，粘贴到文件末尾<br>另存为.mpg文件，即可直接播放</p>
+<blockquote>
+<p>000001B9为mpg结尾<br>000001BA为mpg开头</p>
+</blockquote>
+<h2 id="-81ea-52a8-5c0f-8f6f-4ef6-">自动小软件</h2>
+<p>　　为了欢度新年，我编了个小软件来转换,大家可以尝试。不保证所以版本都能行。</p>
+<blockquote>
+<p>需要.net framework 2.0</p>
+</blockquote>
+<p><a href="http://dl.dbank.com/c058aaf773" target="_blank">http://dl.dbank.com/c058aaf773</a></p>
+<h3 id="-64cd-4f5c-65b9-6cd5-">操作方法</h3>
+<p>　　将Movie文件夹下的”.mp_”全选，直接全部拖到此程序图标上面即可。</p>
+<p>　　mpg文件同样生成在Movie文件夹下。</p>
+<blockquote>
+<p>已经发表在百度贴吧里面了：<a href="http://tieba.baidu.com/f?kz=966651885" target="_blank">http://tieba.baidu.com/f?kz=966651885</a></p>
+</blockquote>
+<h2 id="-4ee3-7801-">代码</h2>
+<p>　　同时正因为是新年所以把源码也一并附上，有兴趣的一起来研究( <em>注释掉的判断0xFF的循环有时候会出错</em> )</p>
+<figure class="highlight lang-csharp"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+</pre></td><td class="code"><pre><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> ConvertMPG(String Input)
+{
+    FileStream MP_ = File.Open(Input, FileMode.Open);
+    <span class="keyword">int</span> ll=Input.Length;
+    String Output = Input;
+    Output=Output.Replace(<span class="string">"mp_"</span>, <span class="string">"mpg"</span>);
+    <span class="keyword">long</span> length = MP_.Length;
+    <span class="comment">//偏移计数器</span>
+    <span class="keyword">int</span> round = <span class="number">0</span>;
+    <span class="keyword">long</span> count=<span class="number">0</span>;
+    <span class="comment">//MPG开始结尾标志</span>
+    <span class="keyword">int</span>[] SearchHex = <span class="keyword">new</span> <span class="keyword">int</span>[] { <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0xB9</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0xBA</span> };
+           <span class="comment">//MPGStart = new int[] { 0x00, 0x00, 0x01, 0xBA },</span>
+           <span class="comment">//  MPGEND = new int[] { 0x00, 0x00, 0x01, 0xBA };</span>
+    <span class="keyword">int</span> tp;
+    <span class="keyword">while</span>(round&lt;<span class="number">2</span>)
+    {
+        <span class="keyword">if</span> (count == length)
+        {
+            round++;
+            SearchHex = <span class="keyword">new</span> <span class="keyword">int</span>[] { <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0xB7</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0xB3</span> };
+            count = <span class="number">0</span>;
+            MP_.Seek(<span class="number">0</span>, <span class="number">0</span>);
+        }
+
+        tp = MP_.ReadByte();
+        count++;
+        <span class="comment">//if(tp==0xFF)</span>
+        <span class="comment">//{</span>
+        <span class="comment">//    tp = MP_.ReadByte();</span>
+        <span class="comment">//    count++;</span>
+            <span class="keyword">if</span> (tp == <span class="number">0x00</span>)
+            {
+                <span class="keyword">int</span>[] btp = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>] { <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span> };
+
+                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">8</span>; i++)
+                {
+                    btp[i] = MP_.ReadByte();
+                    count++;
+
+                }
+                <span class="keyword">if</span> (CompareBt(btp, SearchHex))
+                {
+                    count = count - <span class="number">4</span>;
+                    <span class="keyword">break</span>;
+                }
+                <span class="keyword">else</span>
+                {
+                    <span class="comment">//此处为修正读取7位有个可能引起的Bug</span>
+                    count = count - <span class="number">7</span>;
+                    MP_.Seek(-<span class="number">7</span>, SeekOrigin.Current);
+                }
+            }
+
+        <span class="comment">//}</span>
+
+    }
+    <span class="keyword">if</span> (count != length)
+    {
+        <span class="keyword">byte</span>[] bpart = <span class="keyword">new</span> <span class="keyword">byte</span>[count];
+        <span class="keyword">byte</span>[] apart = <span class="keyword">new</span> <span class="keyword">byte</span>[length - count];
+        MP_.Seek(<span class="number">0</span>, <span class="number">0</span>);
+        MP_.Read(bpart, <span class="number">0</span>, bpart.Length);
+        MP_.Read(apart, <span class="number">0</span>, apart.Length);
+        MP_.Flush();
+        <span class="keyword">if</span>(File.Exists(Output))
+        {
+            File.Delete(Output);
+        }
+        FileStream MPG = File.Open(Output, FileMode.CreateNew);
+        MPG.Write(apart, <span class="number">0</span>, apart.Length);
+        MPG.Write(bpart, <span class="number">0</span>, bpart.Length);
+        MPG.Flush();
+        MPG.Close();
+    }
+    <span class="keyword">else</span>
+    {
+        Console.WriteLine(<span class="string">"不能被转换"</span>);
+    }
+}
+
+<span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;summary&gt;</span></span>
+<span class="comment"><span class="xmlDocTag">///</span> 比较两个数组是否相等</span>
+<span class="comment"><span class="xmlDocTag">///</span> </span>
+<span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;param name="b1"&gt;</span>数组1<span class="xmlDocTag">&lt;/param&gt;</span></span>
+<span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;param name="b2"&gt;</span>数组2<span class="xmlDocTag">&lt;/param&gt;</span></span>
+<span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;returns&gt;</span>是否相等<span class="xmlDocTag">&lt;/returns&gt;</span></span>
+<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">bool</span> CompareBt(<span class="keyword">int</span>[] b1, <span class="keyword">int</span>[] b2)
+{
+    <span class="keyword">if</span> (b1.Length != b2.Length)
+    { 
+        <span class="keyword">return</span> <span class="keyword">false</span>; 
+    }
+    <span class="keyword">if</span> (b1 == <span class="keyword">null</span> || b2 == <span class="keyword">null</span>)
+    { 
+        <span class="keyword">return</span> <span class="keyword">false</span>;
+    }
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; b1.Length; i++)
+    {
+        <span class="keyword">if</span> (b1[i] != b2[i])
+            <span class="keyword">return</span> <span class="keyword">false</span>;
+    }
+    <span class="keyword">return</span> <span class="keyword">true</span>;
+}
+</pre></td></tr></table></figure>
+
+<h2 id="Changelog">Changelog</h2>
+<ul>
+<li>2011-01-04</li>
+</ul>
+<p>不能被转的文件也是这样的文件格式，不过头尾的16进制应该是<code>000001B7000001B3</code></p>
+<blockquote>
+<p>尾：000001B7<br>头：000001B3</p>
+</blockquote>
+<p>处理方式也和上面一样<del>，小工具就暂不更新了，我先得考试，虽然改下不用几分钟，但是我懒啊…结果我还是蛋疼的更新了小软件</del></p>
+<h2 id="-8d60-54c1-">赠品</h2>
+<h3 id="-6539-save-65b9-6cd5-28-4e0d-5b8c-7f8e-29-">改save方法(不完美)</h3>
+<p>　　save文件中实际上用16进制的<code>00</code>表示<code>没出现过</code>，<code>01</code>表示<code>出现过</code>，这样就简单了，直接全部改成<code>01</code>保存，就能查看几乎所以的视频</p>
+<blockquote>
+<p>第十弹左边2个隐藏的不行…<br>左边2个的方法：<a href="http://new-umemaro3d.sakura.ne.jp/UmeTop-All.html" target="_blank">http://new-umemaro3d.sakura.ne.jp/UmeTop-All.html</a><br>左边2个：红色字的播放个5次即可开启<br>右边2个：红色字的播放个10次即可开启 </p>
+</blockquote>
+]]></content>
+    <summary type="html"><![CDATA[<p><img src="http://niphor-dev.qiniudn.com/post-umemaro3d_logo.jpg" alt="Umemaro3D"></p>
+<p>　　昨天 尝试了一下 杉本女医の淫乱痴療，很蛋疼，不能直接用播放器播放，点得都手酸了，而且有点隐藏剧情得loop个5-10遍才能播放。于是乎在新年之际，搞了个这个小工具来转换，据贴吧@kakurukia说可以此方法可以用于<code>Intou游戏Ω(前编)</code><del>只能说是里面大部分，个别的识别的头不太一样，下面会在手工中贴出来，不过再之前是是否是如此的文件结构，还是大家自己去尝试下吧。</del></p>
+<p>]]></summary>
+    
+      <category term="umemaro" scheme="http://niphor.github.io/tags/umemaro/"/>
+    
+      <category term="mp_" scheme="http://niphor.github.io/tags/mp_/"/>
+    
+      <category term="src" scheme="http://niphor.github.io/tags/src/"/>
+    
+      <category term="原创" scheme="http://niphor.github.io/categories/%E5%8E%9F%E5%88%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[让FileZilla变Portable]]></title>
+    <link href="http://niphor.github.io/posts/2010/08/filezilla-portable.html"/>
+    <id>http://niphor.github.io/posts/2010/08/filezilla-portable.html</id>
+    <published>2010-08-08T09:19:47.000Z</published>
+    <updated>2014-01-14T08:11:15.000Z</updated>
+    <content type="html"><![CDATA[<p>　　前天推荐用FileZilla下载JS的文章今天试验的结果，并不如此，可能是我自身网络的原因或者是JS的服务器调整，现在用FTP下载JS的东西相对来说都能达到2XX，所以我已经删除前一篇日志了。有些误导大家了。</p>
+<p>　　最近尝试换用Filezilla，抛弃我多年使用的FlashFXP，一是由于FlashFXP是收费软件、二是FileZilla下JS东西不错…不过FlashFXP(破解的)装完其实不去注册插件的话就是个绿色版的东西，随便拷贝了就能到处跑到处用了，但是FileZilla默认将配置文件放置于系统目录<code>%APPDATA%</code>下，也就是说，直接拷贝程序走人，你的配置和临时FTP列表什么的都会不见了。遂Google一番，发现铺天盖地都是一款名为<code>FileZilla Portable</code>的自己修改工具，里面包含了FileZilla和John Haller编写的Loader。<br><a id="more"></a><br>　　后仔细搜索发现，原来FileZilla通过自身的配置文件即可变成便携版，完全不需要使用啥Loader！</p>
+<p>废话不多说，但是这个步骤着实没啥好讲的，直接Copy寻芳社的了：</p>
+<p>将FileZilla解压缩文件到某一个文件夹，文件夹结构如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="title">FileZilla</span>
+├─docs
+├─locales
+└─resources
+</pre></td></tr></table></figure>
+
+<p>复制<code>FileZilla/docs/fzdefaults.xml.example</code>文件到<code>FileZilla</code>目录下，并重命名为<code>fzdefaults.xml</code>。</p>
+<p>编辑<code>fzdefaults.xml</code>文件并修改<code>Config Location</code>设置，将文件保存到settings文件夹。</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">FileZilla3</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">Settings</span>&gt;</span>
+　　　　<span class="tag">&lt;<span class="title">Setting</span> <span class="attribute">name</span>=<span class="value">"Config Location"</span>&gt;</span>settings<span class="tag">&lt;/<span class="title">Setting</span>&gt;</span>
+　　<span class="tag">&lt;/<span class="title">Settings</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">FileZilla3</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>运行<code>FileZilla</code>，<code>filezilla.xml</code>等配置文件会被自动创建到settings文件夹下。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="title">FileZilla</span>
+├─docs
+├─locales
+├─resources
+└─settings
+</pre></td></tr></table></figure>
+
+<p>至此，FileZilla绿色版制作完成。</p>
+<p>写这篇的原因是：我很好奇，为啥国内软件站转载的都是FileZilla Portable 这个软件，而不是直接用配置文件这一简单方式。</p>
+<p>John Haller的Loader太过完善了，文件和目录非常繁杂，而且最神奇的是他也是用的配置文件，区别在于配置文件中的<code>Config Location</code>被配置在变量上，我估计他是先用<code>Loader</code>得出目录地址，然后加入系统变量，接着启动Filezilla…实在是多此一举…</p>
+<blockquote>
+<p>参考作品：<br><a href="http://www.pendriveapps.com/make-your-own-portable-filezilla-ftp-client/" target="_blank">http://www.pendriveapps.com/make-your-own-portable-filezilla-ftp-client/</a><br><a href="http://rerse.com/articles/how-to-make-filezilla-portable/?lang=zh" target="_blank">http://rerse.com/articles/how-to-make-filezilla-portable/?lang=zh</a></p>
+</blockquote>
+<p><strong>经<a href="http://rndz.org/" target="_blank">@z</a>提醒，原来官方Wiki早有说明：</strong><br><a href="http://wiki.filezilla-project.org/Portable_mode_client_installation" target="_blank">http://wiki.filezilla-project.org/Portable_mode_client_installation</a></p>
+<p>[TOC]</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>　　前天推荐用FileZilla下载JS的文章今天试验的结果，并不如此，可能是我自身网络的原因或者是JS的服务器调整，现在用FTP下载JS的东西相对来说都能达到2XX，所以我已经删除前一篇日志了。有些误导大家了。</p>
+<p>　　最近尝试换用Filezilla，抛弃我多年使用的FlashFXP，一是由于FlashFXP是收费软件、二是FileZilla下JS东西不错…不过FlashFXP(破解的)装完其实不去注册插件的话就是个绿色版的东西，随便拷贝了就能到处跑到处用了，但是FileZilla默认将配置文件放置于系统目录<code>%APPDATA%</code>下，也就是说，直接拷贝程序走人，你的配置和临时FTP列表什么的都会不见了。遂Google一番，发现铺天盖地都是一款名为<code>FileZilla Portable</code>的自己修改工具，里面包含了FileZilla和John Haller编写的Loader。<br>]]></summary>
+    
+      <category term="filezilla" scheme="http://niphor.github.io/tags/filezilla/"/>
+    
+      <category term="笔记" scheme="http://niphor.github.io/categories/note/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[使用IPv6访问网络]]></title>
+    <link href="http://niphor.github.io/posts/2010/07/access-the-network-using-ipv6.html"/>
+    <id>http://niphor.github.io/posts/2010/07/access-the-network-using-ipv6.html</id>
+    <published>2010-07-29T16:56:19.000Z</published>
+    <updated>2014-01-14T07:07:25.000Z</updated>
+    <content type="html"><![CDATA[<p>　　IPv6离我们并不遥远，其实就在我们身边，Vista本就支持IPv6，Win7更是在很多方面上面运用了IPv6。一些高等院校宿舍楼原生支持IPv6(很可惜，我的学校不但自己没宿舍的网络，还和电信勾结…)。直接从现有IPv4升级到IPv6，并不现实，所以微软的系统提供了多种过渡方式，配合各大院校或服务提供商提供的隧道，我们可以在IPv4上面是使用IPv6业务。<br><a id="more"></a><br>常用的大学隧道有：</p>
+<ul>
+<li>上交： <strong>isatap.sjtu.edu.cn</strong></li>
+<li>清华： <strong>isatap.tsinghua.edu.cn</strong></li>
+<li>上大： <strong>isatap.shu.edu.cn</strong></li>
+<li>华中科大： <strong>isatap.hust.edu.cn</strong></li>
+<li>中国人民大学： <strong>isatap.ruc.edu.cn</strong></li>
+<li>北京邮电大学： <strong>211.68.71.43</strong></li>
+<li>重庆大学： <strong>202.202.217.98</strong></li>
+<li>湖南大学： <strong>210.43.96.186</strong></li>
+<li>河南工程学院： <strong>211.84.0.1</strong></li>
+<li>华中科技大学： <strong>202.114.1.186</strong></li>
+</ul>
+<p>一般使用前面几个就可以了，反正我用上海交大的不错。</p>
+<p>　　Vista和Win7都默认已经开启IPv6，而XP由于默认没有安装IPv6，所以先得安装一下</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>netsh
+netsh&gt;interface
+netsh interface&gt;ipv6
+netsh interface&gt;ipv6&gt;install
+</pre></td></tr></table></figure>
+
+<p>　　接着，我们来设置IPv6的隧道( <em>我以上海交大的隧道地址为例</em> )</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>netsh
+netsh&gt;interface
+netsh interface&gt;ipv6
+netsh interface ipv6&gt;isatap
+netsh interface ipv6 isatap&gt;<span class="keyword">set</span> router isatap.sjtu.edu.cn enabled
+netsh interface ipv6 isatap&gt;<span class="keyword">set</span> state enabled
+</pre></td></tr></table></figure>
+
+<p>配置完成。</p>
+<blockquote>
+<p>Win7由于默认开启了<code>6to4</code>和<code>Teredo</code>隧道，所以在以上的情况下面上海交大的IPv6可能会因为使用默认的<code>6to4</code>隧道而不正常。</p>
+<p>于是我们还需关掉<code>6to4</code>隧道</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>&gt; netsh interface ipv6 isatap&gt;quit
+&gt; netsh
+&gt; netsh&gt;interface
+&gt; netsh&gt;interface&gt;<span class="number">6</span>to4
+&gt; netsh interface <span class="number">6</span>to4&gt;<span class="keyword">set</span> state disabled
+&gt;
+</pre></td></tr></table></figure>
+
+</blockquote>
+<p>这时访问<a href="http://www.kame.net/" target="_blank">http://www.kame.net/</a>网站</p>
+<p>假如页面上的乌龟是运动的，说明你是通过IPv6访问的<br><img src="http://www.kame.net/img/kame-anime-small.gif" alt="使用IPv6"></p>
+<p>但是要是乌龟不动，说明你的配置不正确<br><img src="http://www.kame.net/img/kame-noanime-small.gif" alt="未使用IPv6"></p>
+<h2 id="-5176-5b83-4e00-4e9b-547d-4ee4-">其它一些命令</h2>
+<p>IPv6的接口关闭命令</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>netsh interface teredo&gt;<span class="keyword">set</span> state disable
+netsh interface <span class="number">6</span>to4&gt;<span class="keyword">set</span> state disabled
+netsh interface isatap&gt;<span class="keyword">set</span> state disabled
+</pre></td></tr></table></figure>
+
+<p>还原为默认状态:</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>netsh interface teredo&gt;<span class="keyword">set</span> state default
+netsh interface <span class="number">6</span>to4&gt;<span class="keyword">set</span> state default
+netsh interface isatap&gt;<span class="keyword">set</span> state default
+</pre></td></tr></table></figure>
+
+<p>重置IPv6，你可以使用rest命令</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>netsh interface ipv6&gt;reset
+</pre></td></tr></table></figure>
+
+<h2 id="-76f8-5173-7f51-7ad9-">相关网站</h2>
+<p><a href="http://sixxs.org" target="_blank">http://sixxs.org</a><br><a href="http://yegle.net/glype/" target="_blank">http://yegle.net/glype/</a></p>
+]]></content>
+    <summary type="html"><![CDATA[<p>　　IPv6离我们并不遥远，其实就在我们身边，Vista本就支持IPv6，Win7更是在很多方面上面运用了IPv6。一些高等院校宿舍楼原生支持IPv6(很可惜，我的学校不但自己没宿舍的网络，还和电信勾结…)。直接从现有IPv4升级到IPv6，并不现实，所以微软的系统提供了多种过渡方式，配合各大院校或服务提供商提供的隧道，我们可以在IPv4上面是使用IPv6业务。<br>]]></summary>
+    
+      <category term="ipv6" scheme="http://niphor.github.io/tags/ipv6/"/>
+    
+      <category term="windows" scheme="http://niphor.github.io/tags/windows/"/>
+    
+      <category term="笔记" scheme="http://niphor.github.io/categories/note/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[希捷保修官方查询出错]]></title>
+    <link href="http://niphor.github.io/posts/2010/02/seagate-offical-warranty-query-param-error.html"/>
+    <id>http://niphor.github.io/posts/2010/02/seagate-offical-warranty-query-param-error.html</id>
+    <published>2010-02-27T18:13:17.000Z</published>
+    <updated>2014-01-14T08:08:15.000Z</updated>
+    <content type="html"><![CDATA[<p><em>此文成于 2010年，有些信息可能不再适用！</em></p>
+<p>　　在大陆，在Google中搜索“希捷 保修”，除去第一个广告赞助，真正连接是啥？</p>
+<p>没错是：<br><a href="http://support.seagate.com/customer/warranty_validation_multi_cn.jsp" target="_blank">http://support.seagate.com/customer/warranty_validation_multi_cn.jsp</a>   <a href="http://support.seagate.com/customer/warranty_validation_cn.jsp" target="_blank">http://support.seagate.com/customer/warranty_validation_cn.jsp</a></p>
+<p>其实这两个连接有些小小的问题，用这两个连接查询的话一定会出现下面的问题( <em>至少截止于2010-2-28 01:30是这样的</em> )：<br><a id="more"></a></p>
+<blockquote>
+<p>Warranty Validation Error<br>Invalid Country<br>The country submitted was not recognized by the system.<br>Please verify your country selection and try your submission again. If necessary, please &gt;contact Seagate Customer Service for further assistance.<br>Error #dpCNT01<br>warrantyData:’XXXXXX’, country:’CHINA’, &gt;productNumber:’XXXXX-XXX’, y:’4’, x:’20’, customerNumber:’’, serialNumber:’XXXXXXX’</p>
+</blockquote>
+<p>　　不知道有多少人会和我一样，好不容易买的硬盘用此一看，我擦! <strong>无效国家!</strong> 然后认为是不是不是大陆行货？</p>
+<p><strong>其实这个想法是错误的！</strong></p>
+<p>这个错误翻译成中文，意思大概就是：</p>
+<blockquote>
+<p>无效的国家代码<br>提交的国家代码不能被系统识别。<br>请验证你国家的选择并在此提交，如果需要请联系希捷客服。</p>
+</blockquote>
+<p><strong>这个其实是希捷官方验证页面的小BUG！</strong></p>
+<p>从出错信息可以看出：<code>country</code>被定义成了<code>CHINA</code></p>
+<p>　　其实在希捷验证数据库升级之后，国家代码已经全统一成<code>2位</code>了，即中国的代码是<code>CN</code>，而这页面仍旧是<code>CHINA</code>，同时提示的重新选择，我们并没有看到国家的<code>下拉框</code>，其实这里<code>下拉框</code>已经没有了，取代的是被隐藏掉的一个文本框。</p>
+<p>　　可能是希捷的网络管理员再次之前在升级过系统，将需要选择的国家改成了靠服务器自动识别的脚本，但是并漏了修改此页面的国家代码，于是造成的这样的问题。</p>
+<p>现在希捷中国正确的验证地址为<a href="http://www.seagate.com/cn/zh/support/warranty-and-replacements/" title="保质与退货页面" target="_blank">保质与退货页面</a>上的<a href="http://support.seagate.com/customer/zh-cn/warranty_validation.jsp" title="检查您的硬盘是否在质保期内" target="_blank">检查您的硬盘是否在质保期内</a>链接</p>
+<p>另外要说的是：</p>
+<ul>
+<li><p>那个有BUG的页面和这个页面最终验证出来的结果现在是一模一样的，不存在说：一个没代理商信息，一个有代理商信息之说。  </p>
+<blockquote>
+<p>至少现在如此，以前可能会区分,并不保证将来也一样</p>
+</blockquote>
+</li>
+<li><p>也不存在”有<code>_cn</code>的验证了才是国内行货，没有<code>_cn</code>的验证只能证明是希捷正品”这一说，现在不管用哪个来验证，选择 列下面都会显示为<code>交换</code>( <em>英文为<code>Exchange</code></em> )</p>
+</li>
+<li><p>对于在国内代理买的，都会显示 <strong><code>中国授权代理,请 联系XXXXXXX</code></strong></p>
+</li>
+<li><p>对于水货一般国家选择中国之后都会显示 <strong><code>非中国授权代理,请联系你购买硬盘的经销商</code></strong></p>
+</li>
+</ul>
+<p>当然 国内行货的代理商官方网站也提供查询服务，你也可以使用代理商提供的查询服务。</p>
+<p>PS：</p>
+<p>　　这里BS一下建达蓝德，发短信基本上是发了就没回信了…真是一点都不方便….而且把一个完全不能用的新版官网直接用上了，实在是太不负责任了，新官网直接查询，必须<code>登录</code>。然而点击<code>查询</code>弹出来的界面，右边的图片一直是显示 <strong><code>你的非正品行货</code></strong> ( <em>就算你真的是建达正品</em> )，实在是让人气愤。</p>
+<p>　　而且千方百计让你注册会员，注册之后又完全没有用，查询时账号必须再填一次，查询数据库出错，不能插入数据，feedback也不能用，只能下推荐软件获得积分( <em>其实就是广告啦</em> )。</p>
+<p>除了皮肤好看点，完全就是个菜鸟做的垃圾站。</p>
+<p>相比之下，<a href="http://www.xander.com.cn/old/default.asp" title="建达蓝德旧主页" target="_blank">旧站</a>就好多了，查询也完全不用注册，简单方便</p>
+<p>查询地址：<a href="http://ecc.xander.com.cn/serial/inq.asp" target="_blank">http://ecc.xander.com.cn/serial/inq.asp</a></p>
+<blockquote>
+<p>请<code>登录</code>旧站后 点击右侧<code>建达蓝德盒装正品条码查询</code>查询，<code>直接使用</code>此链接是<code>不能</code>显示的。 </p>
+</blockquote>
+<p>　　不知道这篇博文对于选购希捷硬盘的你来说是否有帮助，一般对于网上验证没信心，或者不会的话，可以直接拨打希捷的官方电话或者是代理商的电话。</p>
+<p>[TOC]</p>
+]]></content>
+    <summary type="html"><![CDATA[<p><em>此文成于 2010年，有些信息可能不再适用！</em></p>
+<p>　　在大陆，在Google中搜索“希捷 保修”，除去第一个广告赞助，真正连接是啥？</p>
+<p>没错是：<br><a href="http://support.seagate.com/customer/warranty_validation_multi_cn.jsp" target="_blank">http://support.seagate.com/customer/warranty_validation_multi_cn.jsp</a>   <a href="http://support.seagate.com/customer/warranty_validation_cn.jsp" target="_blank">http://support.seagate.com/customer/warranty_validation_cn.jsp</a></p>
+<p>其实这两个连接有些小小的问题，用这两个连接查询的话一定会出现下面的问题( <em>至少截止于2010-2-28 01:30是这样的</em> )：<br>]]></summary>
+    
+      <category term="hd" scheme="http://niphor.github.io/tags/hd/"/>
+    
+      <category term="seagate" scheme="http://niphor.github.io/tags/seagate/"/>
+    
+      <category term="笔记" scheme="http://niphor.github.io/categories/note/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[让Win7支持Indeo Video]]></title>
+    <link href="http://niphor.github.io/posts/2010/02/win7-indeo-video-support.html"/>
+    <id>http://niphor.github.io/posts/2010/02/win7-indeo-video-support.html</id>
+    <published>2010-02-25T21:57:19.000Z</published>
+    <updated>2014-01-14T07:56:27.000Z</updated>
+    <content type="html"><![CDATA[<p>　　Indeo Video是微软早先视窗系统内建支持的一种视频格式，但是到了Vista和Win7时代，这个格式就默认不支持了。<br>要是我们没装那些万能解码器包的话，可能就不能播放此类型的影片，比如会提示<code>缺少iv50解码器</code>什么的。其实我们不用去下载什么解码器，这些微软都给我们准备好了，Indeo Video的解码器都在系统的<code>System32</code>里面，只是没有注册而已。</p>
+<p>我们要做的只需要在注册表中添加相应的信息，你可以直接复制下面的保存为XX.reg，然后双击添加到注册表中<br><a id="more"></a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="xml"><span class="tag"><span class="attribute">Windows</span> <span class="attribute">Registry</span> <span class="attribute">Editor</span> <span class="attribute">Version</span> <span class="attribute">5.00</span>
+[<span class="attribute">HKEY_LOCAL_MACHINE</span>\<span class="attribute">SOFTWARE</span>\<span class="attribute">Microsoft</span>\<span class="attribute">Windows</span> <span class="attribute">NT</span>\<span class="attribute">CurrentVersion</span>\<span class="attribute">Drivers32</span>]
+"<span class="attribute">vidc.cvid</span>"=<span class="value">"iccvid.dll"</span>
+"<span class="attribute">vidc.iv31</span>"=<span class="value">"ir32_32.dll"</span>
+"<span class="attribute">vidc.iv32</span>"=<span class="value">"ir32_32.dll"</span>
+"<span class="attribute">vidc.iv41</span>"=<span class="value">"ir41_32.ax"</span>
+"<span class="attribute">vidc.iv50</span>"=<span class="value">"ir50_32.dll"</span></span></span>
+</pre></td></tr></table></figure>
+
+<p>当然如果你只是缺少<code>iv50</code>的话 直接以管理员方式运行<code>regsvr32 ir50_32.dll</code>就行了。</p>
+<blockquote>
+<p>这类古董级的编码格式在Win7上面解码可谓是效率严重地下，个人还是推荐在老早的系统上用编码软件编码成其他格式的视频再看比较好，当然你是玩游戏的话，就没得选择了。</p>
+</blockquote>
+<p>方法来自( <em>可能需要技术手段浏览</em> ):<br><a href="http://featelier.exblog.jp/11933906/" target="_blank">http://featelier.exblog.jp/11933906/</a><br><a href="http://hi.baidu.com/key9/blog/item/2938cec46f118cc838db4940.html" target="_blank">http://hi.baidu.com/key9/blog/item/2938cec46f118cc838db4940.html</a></p>
+<p>[TOC]</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>　　Indeo Video是微软早先视窗系统内建支持的一种视频格式，但是到了Vista和Win7时代，这个格式就默认不支持了。<br>要是我们没装那些万能解码器包的话，可能就不能播放此类型的影片，比如会提示<code>缺少iv50解码器</code>什么的。其实我们不用去下载什么解码器，这些微软都给我们准备好了，Indeo Video的解码器都在系统的<code>System32</code>里面，只是没有注册而已。</p>
+<p>我们要做的只需要在注册表中添加相应的信息，你可以直接复制下面的保存为XX.reg，然后双击添加到注册表中<br>]]></summary>
+    
+      <category term="Indeo" scheme="http://niphor.github.io/tags/Indeo/"/>
+    
+      <category term="win7" scheme="http://niphor.github.io/tags/win7/"/>
+    
+      <category term="windows" scheme="http://niphor.github.io/tags/windows/"/>
+    
+      <category term="笔记" scheme="http://niphor.github.io/categories/note/"/>
     
   </entry>
   

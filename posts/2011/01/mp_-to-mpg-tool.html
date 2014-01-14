@@ -1,0 +1,499 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>梅麻吕 MP_文件简易转换工具 | M-78的开发小站</title>
+  <meta name="author" content="Niphor">
+  
+  <meta name="description" content="Niphor的开发文档收集贴，Blog不用了，放这吧...万年更一次...">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="梅麻吕 MP_文件简易转换工具"/>
+  <meta property="og:site_name" content="M-78的开发小站"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="M-78的开发小站" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">M-78的开发小站</a></h1>
+  <h2><a href="/">凹凸曼就是这么造出来的</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-01-01T09:49:10.000Z"><a href="/posts/2011/01/mp_-to-mpg-tool.html">2011-01-01</a></time>
+      
+      
+  
+    <h1 class="title">梅麻吕 MP_文件简易转换工具</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><img src="http://niphor-dev.qiniudn.com/post-umemaro3d_logo.jpg" alt="Umemaro3D"></p>
+<p>　　昨天 尝试了一下 杉本女医の淫乱痴療，很蛋疼，不能直接用播放器播放，点得都手酸了，而且有点隐藏剧情得loop个5-10遍才能播放。于是乎在新年之际，搞了个这个小工具来转换，据贴吧@kakurukia说可以此方法可以用于<code>Intou游戏Ω(前编)</code><del>只能说是里面大部分，个别的识别的头不太一样，下面会在手工中贴出来，不过再之前是是否是如此的文件结构，还是大家自己去尝试下吧。</del></p>
+<p><a id="more"></a></p>
+<blockquote>
+<p>原理：<br>　　梅麻吕的第十弹不能直接用播放器播放，影像文件为后缀为“mp<em>”的文件。实际是格式是MPEG-PS的mpg文件，但是梅麻吕把文件分为了2部分（以下假设为A和B），原来mpg文件顺序为AB，但是mp</em>的文件顺序却是BA。所以我们只要将顺序调转回来就能直接用播放器放。</p>
+</blockquote>
+<h2 id="-624b-5de5-65b9-5f0f-3a-">手工方式:</h2>
+<ul>
+<li>工具：WinHex</li>
+</ul>
+<p>搜索 000001B9000001BA剪切文件头到000001B9这一块，粘贴到文件末尾<br>另存为.mpg文件，即可直接播放</p>
+<blockquote>
+<p>000001B9为mpg结尾<br>000001BA为mpg开头</p>
+</blockquote>
+<h2 id="-81ea-52a8-5c0f-8f6f-4ef6-">自动小软件</h2>
+<p>　　为了欢度新年，我编了个小软件来转换,大家可以尝试。不保证所以版本都能行。</p>
+<blockquote>
+<p>需要.net framework 2.0</p>
+</blockquote>
+<p><a href="http://dl.dbank.com/c058aaf773" target="_blank">http://dl.dbank.com/c058aaf773</a></p>
+<h3 id="-64cd-4f5c-65b9-6cd5-">操作方法</h3>
+<p>　　将Movie文件夹下的”.mp_”全选，直接全部拖到此程序图标上面即可。</p>
+<p>　　mpg文件同样生成在Movie文件夹下。</p>
+<blockquote>
+<p>已经发表在百度贴吧里面了：<a href="http://tieba.baidu.com/f?kz=966651885" target="_blank">http://tieba.baidu.com/f?kz=966651885</a></p>
+</blockquote>
+<h2 id="-4ee3-7801-">代码</h2>
+<p>　　同时正因为是新年所以把源码也一并附上，有兴趣的一起来研究( <em>注释掉的判断0xFF的循环有时候会出错</em> )</p>
+<figure class="highlight lang-csharp"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+</pre></td><td class="code"><pre><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> ConvertMPG(String Input)
+{
+    FileStream MP_ = File.Open(Input, FileMode.Open);
+    <span class="keyword">int</span> ll=Input.Length;
+    String Output = Input;
+    Output=Output.Replace(<span class="string">"mp_"</span>, <span class="string">"mpg"</span>);
+    <span class="keyword">long</span> length = MP_.Length;
+    <span class="comment">//偏移计数器</span>
+    <span class="keyword">int</span> round = <span class="number">0</span>;
+    <span class="keyword">long</span> count=<span class="number">0</span>;
+    <span class="comment">//MPG开始结尾标志</span>
+    <span class="keyword">int</span>[] SearchHex = <span class="keyword">new</span> <span class="keyword">int</span>[] { <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0xB9</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0xBA</span> };
+           <span class="comment">//MPGStart = new int[] { 0x00, 0x00, 0x01, 0xBA },</span>
+           <span class="comment">//  MPGEND = new int[] { 0x00, 0x00, 0x01, 0xBA };</span>
+    <span class="keyword">int</span> tp;
+    <span class="keyword">while</span>(round&lt;<span class="number">2</span>)
+    {
+        <span class="keyword">if</span> (count == length)
+        {
+            round++;
+            SearchHex = <span class="keyword">new</span> <span class="keyword">int</span>[] { <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0xB7</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x01</span>, <span class="number">0xB3</span> };
+            count = <span class="number">0</span>;
+            MP_.Seek(<span class="number">0</span>, <span class="number">0</span>);
+        }
+
+        tp = MP_.ReadByte();
+        count++;
+        <span class="comment">//if(tp==0xFF)</span>
+        <span class="comment">//{</span>
+        <span class="comment">//    tp = MP_.ReadByte();</span>
+        <span class="comment">//    count++;</span>
+            <span class="keyword">if</span> (tp == <span class="number">0x00</span>)
+            {
+                <span class="keyword">int</span>[] btp = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>] { <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span> };
+
+                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">8</span>; i++)
+                {
+                    btp[i] = MP_.ReadByte();
+                    count++;
+
+                }
+                <span class="keyword">if</span> (CompareBt(btp, SearchHex))
+                {
+                    count = count - <span class="number">4</span>;
+                    <span class="keyword">break</span>;
+                }
+                <span class="keyword">else</span>
+                {
+                    <span class="comment">//此处为修正读取7位有个可能引起的Bug</span>
+                    count = count - <span class="number">7</span>;
+                    MP_.Seek(-<span class="number">7</span>, SeekOrigin.Current);
+                }
+            }
+
+        <span class="comment">//}</span>
+
+    }
+    <span class="keyword">if</span> (count != length)
+    {
+        <span class="keyword">byte</span>[] bpart = <span class="keyword">new</span> <span class="keyword">byte</span>[count];
+        <span class="keyword">byte</span>[] apart = <span class="keyword">new</span> <span class="keyword">byte</span>[length - count];
+        MP_.Seek(<span class="number">0</span>, <span class="number">0</span>);
+        MP_.Read(bpart, <span class="number">0</span>, bpart.Length);
+        MP_.Read(apart, <span class="number">0</span>, apart.Length);
+        MP_.Flush();
+        <span class="keyword">if</span>(File.Exists(Output))
+        {
+            File.Delete(Output);
+        }
+        FileStream MPG = File.Open(Output, FileMode.CreateNew);
+        MPG.Write(apart, <span class="number">0</span>, apart.Length);
+        MPG.Write(bpart, <span class="number">0</span>, bpart.Length);
+        MPG.Flush();
+        MPG.Close();
+    }
+    <span class="keyword">else</span>
+    {
+        Console.WriteLine(<span class="string">"不能被转换"</span>);
+    }
+}
+
+<span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;summary&gt;</span></span>
+<span class="comment"><span class="xmlDocTag">///</span> 比较两个数组是否相等</span>
+<span class="comment"><span class="xmlDocTag">///</span> </span>
+<span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;param name="b1"&gt;</span>数组1<span class="xmlDocTag">&lt;/param&gt;</span></span>
+<span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;param name="b2"&gt;</span>数组2<span class="xmlDocTag">&lt;/param&gt;</span></span>
+<span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;returns&gt;</span>是否相等<span class="xmlDocTag">&lt;/returns&gt;</span></span>
+<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">bool</span> CompareBt(<span class="keyword">int</span>[] b1, <span class="keyword">int</span>[] b2)
+{
+    <span class="keyword">if</span> (b1.Length != b2.Length)
+    { 
+        <span class="keyword">return</span> <span class="keyword">false</span>; 
+    }
+    <span class="keyword">if</span> (b1 == <span class="keyword">null</span> || b2 == <span class="keyword">null</span>)
+    { 
+        <span class="keyword">return</span> <span class="keyword">false</span>;
+    }
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; b1.Length; i++)
+    {
+        <span class="keyword">if</span> (b1[i] != b2[i])
+            <span class="keyword">return</span> <span class="keyword">false</span>;
+    }
+    <span class="keyword">return</span> <span class="keyword">true</span>;
+}
+</pre></td></tr></table></figure>
+
+<h2 id="Changelog">Changelog</h2>
+<ul>
+<li>2011-01-04</li>
+</ul>
+<p>不能被转的文件也是这样的文件格式，不过头尾的16进制应该是<code>000001B7000001B3</code></p>
+<blockquote>
+<p>尾：000001B7<br>头：000001B3</p>
+</blockquote>
+<p>处理方式也和上面一样<del>，小工具就暂不更新了，我先得考试，虽然改下不用几分钟，但是我懒啊…结果我还是蛋疼的更新了小软件</del></p>
+<h2 id="-8d60-54c1-">赠品</h2>
+<h3 id="-6539-save-65b9-6cd5-28-4e0d-5b8c-7f8e-29-">改save方法(不完美)</h3>
+<p>　　save文件中实际上用16进制的<code>00</code>表示<code>没出现过</code>，<code>01</code>表示<code>出现过</code>，这样就简单了，直接全部改成<code>01</code>保存，就能查看几乎所以的视频</p>
+<blockquote>
+<p>第十弹左边2个隐藏的不行…<br>左边2个的方法：<a href="http://new-umemaro3d.sakura.ne.jp/UmeTop-All.html" target="_blank">http://new-umemaro3d.sakura.ne.jp/UmeTop-All.html</a><br>左边2个：红色字的播放个5次即可开启<br>右边2个：红色字的播放个10次即可开启 </p>
+</blockquote>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/原创/">原创</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/umemaro/">umemaro</a>, <a href="/tags/mp_/">mp_</a>, <a href="/tags/src/">src</a>
+  </div>
+
+        
+
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "24"
+        },
+        "share": {}
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89343201.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"niphor-dev"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:niphor.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/原创/">原创</a><small>1</small></li>
+  
+    <li><a href="/categories/server/">服务器</a><small>4</small></li>
+  
+    <li><a href="/categories/note/">笔记</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Indeo/">Indeo</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/cacti/">cacti</a><small>3</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>1</small></li>
+  
+    <li><a href="/tags/filezilla/">filezilla</a><small>1</small></li>
+  
+    <li><a href="/tags/hd/">hd</a><small>1</small></li>
+  
+    <li><a href="/tags/ipv6/">ipv6</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/tags/mariadb/">mariadb</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/memcached/">memcached</a><small>1</small></li>
+  
+    <li><a href="/tags/mp_/">mp_</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
+  
+    <li><a href="/tags/src/">src</a><small>1</small></li>
+  
+    <li><a href="/tags/umemaro/">umemaro</a><small>1</small></li>
+  
+    <li><a href="/tags/win7/">win7</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Niphor
+  
+</div>
+<div class="clearfix"></div></footer>
+  <!--[if lt IE 9]>
+<script src="//lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<![endif]-->
+<script src="http://cdn.staticfile.org/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" type="text/css">
+<script src="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

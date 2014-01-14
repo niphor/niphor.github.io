@@ -2,23 +2,63 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://niphor.github.io/post/server/install-cacti-plugin.html</loc>
-    <lastmod>2014-01-13T10:14:23.000Z</lastmod>
+    <loc>http://niphor.github.io/posts/2013/03/install-cacti.html</loc>
+    <lastmod>2013-03-13T04:16:08.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://niphor.github.io/post/python/install-python.html</loc>
+    <loc>http://niphor.github.io/posts/2013/07/install-apache-php-mariadb-mc-on-windows.html</loc>
+    <lastmod>2013-07-14T02:19:29.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2013/02/install-cacti-plugin.html</loc>
+    <lastmod>2013-02-13T10:14:23.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2011/10/using-mklink-to-change-chrome-profile-folder-location.html</loc>
+    <lastmod>2011-10-08T06:54:27.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2010/08/filezilla-portable.html</loc>
+    <lastmod>2010-08-08T09:19:47.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2010/02/seagate-offical-warranty-query-param-error.html</loc>
+    <lastmod>2010-02-27T18:13:17.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2010/02/win7-indeo-video-support.html</loc>
+    <lastmod>2010-02-25T21:57:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2012/02/could-not-get-configurationtask-issue-in-maven-guide-chapter-7-7.html</loc>
+    <lastmod>2012-02-06T07:23:11.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2012/08/cacti-plugin-py-error-on-memcached-1-2-6.html</loc>
+    <lastmod>2012-08-22T07:13:32.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2010/07/access-the-network-using-ipv6.html</loc>
+    <lastmod>2010-07-29T16:56:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2011/01/mp_-to-mpg-tool.html</loc>
+    <lastmod>2011-01-01T09:49:10.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2014/01/install-python.html</loc>
     <lastmod>2014-01-10T07:58:06.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://niphor.github.io/post/server/install-apache-php-mariadb-mc-on-windows.html</loc>
-    <lastmod>2014-01-13T02:19:29.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://niphor.github.io/post/server/install-cacti.html</loc>
-    <lastmod>2014-01-13T04:16:08.000Z</lastmod>
   </url>
   
 </urlset>

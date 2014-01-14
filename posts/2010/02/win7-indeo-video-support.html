@@ -1,0 +1,270 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>让Win7支持Indeo Video | M-78的开发小站</title>
+  <meta name="author" content="Niphor">
+  
+  <meta name="description" content="Niphor的开发文档收集贴，Blog不用了，放这吧...万年更一次...">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="让Win7支持Indeo Video"/>
+  <meta property="og:site_name" content="M-78的开发小站"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="M-78的开发小站" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">M-78的开发小站</a></h1>
+  <h2><a href="/">凹凸曼就是这么造出来的</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-02-25T21:57:19.000Z"><a href="/posts/2010/02/win7-indeo-video-support.html">2010-02-26</a></time>
+      
+      
+  
+    <h1 class="title">让Win7支持Indeo Video</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>　　Indeo Video是微软早先视窗系统内建支持的一种视频格式，但是到了Vista和Win7时代，这个格式就默认不支持了。<br>要是我们没装那些万能解码器包的话，可能就不能播放此类型的影片，比如会提示<code>缺少iv50解码器</code>什么的。其实我们不用去下载什么解码器，这些微软都给我们准备好了，Indeo Video的解码器都在系统的<code>System32</code>里面，只是没有注册而已。</p>
+<p>我们要做的只需要在注册表中添加相应的信息，你可以直接复制下面的保存为XX.reg，然后双击添加到注册表中<br><a id="more"></a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="xml"><span class="tag"><span class="attribute">Windows</span> <span class="attribute">Registry</span> <span class="attribute">Editor</span> <span class="attribute">Version</span> <span class="attribute">5.00</span>
+[<span class="attribute">HKEY_LOCAL_MACHINE</span>\<span class="attribute">SOFTWARE</span>\<span class="attribute">Microsoft</span>\<span class="attribute">Windows</span> <span class="attribute">NT</span>\<span class="attribute">CurrentVersion</span>\<span class="attribute">Drivers32</span>]
+"<span class="attribute">vidc.cvid</span>"=<span class="value">"iccvid.dll"</span>
+"<span class="attribute">vidc.iv31</span>"=<span class="value">"ir32_32.dll"</span>
+"<span class="attribute">vidc.iv32</span>"=<span class="value">"ir32_32.dll"</span>
+"<span class="attribute">vidc.iv41</span>"=<span class="value">"ir41_32.ax"</span>
+"<span class="attribute">vidc.iv50</span>"=<span class="value">"ir50_32.dll"</span></span></span>
+</pre></td></tr></table></figure>
+
+<p>当然如果你只是缺少<code>iv50</code>的话 直接以管理员方式运行<code>regsvr32 ir50_32.dll</code>就行了。</p>
+<blockquote>
+<p>这类古董级的编码格式在Win7上面解码可谓是效率严重地下，个人还是推荐在老早的系统上用编码软件编码成其他格式的视频再看比较好，当然你是玩游戏的话，就没得选择了。</p>
+</blockquote>
+<p>方法来自( <em>可能需要技术手段浏览</em> ):<br><a href="http://featelier.exblog.jp/11933906/" target="_blank">http://featelier.exblog.jp/11933906/</a><br><a href="http://hi.baidu.com/key9/blog/item/2938cec46f118cc838db4940.html" target="_blank">http://hi.baidu.com/key9/blog/item/2938cec46f118cc838db4940.html</a></p>
+<p>[TOC]</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/note/">笔记</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Indeo/">Indeo</a>, <a href="/tags/win7/">win7</a>, <a href="/tags/windows/">windows</a>
+  </div>
+
+        
+
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "24"
+        },
+        "share": {}
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89343201.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"niphor-dev"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:niphor.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/原创/">原创</a><small>1</small></li>
+  
+    <li><a href="/categories/server/">服务器</a><small>4</small></li>
+  
+    <li><a href="/categories/note/">笔记</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Indeo/">Indeo</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/cacti/">cacti</a><small>3</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>1</small></li>
+  
+    <li><a href="/tags/filezilla/">filezilla</a><small>1</small></li>
+  
+    <li><a href="/tags/hd/">hd</a><small>1</small></li>
+  
+    <li><a href="/tags/ipv6/">ipv6</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/tags/mariadb/">mariadb</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/memcached/">memcached</a><small>1</small></li>
+  
+    <li><a href="/tags/mp_/">mp_</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
+  
+    <li><a href="/tags/src/">src</a><small>1</small></li>
+  
+    <li><a href="/tags/umemaro/">umemaro</a><small>1</small></li>
+  
+    <li><a href="/tags/win7/">win7</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Niphor
+  
+</div>
+<div class="clearfix"></div></footer>
+  <!--[if lt IE 9]>
+<script src="//lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<![endif]-->
+<script src="http://cdn.staticfile.org/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" type="text/css">
+<script src="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

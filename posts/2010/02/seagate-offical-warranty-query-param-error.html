@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>希捷保修官方查询出错 | M-78的开发小站</title>
+  <meta name="author" content="Niphor">
+  
+  <meta name="description" content="Niphor的开发文档收集贴，Blog不用了，放这吧...万年更一次...">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="希捷保修官方查询出错"/>
+  <meta property="og:site_name" content="M-78的开发小站"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="M-78的开发小站" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">M-78的开发小站</a></h1>
+  <h2><a href="/">凹凸曼就是这么造出来的</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-02-27T18:13:17.000Z"><a href="/posts/2010/02/seagate-offical-warranty-query-param-error.html">2010-02-28</a></time>
+      
+      
+  
+    <h1 class="title">希捷保修官方查询出错</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><em>此文成于 2010年，有些信息可能不再适用！</em></p>
+<p>　　在大陆，在Google中搜索“希捷 保修”，除去第一个广告赞助，真正连接是啥？</p>
+<p>没错是：<br><a href="http://support.seagate.com/customer/warranty_validation_multi_cn.jsp" target="_blank">http://support.seagate.com/customer/warranty_validation_multi_cn.jsp</a>   <a href="http://support.seagate.com/customer/warranty_validation_cn.jsp" target="_blank">http://support.seagate.com/customer/warranty_validation_cn.jsp</a></p>
+<p>其实这两个连接有些小小的问题，用这两个连接查询的话一定会出现下面的问题( <em>至少截止于2010-2-28 01:30是这样的</em> )：<br><a id="more"></a></p>
+<blockquote>
+<p>Warranty Validation Error<br>Invalid Country<br>The country submitted was not recognized by the system.<br>Please verify your country selection and try your submission again. If necessary, please &gt;contact Seagate Customer Service for further assistance.<br>Error #dpCNT01<br>warrantyData:’XXXXXX’, country:’CHINA’, &gt;productNumber:’XXXXX-XXX’, y:’4’, x:’20’, customerNumber:’’, serialNumber:’XXXXXXX’</p>
+</blockquote>
+<p>　　不知道有多少人会和我一样，好不容易买的硬盘用此一看，我擦! <strong>无效国家!</strong> 然后认为是不是不是大陆行货？</p>
+<p><strong>其实这个想法是错误的！</strong></p>
+<p>这个错误翻译成中文，意思大概就是：</p>
+<blockquote>
+<p>无效的国家代码<br>提交的国家代码不能被系统识别。<br>请验证你国家的选择并在此提交，如果需要请联系希捷客服。</p>
+</blockquote>
+<p><strong>这个其实是希捷官方验证页面的小BUG！</strong></p>
+<p>从出错信息可以看出：<code>country</code>被定义成了<code>CHINA</code></p>
+<p>　　其实在希捷验证数据库升级之后，国家代码已经全统一成<code>2位</code>了，即中国的代码是<code>CN</code>，而这页面仍旧是<code>CHINA</code>，同时提示的重新选择，我们并没有看到国家的<code>下拉框</code>，其实这里<code>下拉框</code>已经没有了，取代的是被隐藏掉的一个文本框。</p>
+<p>　　可能是希捷的网络管理员再次之前在升级过系统，将需要选择的国家改成了靠服务器自动识别的脚本，但是并漏了修改此页面的国家代码，于是造成的这样的问题。</p>
+<p>现在希捷中国正确的验证地址为<a href="http://www.seagate.com/cn/zh/support/warranty-and-replacements/" title="保质与退货页面" target="_blank">保质与退货页面</a>上的<a href="http://support.seagate.com/customer/zh-cn/warranty_validation.jsp" title="检查您的硬盘是否在质保期内" target="_blank">检查您的硬盘是否在质保期内</a>链接</p>
+<p>另外要说的是：</p>
+<ul>
+<li><p>那个有BUG的页面和这个页面最终验证出来的结果现在是一模一样的，不存在说：一个没代理商信息，一个有代理商信息之说。  </p>
+<blockquote>
+<p>至少现在如此，以前可能会区分,并不保证将来也一样</p>
+</blockquote>
+</li>
+<li><p>也不存在”有<code>_cn</code>的验证了才是国内行货，没有<code>_cn</code>的验证只能证明是希捷正品”这一说，现在不管用哪个来验证，选择 列下面都会显示为<code>交换</code>( <em>英文为<code>Exchange</code></em> )</p>
+</li>
+<li><p>对于在国内代理买的，都会显示 <strong><code>中国授权代理,请 联系XXXXXXX</code></strong></p>
+</li>
+<li><p>对于水货一般国家选择中国之后都会显示 <strong><code>非中国授权代理,请联系你购买硬盘的经销商</code></strong></p>
+</li>
+</ul>
+<p>当然 国内行货的代理商官方网站也提供查询服务，你也可以使用代理商提供的查询服务。</p>
+<p>PS：</p>
+<p>　　这里BS一下建达蓝德，发短信基本上是发了就没回信了…真是一点都不方便….而且把一个完全不能用的新版官网直接用上了，实在是太不负责任了，新官网直接查询，必须<code>登录</code>。然而点击<code>查询</code>弹出来的界面，右边的图片一直是显示 <strong><code>你的非正品行货</code></strong> ( <em>就算你真的是建达正品</em> )，实在是让人气愤。</p>
+<p>　　而且千方百计让你注册会员，注册之后又完全没有用，查询时账号必须再填一次，查询数据库出错，不能插入数据，feedback也不能用，只能下推荐软件获得积分( <em>其实就是广告啦</em> )。</p>
+<p>除了皮肤好看点，完全就是个菜鸟做的垃圾站。</p>
+<p>相比之下，<a href="http://www.xander.com.cn/old/default.asp" title="建达蓝德旧主页" target="_blank">旧站</a>就好多了，查询也完全不用注册，简单方便</p>
+<p>查询地址：<a href="http://ecc.xander.com.cn/serial/inq.asp" target="_blank">http://ecc.xander.com.cn/serial/inq.asp</a></p>
+<blockquote>
+<p>请<code>登录</code>旧站后 点击右侧<code>建达蓝德盒装正品条码查询</code>查询，<code>直接使用</code>此链接是<code>不能</code>显示的。 </p>
+</blockquote>
+<p>　　不知道这篇博文对于选购希捷硬盘的你来说是否有帮助，一般对于网上验证没信心，或者不会的话，可以直接拨打希捷的官方电话或者是代理商的电话。</p>
+<p>[TOC]</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/note/">笔记</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/hd/">hd</a>, <a href="/tags/seagate/">seagate</a>
+  </div>
+
+        
+
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "24"
+        },
+        "share": {}
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89343201.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"niphor-dev"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:niphor.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/原创/">原创</a><small>1</small></li>
+  
+    <li><a href="/categories/server/">服务器</a><small>4</small></li>
+  
+    <li><a href="/categories/note/">笔记</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Indeo/">Indeo</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/cacti/">cacti</a><small>3</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>1</small></li>
+  
+    <li><a href="/tags/filezilla/">filezilla</a><small>1</small></li>
+  
+    <li><a href="/tags/hd/">hd</a><small>1</small></li>
+  
+    <li><a href="/tags/ipv6/">ipv6</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/tags/mariadb/">mariadb</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/memcached/">memcached</a><small>1</small></li>
+  
+    <li><a href="/tags/mp_/">mp_</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
+  
+    <li><a href="/tags/src/">src</a><small>1</small></li>
+  
+    <li><a href="/tags/umemaro/">umemaro</a><small>1</small></li>
+  
+    <li><a href="/tags/win7/">win7</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Niphor
+  
+</div>
+<div class="clearfix"></div></footer>
+  <!--[if lt IE 9]>
+<script src="//lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<![endif]-->
+<script src="http://cdn.staticfile.org/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" type="text/css">
+<script src="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

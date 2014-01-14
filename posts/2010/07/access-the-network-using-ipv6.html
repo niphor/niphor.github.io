@@ -1,0 +1,334 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用IPv6访问网络 | M-78的开发小站</title>
+  <meta name="author" content="Niphor">
+  
+  <meta name="description" content="Niphor的开发文档收集贴，Blog不用了，放这吧...万年更一次...">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="使用IPv6访问网络"/>
+  <meta property="og:site_name" content="M-78的开发小站"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="M-78的开发小站" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">M-78的开发小站</a></h1>
+  <h2><a href="/">凹凸曼就是这么造出来的</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-07-29T16:56:19.000Z"><a href="/posts/2010/07/access-the-network-using-ipv6.html">2010-07-30</a></time>
+      
+      
+  
+    <h1 class="title">使用IPv6访问网络</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>　　IPv6离我们并不遥远，其实就在我们身边，Vista本就支持IPv6，Win7更是在很多方面上面运用了IPv6。一些高等院校宿舍楼原生支持IPv6(很可惜，我的学校不但自己没宿舍的网络，还和电信勾结…)。直接从现有IPv4升级到IPv6，并不现实，所以微软的系统提供了多种过渡方式，配合各大院校或服务提供商提供的隧道，我们可以在IPv4上面是使用IPv6业务。<br><a id="more"></a><br>常用的大学隧道有：</p>
+<ul>
+<li>上交： <strong>isatap.sjtu.edu.cn</strong></li>
+<li>清华： <strong>isatap.tsinghua.edu.cn</strong></li>
+<li>上大： <strong>isatap.shu.edu.cn</strong></li>
+<li>华中科大： <strong>isatap.hust.edu.cn</strong></li>
+<li>中国人民大学： <strong>isatap.ruc.edu.cn</strong></li>
+<li>北京邮电大学： <strong>211.68.71.43</strong></li>
+<li>重庆大学： <strong>202.202.217.98</strong></li>
+<li>湖南大学： <strong>210.43.96.186</strong></li>
+<li>河南工程学院： <strong>211.84.0.1</strong></li>
+<li>华中科技大学： <strong>202.114.1.186</strong></li>
+</ul>
+<p>一般使用前面几个就可以了，反正我用上海交大的不错。</p>
+<p>　　Vista和Win7都默认已经开启IPv6，而XP由于默认没有安装IPv6，所以先得安装一下</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>netsh
+netsh&gt;interface
+netsh interface&gt;ipv6
+netsh interface&gt;ipv6&gt;install
+</pre></td></tr></table></figure>
+
+<p>　　接着，我们来设置IPv6的隧道( <em>我以上海交大的隧道地址为例</em> )</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>netsh
+netsh&gt;interface
+netsh interface&gt;ipv6
+netsh interface ipv6&gt;isatap
+netsh interface ipv6 isatap&gt;<span class="keyword">set</span> router isatap.sjtu.edu.cn enabled
+netsh interface ipv6 isatap&gt;<span class="keyword">set</span> state enabled
+</pre></td></tr></table></figure>
+
+<p>配置完成。</p>
+<blockquote>
+<p>Win7由于默认开启了<code>6to4</code>和<code>Teredo</code>隧道，所以在以上的情况下面上海交大的IPv6可能会因为使用默认的<code>6to4</code>隧道而不正常。</p>
+<p>于是我们还需关掉<code>6to4</code>隧道</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>&gt; netsh interface ipv6 isatap&gt;quit
+&gt; netsh
+&gt; netsh&gt;interface
+&gt; netsh&gt;interface&gt;<span class="number">6</span>to4
+&gt; netsh interface <span class="number">6</span>to4&gt;<span class="keyword">set</span> state disabled
+&gt;
+</pre></td></tr></table></figure>
+
+</blockquote>
+<p>这时访问<a href="http://www.kame.net/" target="_blank">http://www.kame.net/</a>网站</p>
+<p>假如页面上的乌龟是运动的，说明你是通过IPv6访问的<br><img src="http://www.kame.net/img/kame-anime-small.gif" alt="使用IPv6"></p>
+<p>但是要是乌龟不动，说明你的配置不正确<br><img src="http://www.kame.net/img/kame-noanime-small.gif" alt="未使用IPv6"></p>
+<h2 id="-5176-5b83-4e00-4e9b-547d-4ee4-">其它一些命令</h2>
+<p>IPv6的接口关闭命令</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>netsh interface teredo&gt;<span class="keyword">set</span> state disable
+netsh interface <span class="number">6</span>to4&gt;<span class="keyword">set</span> state disabled
+netsh interface isatap&gt;<span class="keyword">set</span> state disabled
+</pre></td></tr></table></figure>
+
+<p>还原为默认状态:</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>netsh interface teredo&gt;<span class="keyword">set</span> state default
+netsh interface <span class="number">6</span>to4&gt;<span class="keyword">set</span> state default
+netsh interface isatap&gt;<span class="keyword">set</span> state default
+</pre></td></tr></table></figure>
+
+<p>重置IPv6，你可以使用rest命令</p>
+<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>netsh interface ipv6&gt;reset
+</pre></td></tr></table></figure>
+
+<h2 id="-76f8-5173-7f51-7ad9-">相关网站</h2>
+<p><a href="http://sixxs.org" target="_blank">http://sixxs.org</a><br><a href="http://yegle.net/glype/" target="_blank">http://yegle.net/glype/</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/note/">笔记</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/ipv6/">ipv6</a>, <a href="/tags/windows/">windows</a>
+  </div>
+
+        
+
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "24"
+        },
+        "share": {}
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89343201.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"niphor-dev"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:niphor.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/原创/">原创</a><small>1</small></li>
+  
+    <li><a href="/categories/server/">服务器</a><small>4</small></li>
+  
+    <li><a href="/categories/note/">笔记</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Indeo/">Indeo</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/cacti/">cacti</a><small>3</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>1</small></li>
+  
+    <li><a href="/tags/filezilla/">filezilla</a><small>1</small></li>
+  
+    <li><a href="/tags/hd/">hd</a><small>1</small></li>
+  
+    <li><a href="/tags/ipv6/">ipv6</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/tags/mariadb/">mariadb</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/memcached/">memcached</a><small>1</small></li>
+  
+    <li><a href="/tags/mp_/">mp_</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
+  
+    <li><a href="/tags/src/">src</a><small>1</small></li>
+  
+    <li><a href="/tags/umemaro/">umemaro</a><small>1</small></li>
+  
+    <li><a href="/tags/win7/">win7</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Niphor
+  
+</div>
+<div class="clearfix"></div></footer>
+  <!--[if lt IE 9]>
+<script src="//lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<![endif]-->
+<script src="http://cdn.staticfile.org/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" type="text/css">
+<script src="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

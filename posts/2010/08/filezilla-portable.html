@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>让FileZilla变Portable | M-78的开发小站</title>
+  <meta name="author" content="Niphor">
+  
+  <meta name="description" content="Niphor的开发文档收集贴，Blog不用了，放这吧...万年更一次...">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="让FileZilla变Portable"/>
+  <meta property="og:site_name" content="M-78的开发小站"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="M-78的开发小站" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">M-78的开发小站</a></h1>
+  <h2><a href="/">凹凸曼就是这么造出来的</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-08-08T09:19:47.000Z"><a href="/posts/2010/08/filezilla-portable.html">2010-08-08</a></time>
+      
+      
+  
+    <h1 class="title">让FileZilla变Portable</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>　　前天推荐用FileZilla下载JS的文章今天试验的结果，并不如此，可能是我自身网络的原因或者是JS的服务器调整，现在用FTP下载JS的东西相对来说都能达到2XX，所以我已经删除前一篇日志了。有些误导大家了。</p>
+<p>　　最近尝试换用Filezilla，抛弃我多年使用的FlashFXP，一是由于FlashFXP是收费软件、二是FileZilla下JS东西不错…不过FlashFXP(破解的)装完其实不去注册插件的话就是个绿色版的东西，随便拷贝了就能到处跑到处用了，但是FileZilla默认将配置文件放置于系统目录<code>%APPDATA%</code>下，也就是说，直接拷贝程序走人，你的配置和临时FTP列表什么的都会不见了。遂Google一番，发现铺天盖地都是一款名为<code>FileZilla Portable</code>的自己修改工具，里面包含了FileZilla和John Haller编写的Loader。<br><a id="more"></a><br>　　后仔细搜索发现，原来FileZilla通过自身的配置文件即可变成便携版，完全不需要使用啥Loader！</p>
+<p>废话不多说，但是这个步骤着实没啥好讲的，直接Copy寻芳社的了：</p>
+<p>将FileZilla解压缩文件到某一个文件夹，文件夹结构如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="title">FileZilla</span>
+├─docs
+├─locales
+└─resources
+</pre></td></tr></table></figure>
+
+<p>复制<code>FileZilla/docs/fzdefaults.xml.example</code>文件到<code>FileZilla</code>目录下，并重命名为<code>fzdefaults.xml</code>。</p>
+<p>编辑<code>fzdefaults.xml</code>文件并修改<code>Config Location</code>设置，将文件保存到settings文件夹。</p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">FileZilla3</span>&gt;</span>
+　　<span class="tag">&lt;<span class="title">Settings</span>&gt;</span>
+　　　　<span class="tag">&lt;<span class="title">Setting</span> <span class="attribute">name</span>=<span class="value">"Config Location"</span>&gt;</span>settings<span class="tag">&lt;/<span class="title">Setting</span>&gt;</span>
+　　<span class="tag">&lt;/<span class="title">Settings</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">FileZilla3</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>运行<code>FileZilla</code>，<code>filezilla.xml</code>等配置文件会被自动创建到settings文件夹下。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="title">FileZilla</span>
+├─docs
+├─locales
+├─resources
+└─settings
+</pre></td></tr></table></figure>
+
+<p>至此，FileZilla绿色版制作完成。</p>
+<p>写这篇的原因是：我很好奇，为啥国内软件站转载的都是FileZilla Portable 这个软件，而不是直接用配置文件这一简单方式。</p>
+<p>John Haller的Loader太过完善了，文件和目录非常繁杂，而且最神奇的是他也是用的配置文件，区别在于配置文件中的<code>Config Location</code>被配置在变量上，我估计他是先用<code>Loader</code>得出目录地址，然后加入系统变量，接着启动Filezilla…实在是多此一举…</p>
+<blockquote>
+<p>参考作品：<br><a href="http://www.pendriveapps.com/make-your-own-portable-filezilla-ftp-client/" target="_blank">http://www.pendriveapps.com/make-your-own-portable-filezilla-ftp-client/</a><br><a href="http://rerse.com/articles/how-to-make-filezilla-portable/?lang=zh" target="_blank">http://rerse.com/articles/how-to-make-filezilla-portable/?lang=zh</a></p>
+</blockquote>
+<p><strong>经<a href="http://rndz.org/" target="_blank">@z</a>提醒，原来官方Wiki早有说明：</strong><br><a href="http://wiki.filezilla-project.org/Portable_mode_client_installation" target="_blank">http://wiki.filezilla-project.org/Portable_mode_client_installation</a></p>
+<p>[TOC]</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/note/">笔记</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/filezilla/">filezilla</a>
+  </div>
+
+        
+
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "24"
+        },
+        "share": {}
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89343201.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"niphor-dev"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:niphor.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/原创/">原创</a><small>1</small></li>
+  
+    <li><a href="/categories/server/">服务器</a><small>4</small></li>
+  
+    <li><a href="/categories/note/">笔记</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Indeo/">Indeo</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/cacti/">cacti</a><small>3</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>1</small></li>
+  
+    <li><a href="/tags/filezilla/">filezilla</a><small>1</small></li>
+  
+    <li><a href="/tags/hd/">hd</a><small>1</small></li>
+  
+    <li><a href="/tags/ipv6/">ipv6</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/tags/mariadb/">mariadb</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/memcached/">memcached</a><small>1</small></li>
+  
+    <li><a href="/tags/mp_/">mp_</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
+  
+    <li><a href="/tags/src/">src</a><small>1</small></li>
+  
+    <li><a href="/tags/umemaro/">umemaro</a><small>1</small></li>
+  
+    <li><a href="/tags/win7/">win7</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Niphor
+  
+</div>
+<div class="clearfix"></div></footer>
+  <!--[if lt IE 9]>
+<script src="//lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<![endif]-->
+<script src="http://cdn.staticfile.org/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" type="text/css">
+<script src="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
