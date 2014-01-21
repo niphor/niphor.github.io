@@ -1,0 +1,465 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>安装ArchLinux笔记 | M-78的开发小站</title>
+  <meta name="author" content="Niphor">
+  
+  <meta name="description" content="Niphor的开发文档收集贴，Blog不用了，放这吧...万年更一次...">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="安装ArchLinux笔记"/>
+  <meta property="og:site_name" content="M-78的开发小站"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="M-78的开发小站" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">M-78的开发小站</a></h1>
+  <h2><a href="/">凹凸曼就是这么造出来的</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-01-21T01:55:25.000Z"><a href="/posts/2014/01/install-archlinux.html">2014-01-21</a></time>
+      
+      
+  
+    <h1 class="title">安装ArchLinux笔记</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>前几天装spmjs，一个命令不小心敲错，导致/usr下面的权限全乱掉了…sudo都没权限了，虽然抢救过来了，但是各种小问题，想想还是重灌一下吧…</p>
+<p>之前一直是用的Ubuntu，在移动硬盘里不是很好用，默认就占了300~500MB左右的内存，如果机子较差还容易界面未响应，所以想着就换成Arch看看吧…</p>
+<p>因为现在的Arch没有了安装向导，都要自己打命令，所以想省力，找了个ArchBang安装…<br><a id="more"></a></p>
+<h2 id="-8bd5-7528-ArchBang">试用ArchBang</h2>
+<p>ArchBang是一套Arch+Openbox+slim+spacefm的开盒即用的发行版，基于Arch主干，就是说安装完基本和Arch是一样的。</p>
+<p>说是有安装向导，看样子也只是把Arch之前的向导拿来用了下…</p>
+<p>因为Archbang只有<code>英文</code>和<code>西班牙</code>语的向导，所以大家用E文向导吧，安装过程大概就是<code>选择向导的语言</code>-&gt;<code>分区</code>-&gt;<code>安装系统</code>-&gt;<code>配置系统</code>。具体我就不表了，满大街的货，懂点E文的随便来两下就行了…</p>
+<p>不过安装时遇到两个问题</p>
+<h3 id="locale-gen-65f6-8001-662f-63d0-793a-3c-code-3e-locale-alias-3c-2f-code-3e-627e-4e0d-5230-">locale-gen时老是提示<code>locale.alias</code>找不到</h3>
+<p>运行<code>ln -s /usr/share/X11/locale/locale.alias /usr/share/locale/locale.alias</code>创建个符号链接解决</p>
+<blockquote>
+<p>注意在arch-chroot到安装的目录下执行</p>
+</blockquote>
+<h3 id="locale-gen-540e-7cfb-7edf-4e0d-4f1a-53d8-4e3a-76f8-5e94-7684-8bed-8a00-">locale-gen后系统不会变为相应的语言</h3>
+<p>我是默认安装的，即安装的英文系统，之后进入系统后才想改语言，于是改了<code>local.conf</code>和<code>locale-gen</code>，运行<code>sudo locale-gen</code>完全没用，<a href="http://tieba.baidu.com/p/2815606426" target="_blank">虽然系统语言是变成中文了，但是各个软件还是以英文来显示</a>。</p>
+<p>这个问题，找了半天没找到解决方案，只是发现如果重装某应用，它就会变成中文的…</p>
+<p>吧友<code>@yjw1993425</code>提供了个命令来重装所有包，不过我没去试罢了</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">pacman</span> <span class="literal">-</span><span class="comment">S</span> <span class="comment">`pacman</span> <span class="literal">-</span><span class="comment">Qsq`</span>
+</pre></td></tr></table></figure>
+
+<p>根据吧友<code>@wwacdroot</code>说法是因为我默认安装的是E文系统，没有相关.mo语言文件，重装了一下的话，就又都下好了。</p>
+<p>不过我严重怀疑是ArchBang的安装脚本有问题，安装很快的感觉，完全不像是去网上的源下载东西的感觉…</p>
+<h2 id="-5b89-88c5-Arch">安装Arch</h2>
+<p>因为安装ArchBang的出现的问题，作为一个不折腾不会死的骚年，我趁着还是刚装完没放资料，又删掉了ArchBang，从头安装了Arch…</p>
+<h3 id="-5b89-88c5-Arch-1">安装Arch</h3>
+<p>教程参考<a href="https://wiki.archlinux.org/index.php/Beginners%27_Guide_(简体中文)" target="_blank">Wiki</a>( <strong>最好的教程</strong> )</p>
+<h3 id="-5b89-88c5-yaourt">安装yaourt</h3>
+<p><a href="https://wiki.archlinux.org/index.php/Yaourt_(简体中文)" target="_blank"><a href="https://wiki.archlinux.org/index.php/Yaourt_(简体中文">https://wiki.archlinux.org/index.php/Yaourt_(简体中文</a>)</a></p>
+<h3 id="-5b89-88c5-684c-9762-73af-5883-3002-">安装桌面环境。</h3>
+<blockquote>
+<p>我推荐先以root用户安装桌面环境再<code>adduser</code>添加其它用户</p>
+<p>这样说的原因是：如果root没配置好界面，sudo一些GUI的时候很丑的…</p>
+</blockquote>
+<h4 id="-767b-9646-5668-ff1a-3c-a_href-3d-22-https-3a-2f-2f-wiki-archlinux-org-2f-index-php-2f-Slim-22-3e-SLiM-3c-2f-a-3e-">登陆器：<a href="https://wiki.archlinux.org/index.php/Slim" target="_blank">SLiM</a></h4>
+<blockquote>
+<p>和systemctl不太兼容，二次登陆有问题<br>介意的同学，LightDM也不错的选择</p>
+</blockquote>
+<h4 id="-684c-9762-ff1a-3c-a_href-3d-22-https-3a-2f-2f-wiki-archlinux-org-2f-index-php-2f-Openbox-22-3e-Openbox-3c-2f-a-3e-">桌面：<a href="https://wiki.archlinux.org/index.php/Openbox" target="_blank">Openbox</a></h4>
+<h4 id="-684c-9762-80cc-666f-ff1a-3c-a_href-3d-22-https-3a-2f-2f-wiki-archlinux-org-2f-index-php-2f-Feh-22-3e-feh-3c-2f-a-3e-">桌面背景：<a href="https://wiki.archlinux.org/index.php/Feh" target="_blank">feh</a></h4>
+<blockquote>
+<p>如果要图片撑满又不变形用参数<code>--bg-fill</code></p>
+</blockquote>
+<h4 id="-4efb-52a1-680f-ff1a-3c-a_href-3d-22-https-3a-2f-2f-wiki-archlinux-org-2f-index-php-2f-Tint2-22-3e-tint2-svn-3c-2f-a-3e-">任务栏：<a href="https://wiki.archlinux.org/index.php/Tint2" target="_blank">tint2-svn</a></h4>
+<blockquote>
+<p>svn编译的版本功能更强大一些，所以应该安装tint2-svn</p>
+</blockquote>
+<h4 id="-97f3-91cf-56fe-6807-ff1a-3c-a_href-3d-22-http-3a-2f-2f-softwarebakery-com-2f-maato-2f-volumeicon-html-22-3e-VolumeIcon-3c-2f-a-3e-">音量图标：<a href="http://softwarebakery.com/maato/volumeicon.html" target="_blank">VolumeIcon</a></h4>
+<blockquote>
+<p>这个只是单纯的图标，如果要高级控制，安装<a href="https://wiki.archlinux.org/index.php/Alsa" target="_blank">Alsamixer</a></p>
+</blockquote>
+<h4 id="-7f51-7edc-7ba1-7406-5668-ff1a-3c-a_href-3d-22-https-3a-2f-2f-wiki-archlinux-org-2f-index-php-2f-NetworkManager-22-3e-NetworkManager-3c-2f-a-3e-_-26-amp-3b-26-amp-3b-_network-manager-applet">网络管理器：<a href="https://wiki.archlinux.org/index.php/NetworkManager" target="_blank">NetworkManager</a> &amp;&amp; network-manager-applet</h4>
+<blockquote>
+<p><strong>netctl已经代替了netcfg</strong>，所以这货已经日子不长了</p>
+<p>介意的同学选用<a href="https://wiki.archlinux.org/index.php/netctl" target="_blank">netctl</a>和<a href="https://aur.archlinux.org/packages/cinnamon-applet-netctl-systray-menu/" target="_blank">cinnamon-applet-netctl-systray-menu</a></p>
+</blockquote>
+<p>安装之后需停用<code>netctl</code>和<code>dhcpcd</code>，不然不能上网</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="built_in">sudo</span> systemctl stop netctl
+<span class="built_in">sudo</span> systemctl disable netctl
+<span class="built_in">sudo</span> systemctl stop dhcpcd
+<span class="built_in">sudo</span> systemctl disable netctl
+</pre></td></tr></table></figure>
+
+<h4 id="-6587-4ef6-7ba1-7406-5668-ff1a-3c-a_href-3d-22-https-3a-2f-2f-wiki-archlinux-org-2f-index-php-2f-Thunar-22-3e-Thunar-3c-2f-a-3e-">文件管理器：<a href="https://wiki.archlinux.org/index.php/Thunar" target="_blank">Thunar</a></h4>
+<h4 id="-538b-7f29-6587-4ef6-67e5-770b-5668-ff1a-file-roller">压缩文件查看器：file-roller</h4>
+<h4 id="-7ec8-7aef-ff1a-lxterminal">终端：lxterminal</h4>
+<blockquote>
+<p>也可以装<a href="https://wiki.archlinux.org/index.php/Xterm" target="_blank">xterm</a>，默认很多程序在用它</p>
+</blockquote>
+<h4 id="-8f93-5165-6cd5-ff1a-3c-a_href-3d-22-https-3a-2f-2f-wiki-archlinux-org-2f-index-php-2f-Fcitx_-28-7b80-4f53-4e2d-6587-29-22-3e-fcitx-3c-2f-a-3e-">输入法：<a href="https://wiki.archlinux.org/index.php/Fcitx_(简体中文)" target="_blank">fcitx</a></h4>
+<h4 id="-7cfb-7edf-76d1-89c6-5668-ff1a-3c-a_href-3d-22-https-3a-2f-2f-wiki-archlinux-org-2f-index-php-2f-conky-22-3e-conky-3c-2f-a-3e-">系统监视器：<a href="https://wiki.archlinux.org/index.php/conky" target="_blank">conky</a></h4>
+<blockquote>
+<p>conky的设置比较开放，安装个conky-colors，能省不少力气<br><a href="http://forum.ubuntu.org.cn/viewtopic.php?t=313031" target="_blank">使用CONKY-colors配置和汉化conky完全教程</a></p>
+</blockquote>
+<h4 id="-4e3b-9898-ff1a-3c-a_href-3d-22-http-3a-2f-2f-numixproject-org-2f-22-3e-Numix-3c-2f-a-3e-">主题：<a href="http://numixproject.org/" target="_blank">Numix</a></h4>
+<blockquote>
+<p>源里就有</p>
+</blockquote>
+<h3 id="-6dfb-52a0-7528-6237-">添加用户</h3>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="comment">useradd</span> <span class="literal">-</span><span class="comment">m</span> <span class="literal">-</span><span class="comment">g</span> <span class="comment">users</span> <span class="literal">-</span><span class="comment">G</span> <span class="comment">audio</span><span class="string">,</span><span class="comment">lp</span><span class="string">,</span><span class="comment">optical</span><span class="string">,</span><span class="comment">storage</span><span class="string">,</span><span class="comment">video</span><span class="string">,</span><span class="comment">wheel</span><span class="string">,</span><span class="comment">games</span><span class="string">,</span><span class="comment">power</span><span class="string">,</span><span class="comment">scanner</span> <span class="literal">-</span><span class="comment">s</span> <span class="comment">/bin/bash</span> <span class="comment">username</span>
+
+<span class="comment">#添加密码</span>
+<span class="comment">passwd</span> <span class="comment">username</span>
+</pre></td></tr></table></figure>
+
+<p>编辑<code>sudo</code>配置，让<code>wheel</code>组能执行<code>sudo</code></p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre># /etc/visudo
+<span class="tag">%<span class="title">wheel</span></span>    ALL=(ALL) ALL
+</pre></td></tr></table></figure>
+
+<p>切换到新建用户</p>
+<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">su</span> username
+</pre></td></tr></table></figure>
+
+<h2 id="-95ee-9898-">问题</h2>
+<h3 id="-91cd-542f-4e0d-80fd-987a-5229-52a0-8f7d-7cfb-7edf-">重启不能顺利加载系统</h3>
+<blockquote>
+<p>有可能我是安装到了移动硬盘的缘故</p>
+</blockquote>
+<p>现在的Grub都是按照UUID找分区的，但是我发现Arch的Grub似乎不是很正常。</p>
+<p>比如我的移动硬盘状况是</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>/dev/sdc
+  ├/dev/sdc1(/)
+  ├/dev/sdc2(/home)
+  ├/dev/sdc3(/<span class="keyword">swap</span>)
+  └/dev/sdc4(ntfs)
+</pre></td></tr></table></figure>
+
+<p>我安装<code>grub</code>到<code>/dev/sdc</code>上面，然后<code>mkconfig</code>生成相应的<code>grub.cfg</code>。</p>
+<p>但是内容却是有问题的，基本上有下面几个</p>
+<ul>
+<li>root不对<br>比如<code>root=(hd2,msdos1)</code>,看着也不对，还得手动改成<code>root=(hd1,msdos5)</code><blockquote>
+<p>根据实际情况改</p>
+</blockquote>
+</li>
+<li>uuid不对<br>比如<code>uuid=32id···</code>,而我的<code>sdc1</code>是`17d····,手动改正</li>
+</ul>
+<h3 id="USB3-0-4e0a-4e0d-80fd-627e-5230-7cfb-7edf-5206-533a-">USB3.0上不能找到系统分区</h3>
+<p>我在一台老PC上用USB2.0口安装了Arch，回家后发现插USB3.0口，找不到分区，USB2.0却又是正常的</p>
+<p>因为Grub是正常启动的，看来是<code>initramfs</code>的问题了，遂Google了一番。</p>
+<p>下面是解决方法：</p>
+<p>修改<code>/etc/mkinitcpio.conf</code>文件的<code>HOOKS</code>，在<code>block</code>后面添加<code>usb</code>钩子，运行<code>mkinitcpio -p linux</code>重新生成镜像。</p>
+<p>原因未知，照理<a href="https://wiki.archlinux.org/index.php/mkinitcpio" target="_blank"><code>block</code>已经取代了<code>usb</code>等钩子</a>,不应该在这样了的说…</p>
+<blockquote>
+<p>也有个说法是将<code>block</code>钩子放到<code>udev</code>后面，让它更先运行（不过我懒，没去试）</p>
+<p>推荐在用USB3.0口启动后再一次生成一下镜像。</p>
+</blockquote>
+<p>这个解决方法另外附带的变化是启动时硬盘顺序变正常了，原先移动硬盘一直挂载为第一个硬盘即<code>sda</code>,现在根据PC硬盘数量不同，能自动识别为<code>sdb</code>/<code>sdc</code>等了。</p>
+<h3 id="-5185-7f6e-786c-76d8-4e0d-80fd-81ea-52a8-6302-8f7d-">内置硬盘不能自动挂载</h3>
+<p>参考：<a href="http://blog.chinaunix.net/uid-25906175-id-3030600.html" target="_blank">http://blog.chinaunix.net/uid-25906175-id-3030600.html</a></p>
+<p>修改<code>/usr/share/polkit-1/actions/org.freedesktop.udisks.policy</code></p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">action</span> <span class="attribute">id</span>=<span class="value">"org.freedesktop.udisks.filesystem-mount"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">description</span>&gt;</span>Mount a device<span class="tag">&lt;/<span class="title">description</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">description</span> <span class="attribute">xml:lang</span>=<span class="value">"da"</span>&gt;</span>Montér en enhed<span class="tag">&lt;/<span class="title">description</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">message</span>&gt;</span>Authentication is required to mount the device<span class="tag">&lt;/<span class="title">message</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">defaults</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">allow_any</span>&gt;</span>yes<span class="tag">&lt;/<span class="title">allow_any</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">allow_inactive</span>&gt;</span>yes<span class="tag">&lt;/<span class="title">allow_inactive</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">allow_active</span>&gt;</span>yes<span class="tag">&lt;/<span class="title">allow_active</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">defaults</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">action</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>修改<code>/usr/share/polkit-1/actions/org.freedesktop.udisks2.policy</code></p>
+<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">action</span> <span class="attribute">id</span>=<span class="value">"org.freedesktop.udisks2.filesystem-mount"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">description</span>&gt;</span>Mount a filesystem<span class="tag">&lt;/<span class="title">description</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">message</span>&gt;</span>Authentication is required to mount the filesystem<span class="tag">&lt;/<span class="title">message</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">defaults</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">allow_any</span>&gt;</span>yes<span class="tag">&lt;/<span class="title">allow_any</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">allow_inactive</span>&gt;</span>yes<span class="tag">&lt;/<span class="title">allow_inactive</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">allow_active</span>&gt;</span>yes<span class="tag">&lt;/<span class="title">allow_active</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">defaults</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">action</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">action</span> <span class="attribute">id</span>=<span class="value">"org.freedesktop.udisks2.filesystem-mount-system"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">description</span>&gt;</span>Mount a filesystem on a system device<span class="tag">&lt;/<span class="title">description</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">message</span>&gt;</span>Authentication is required to mount the filesystem<span class="tag">&lt;/<span class="title">message</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">defaults</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">allow_any</span>&gt;</span>yes<span class="tag">&lt;/<span class="title">allow_any</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">allow_inactive</span>&gt;</span>yes<span class="tag">&lt;/<span class="title">allow_inactive</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">allow_active</span>&gt;</span>yes<span class="tag">&lt;/<span class="title">allow_active</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">defaults</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">action</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>[TOC]</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/note/">笔记</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/archlinux/">archlinux</a>, <a href="/tags/linux/">linux</a>
+  </div>
+
+        
+
+<div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">
+    </a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+</div>
+<script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "1",
+            "bdSize": "24"
+        },
+        "share": {}
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89343201.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"niphor-dev"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END -->
+
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:niphor.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/original/">原创</a><small>1</small></li>
+  
+    <li><a href="/categories/server/">服务器</a><small>4</small></li>
+  
+    <li><a href="/categories/note/">笔记</a><small>8</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Indeo/">Indeo</a><small>1</small></li>
+  
+    <li><a href="/tags/apache/">apache</a><small>1</small></li>
+  
+    <li><a href="/tags/archlinux/">archlinux</a><small>1</small></li>
+  
+    <li><a href="/tags/cacti/">cacti</a><small>3</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>1</small></li>
+  
+    <li><a href="/tags/filezilla/">filezilla</a><small>1</small></li>
+  
+    <li><a href="/tags/google/">google</a><small>1</small></li>
+  
+    <li><a href="/tags/hd/">hd</a><small>1</small></li>
+  
+    <li><a href="/tags/ipv6/">ipv6</a><small>1</small></li>
+  
+    <li><a href="/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/mariadb/">mariadb</a><small>1</small></li>
+  
+    <li><a href="/tags/maven/">maven</a><small>1</small></li>
+  
+    <li><a href="/tags/memcached/">memcached</a><small>1</small></li>
+  
+    <li><a href="/tags/mp_/">mp_</a><small>1</small></li>
+  
+    <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/tags/opensfit/">opensfit</a><small>1</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
+  
+    <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
+  
+    <li><a href="/tags/src/">src</a><small>1</small></li>
+  
+    <li><a href="/tags/umemaro/">umemaro</a><small>1</small></li>
+  
+    <li><a href="/tags/win7/">win7</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>6</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Niphor
+  
+</div>
+<div class="clearfix"></div></footer>
+  <!--[if lt IE 9]>
+<script src="//lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<![endif]-->
+<script src="http://cdn.staticfile.org/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" type="text/css">
+<script src="http://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
