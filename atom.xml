@@ -4,7 +4,7 @@
   <subtitle><![CDATA[凹凸曼就是这么造出来的]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://niphor.github.io/"/>
-  <updated>2014-01-21T04:57:27.177Z</updated>
+  <updated>2014-02-07T03:03:40.940Z</updated>
   <id>http://niphor.github.io/</id>
   
   <author>
@@ -13,6 +13,58 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[为什么Flappy Bird会成功]]></title>
+    <link href="http://niphor.github.io/posts/2014/02/why-flappy-bird-success.html"/>
+    <id>http://niphor.github.io/posts/2014/02/why-flappy-bird-success.html</id>
+    <published>2014-02-07T01:59:18.000Z</published>
+    <updated>2014-02-07T03:03:09.000Z</updated>
+    <content type="html"><![CDATA[<p>Flappy Bird 最近火了，App Store 北美区榜首了。</p>
+<p>于是我下了玩了一下，同时也钓起了几个基友的兴趣，让他们也试完了一下。</p>
+<p>一个认为是 弱智的1B</p>
+<p>一个认为是 不好玩，超过0分就不会去玩了</p>
+<p>一个玩到2分就把手机丢还给我了。</p>
+<p>而我不停玩了几个小时，还在玩。</p>
+<p>也难怪网上会引发激烈讨论…<br><a id="more"></a><br>这里我以一个玩家的身份试图解释其中的原因。就如作者说的：</p>
+<blockquote>
+<p>我觉得游戏能够获得成功，最重要的原因是在玩家和简单之间的竞争，它们是为线下竞争而设计出来的，如今人们都忘记了这一点。同时，我的每一个游戏都只有一个设置、一个行为和一个游戏机制。它们极为简单，很容易学会，而且只需要技巧。它的玩家是那些需要真正的挑战而非“付钱去赢”的人。</p>
+</blockquote>
+<h2 id="-7b80-5355-">简单</h2>
+<p>这款游戏是极其简单的，甚至N年之前各类雷同的游戏就已经充斥在大街小巷了。也正因为操作极其简单，给人以一种 <strong>这个游戏不太难</strong> 的印象，而实际的判定非常的严格，导致了一种心理的落差感。</p>
+<p>也还是因为操作的极其简单( <em>只有点击一个动作</em> )，会让玩家觉得其实难度还行，只要仔细些可能就能过关了。</p>
+<p>这样的心理上的暗示可以让玩家在失败之后存在一种侥幸心理，不会放弃继续尝试。</p>
+<h3 id="-6ca1-6709-5267-60c5-">没有剧情</h3>
+<p>这游戏没有剧情，回归原始，现在是快节奏生活，面对的是大量碎片化的时间，没有那么多时间来吸收消化过多的剧情，玩家会觉得厌倦。</p>
+<p>因为没有终点，所以你可以随时停止，没有心理上的负担。</p>
+<h2 id="-96be-5ea6-">难度</h2>
+<p>难度是这款游戏最大的特点，一不小心就会死。</p>
+<p>因为死得快，所以游戏流程很短，让人不会厌倦，还没反应过来就结束了。</p>
+<p>相反，如果玩家很厉害、持续时间很长，在不断积累的分数面前会有种优越感和刺激感，这些会使玩家继续玩下去。</p>
+<h2 id="-79ef-5206-">积分</h2>
+<p>游戏从开始到结束都会显示当前的分数，分数会给玩家一种刺激，让玩家挑战自我。</p>
+<p>而且难能可贵的是这游戏没有各种蛋疼的内购，也不需要你付出金钱。单纯的实力和运气的比拼。</p>
+<h2 id="-603b-7ed3-">总结</h2>
+<p>反观类似《使命召唤》系列，其实游戏很单一，看的是剧情，但是面对几个小时的游戏流程，上学时也许还能玩玩，现在真心是没兴趣看了…</p>
+<p>又如《狂野飙车》系列，游戏很简单，难度也不难，但是后期除了成为金钱玩家，就是必须要通过数百次冗余的操作获得足够金币买辆好点的车，才能开过一个不难的关卡，实在是让人心生厌倦。</p>
+<p>这款游戏对我来说是一款上乘的作品，随手就能玩，随时都能停。是现代人消磨时光的好游戏。</p>
+<p>所以说这游戏能火，完全是适应人们的生活啊。</p>
+<p>不过再火也有厌倦的时候，我们就拭目以待看看这游戏能火多久吧。</p>
+<p>[TOC]</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>Flappy Bird 最近火了，App Store 北美区榜首了。</p>
+<p>于是我下了玩了一下，同时也钓起了几个基友的兴趣，让他们也试完了一下。</p>
+<p>一个认为是 弱智的1B</p>
+<p>一个认为是 不好玩，超过0分就不会去玩了</p>
+<p>一个玩到2分就把手机丢还给我了。</p>
+<p>而我不停玩了几个小时，还在玩。</p>
+<p>也难怪网上会引发激烈讨论…<br>]]></summary>
+    
+      <category term="flappy bird" scheme="http://niphor.github.io/tags/flappy%20bird/"/>
+    
+      <category term="杂谈" scheme="http://niphor.github.io/categories/thought/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[不再用Wordpress]]></title>
@@ -45,7 +97,7 @@
     <link href="http://niphor.github.io/posts/2014/01/install-archlinux.html"/>
     <id>http://niphor.github.io/posts/2014/01/install-archlinux.html</id>
     <published>2014-01-21T01:55:25.000Z</published>
-    <updated>2014-01-21T04:39:49.000Z</updated>
+    <updated>2014-02-07T01:59:31.000Z</updated>
     <content type="html"><![CDATA[<p>前几天装spmjs，一个命令不小心敲错，导致/usr下面的权限全乱掉了…sudo都没权限了，虽然抢救过来了，但是各种小问题，想想还是重灌一下吧…</p>
 <p>之前一直是用的Ubuntu，在移动硬盘里不是很好用，默认就占了300~500MB左右的内存，如果机子较差还容易界面未响应，所以想着就换成Arch看看吧…</p>
 <p>因为现在的Arch没有了安装向导，都要自己打命令，所以想省力，找了个ArchBang安装…<br><a id="more"></a></p>
@@ -183,8 +235,9 @@
 <p>我在一台老PC上用USB2.0口安装了Arch，回家后发现插USB3.0口，找不到分区，USB2.0却又是正常的</p>
 <p>因为Grub是正常启动的，看来是<code>initramfs</code>的问题了，遂Google了一番。</p>
 <p>下面是解决方法：</p>
-<p>修改<code>/etc/mkinitcpio.conf</code>文件的<code>HOOKS</code>，在<code>block</code>后面添加<code>usb</code>钩子，运行<code>mkinitcpio -p linux</code>重新生成镜像。</p>
-<p>原因未知，照理<a href="https://wiki.archlinux.org/index.php/mkinitcpio" target="_blank"><code>block</code>已经取代了<code>usb</code>等钩子</a>,不应该在这样了的说…</p>
+<p>在有USB3.0的机子上再运行一次<code>mkinitcpio -p linux</code>重新生成镜像。</p>
+<p>还不行修改<code>/etc/mkinitcpio.conf</code>文件的<code>HOOKS</code>，在<code>block</code>后面添加<code>usb</code>钩子。</p>
+<p>原因未知，照理<a href="https://wiki.archlinux.org/index.php/mkinitcpio" target="_blank"><code>block</code>已经取代了<code>usb</code>等钩子</a>,不应该在这样了的说…</del></p>
 <blockquote>
 <p>也有个说法是将<code>block</code>钩子放到<code>udev</code>后面，让它更先运行（不过我懒，没去试）</p>
 <p>推荐在用USB3.0口启动后再一次生成一下镜像。</p>
@@ -1972,18 +2025,18 @@ sc delete "namp_memcached"
 10
 11
 12
-</pre></td><td class="code"><pre><span class="title">fastcgi</span>.impersonate = <span class="number">1</span>
-<span class="title">register_argc_argv</span> = <span class="type">On</span>
-<span class="title">safe_mode</span> = <span class="type">Off</span>
-<span class="title">cgi</span>.fix_pathinfo = <span class="number">1</span>
-<span class="title">cgi</span>.force_redirect = <span class="number">0</span>
-<span class="title">upload_tmp_dir</span> = <span class="string">"tmp文件夹路径"</span>
-<span class="title">session</span>.save_path=<span class="string">"Session文件夹路径"</span>
+</pre></td><td class="code"><pre><span class="xml"><span class="tag"><span class="attribute">fastcgi.impersonate</span> = <span class="attribute">1</span>
+<span class="attribute">register_argc_argv</span> = <span class="attribute">On</span>
+<span class="attribute">safe_mode</span> = <span class="attribute">Off</span>
+<span class="attribute">cgi.fix_pathinfo</span> = <span class="attribute">1</span>
+<span class="attribute">cgi.force_redirect</span> = <span class="attribute">0</span>
+<span class="attribute">upload_tmp_dir</span> = "<span class="attribute">tmp</span>文件夹路径"
+<span class="attribute">session.save_path</span>=<span class="value">"Session文件夹路径"</span>
 
 //根据主机实际情况调整
-<span class="title">max_execution_time</span> = <span class="number">60</span> ;
-<span class="title">max_input_time</span> = <span class="number">120</span> ;
-<span class="title">memory_limit</span> = <span class="number">128</span>M ;
+<span class="attribute">max_execution_time</span> = <span class="attribute">60</span> ;
+<span class="attribute">max_input_time</span> = <span class="attribute">120</span> ;
+<span class="attribute">memory_limit</span> = <span class="attribute">128M</span> ;</span></span>
 </pre></td></tr></table></figure>
 
 <h4 id="-4fee-6539-6743-9650-">修改权限</h4>

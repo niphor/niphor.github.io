@@ -206,8 +206,9 @@
 <p>我在一台老PC上用USB2.0口安装了Arch，回家后发现插USB3.0口，找不到分区，USB2.0却又是正常的</p>
 <p>因为Grub是正常启动的，看来是<code>initramfs</code>的问题了，遂Google了一番。</p>
 <p>下面是解决方法：</p>
-<p>修改<code>/etc/mkinitcpio.conf</code>文件的<code>HOOKS</code>，在<code>block</code>后面添加<code>usb</code>钩子，运行<code>mkinitcpio -p linux</code>重新生成镜像。</p>
-<p>原因未知，照理<a href="https://wiki.archlinux.org/index.php/mkinitcpio" target="_blank"><code>block</code>已经取代了<code>usb</code>等钩子</a>,不应该在这样了的说…</p>
+<p>在有USB3.0的机子上再运行一次<code>mkinitcpio -p linux</code>重新生成镜像。</p>
+<p>还不行修改<code>/etc/mkinitcpio.conf</code>文件的<code>HOOKS</code>，在<code>block</code>后面添加<code>usb</code>钩子。</p>
+<p>原因未知，照理<a href="https://wiki.archlinux.org/index.php/mkinitcpio" target="_blank"><code>block</code>已经取代了<code>usb</code>等钩子</a>,不应该在这样了的说…</del></p>
 <blockquote>
 <p>也有个说法是将<code>block</code>钩子放到<code>udev</code>后面，让它更先运行（不过我懒，没去试）</p>
 <p>推荐在用USB3.0口启动后再一次生成一下镜像。</p>
@@ -370,6 +371,8 @@
   
     <li><a href="/categories/server/">服务器</a><small>4</small></li>
   
+    <li><a href="/categories/thought/">杂谈</a><small>1</small></li>
+  
     <li><a href="/categories/note/">笔记</a><small>8</small></li>
   
   </ul>
@@ -392,6 +395,8 @@
     <li><a href="/tags/chrome/">chrome</a><small>1</small></li>
   
     <li><a href="/tags/filezilla/">filezilla</a><small>1</small></li>
+  
+    <li><a href="/tags/flappy bird/">flappy bird</a><small>1</small></li>
   
     <li><a href="/tags/google/">google</a><small>1</small></li>
   

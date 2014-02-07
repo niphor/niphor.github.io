@@ -2,13 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://niphor.github.io/posts/2014/01/stop-using-wp-on-openshift.html</loc>
-    <lastmod>2014-01-21T04:42:31.000Z</lastmod>
+    <loc>http://niphor.github.io/posts/2014/02/why-flappy-bird-success.html</loc>
+    <lastmod>2014-02-07T01:59:18.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://niphor.github.io/posts/2014/01/install-archlinux.html</loc>
     <lastmod>2014-01-21T01:55:25.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2014/01/stop-using-wp-on-openshift.html</loc>
+    <lastmod>2014-01-21T04:42:31.000Z</lastmod>
   </url>
   
   <url>
