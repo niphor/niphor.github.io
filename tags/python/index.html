@@ -64,6 +64,75 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-03-21T11:46:52.000Z"><a href="/posts/2014/03/python-pip-mirror-site.html">2014-03-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/posts/2014/03/python-pip-mirror-site.html">pip 国内镜像设置</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>鉴于pypi上下东西越来越困难，用一个镜像现阶段是最好的解决方式。</p>
+<p>需要在配置文件内加上：  </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>[global]
+timeout = 6000
+index-url = http://pypi.v2ex.com/simple
+[install]
+use-mirrors = true
+mirrors = http://pypi.v2ex.com/
+
+#或单纯的就写
+[global]  
+index-url=http://pypi.v2ex.com/simple
+</pre></td></tr></table></figure>
+
+<p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/posts/2014/03/python-pip-mirror-site.html#more" class="more-link">详细</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-01-10T07:58:06.000Z"><a href="/posts/2014/01/install-python.html">2014-01-10</a></time>
       
       
@@ -74,7 +143,7 @@
     </header>
     <div class="entry">
       
-        <h2 id="Python-5b89-88c5-">Python安装</h2>
+        <h2 id="Python安装">Python安装</h2>
 <p>Python 中国区下载地址：<a href="http://python.org/getit/" target="_blank">http://python.org/getit/</a><br>Package库<a href="https://pypi.python.org/pypi" target="_blank">https://pypi.python.org/pypi</a></p>
 <blockquote>
 <p>在Windows上面使用<code>安装给所有用户</code>选项会使<code>pythonXX.dll</code>复制到<code>Windos/system32</code>下面。<br>这时使用virtualenv生成环境后，需要把<code>pythonXX.dll</code>拷到<code>env/Scripts</code>下面，不然在没Python的机子上可能就可能会报<code>&quot;找不到pythonXX.dll&quot;</code>的错误。</p>
@@ -122,7 +191,9 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/python/">Python</a><small>1</small></li>
+    <li><a href="/categories/python/">Python</a><small>2</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
   
     <li><a href="/categories/original/">原创</a><small>1</small></li>
   
@@ -175,13 +246,19 @@
   
     <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
   
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
     <li><a href="/tags/opensfit/">opensfit</a><small>1</small></li>
   
     <li><a href="/tags/php/">php</a><small>1</small></li>
   
+    <li><a href="/tags/pip/">pip</a><small>1</small></li>
+  
     <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
   
-    <li><a href="/tags/python/">python</a><small>1</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
   

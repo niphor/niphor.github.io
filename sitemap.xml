@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://niphor.github.io/posts/2014/03/npm-set-mirror.html</loc>
+    <lastmod>2014-03-21T12:59:17.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2014/03/python-pip-mirror-site.html</loc>
+    <lastmod>2014-03-21T11:46:52.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://niphor.github.io/posts/2014/01/install-python.html</loc>
+    <lastmod>2014-01-10T07:58:06.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://niphor.github.io/posts/2014/02/why-flappy-bird-success.html</loc>
     <lastmod>2014-02-07T01:59:18.000Z</lastmod>
   </url>
@@ -69,11 +84,6 @@
   <url>
     <loc>http://niphor.github.io/posts/2011/01/mp_-to-mpg-tool.html</loc>
     <lastmod>2011-01-01T09:49:10.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://niphor.github.io/posts/2014/01/install-python.html</loc>
-    <lastmod>2014-01-10T07:58:06.000Z</lastmod>
   </url>
   
 </urlset>

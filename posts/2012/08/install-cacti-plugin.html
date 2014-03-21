@@ -69,7 +69,7 @@
     </header>
     <div class="entry">
       
-        <h2 id="-63d2-4ef6-5b89-88c5-">插件安装</h2>
+        <h2 id="插件安装">插件安装</h2>
 <p>直接将插件解压缩之后放入Cacti的Plugin目录下，注意不要目录套目录，保持这样一个层次结构。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -97,12 +97,12 @@
 <p>点击第一列的图标可以<code>安装(↓)</code>/<code>启用(←)</code>/<code>停用(⊙)</code>/<code>卸载(↑)</code>插件</p>
 </blockquote>
 <p>插件安装之后，在相应的栏目下回出现新的栏目</p>
-<h3 id="Thold-63d2-4ef6-">Thold插件</h3>
+<h3 id="Thold插件">Thold插件</h3>
 <blockquote>
 <p>Thold插件主要用于监控报警，并用Email发送报警信息<br>Thold插件依赖于Settings插件，所以安装之前请先安装Settings插件。激活之后界面立即出现响应变化。</p>
 </blockquote>
-<h2 id="-6a21-7248-5b89-88c5-">模版安装</h2>
-<h3 id="Windows-5e73-53f0-SNMP-76d1-63a7-6a21-7248-">Windows平台SNMP监控模版</h3>
+<h2 id="模版安装">模版安装</h2>
+<h3 id="Windows平台SNMP监控模版">Windows平台SNMP监控模版</h3>
 <blockquote>
 <p>下载地址：<a href="http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195" target="_blank">http://forums.cacti.net/viewtopic.php?f=12&amp;t=29832&amp;start=195</a></p>
 </blockquote>
@@ -115,7 +115,7 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="Mencached-6a21-7248-5b89-88c5-">Mencached模版安装</h3>
+<h3 id="Mencached模版安装">Mencached模版安装</h3>
 <blockquote>
 <p>原版地址：<a href="http://dealnews.com/developers/cacti/memcached.html" target="_blank">http://dealnews.com/developers/cacti/memcached.html</a><br>可以监控多个端口的版本：<a href="http://tag1consulting.com/blog/cacti-memcache-multi-port-templates" target="_blank">http://tag1consulting.com/blog/cacti-memcache-multi-port-templates</a></p>
 </blockquote>
@@ -133,15 +133,15 @@
 <blockquote>
 <p><strong>注意</strong> ：由于1.2.6等老版本的Memcache的Stats里面少了些数据，所以上述的memcached.py在监控1.2.6等版本的Memcache时会报错。</p>
 </blockquote>
-<h2 id="-76d1-63a7-5b9e-4f8b-">监控实例</h2>
-<h3 id="-6dfb-52a0-76d1-63a7-8bbe-5907-">添加监控设备</h3>
+<h2 id="监控实例">监控实例</h2>
+<h3 id="添加监控设备">添加监控设备</h3>
 <p>点击侧边栏<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-menu.png" alt="设备菜单">进入设备列表，点击右上方的<code>Add</code>来添加设备。</p>
 <p>并做一些设置，如图：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info-setting.png" alt="设置设备信息"></p>
 <p>点击保存，等待一段时间，页面跳转到主机设置界面，我们可以看到已经有部分信息获取到了：<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-device-info.png" alt="设备信息"></p>
 <blockquote>
 <p>如果snmp不通，则会显示 <strong><code>SNMP error</code></strong></p>
 </blockquote>
-<h3 id="-521b-5efa-8bbe-5907-56fe-">创建设备图</h3>
+<h3 id="创建设备图">创建设备图</h3>
 <p>在设备详情页的下方 已经显示出了刚才指定的主机模版自带的监控项目<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-device-item.png" alt="设备监控项目"></p>
 <blockquote>
 <p>如果<code>Associated Data Queries</code>里面<code>Status</code>中显示<code>Success</code>并在后面显示出有具体数目的item和row表示数据是可以成功抓取的，如果都是<code>0</code>则表示数据没能抓取出来。</p>
@@ -149,7 +149,7 @@
 <p>点击页面右上方的<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-create-graphs.png" alt="创建图的按钮">即可创建抓取图。</p>
 <p>通过对于先前抓取的数据的观察，选择要监控的数据，在后面打钩，点击<code>Create</code>即可创建抓取图。</p>
 <p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-graphs-item.png" alt="设置图内容"></p>
-<h3 id="-521b-5efa-6811-">创建树</h3>
+<h3 id="创建树">创建树</h3>
 <p>点击<img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-btn-graph-tree.png" alt="创建树的按钮">，然后点击<code>Add</code>添加一个树</p>
 <ol>
 <li>填写树的名字，选择排列方式<br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-plugin-set-tree-name.png" alt="设置树的名字和排列方式"></li>
@@ -162,10 +162,10 @@
 <p><strong>注意</strong> ：没有图片出现是因为，刚添加完，可能Poller还没运行，每来得及抓取到数据，等待1-2分钟就可以了。</p>
 </blockquote>
 <p>至此一个监控实例添加完成。</p>
-<h2 id="-6ce8-610f-4e8b-9879-">注意事项</h2>
+<h2 id="注意事项">注意事项</h2>
 <p>　如果对于模版、系统设置、抓取时间间隔等进行了修改，需要<code>Rebuild Poller Cache</code>，以免出现不出图片或者图片上没有数据的问题。
 　</p>
-<h2 id="-63d2-4ef6-5f00-53d1-">插件开发</h2>
+<h2 id="插件开发">插件开发</h2>
 <p>插件结构包含在<a href="http://docs.cacti.net/plugins:development" target="_blank">http://docs.cacti.net/plugins:development</a></p>
 <p>插件放在<code>{cacti_root}/plugins/{plugin_name}</code>下。</p>
 <p>插件主要通过setup.php与cacti通信。</p>
@@ -258,7 +258,9 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/python/">Python</a><small>1</small></li>
+    <li><a href="/categories/python/">Python</a><small>2</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
   
     <li><a href="/categories/original/">原创</a><small>1</small></li>
   
@@ -311,13 +313,19 @@
   
     <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
   
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
     <li><a href="/tags/opensfit/">opensfit</a><small>1</small></li>
   
     <li><a href="/tags/php/">php</a><small>1</small></li>
   
+    <li><a href="/tags/pip/">pip</a><small>1</small></li>
+  
     <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
   
-    <li><a href="/tags/python/">python</a><small>1</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
   

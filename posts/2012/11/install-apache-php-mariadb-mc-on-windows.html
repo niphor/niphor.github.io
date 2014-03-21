@@ -77,16 +77,16 @@
 <p>网上也有许多打包好的包，比如PUPW,Xampp等，不过别人的始终不是太适合自用，而且改配置什么也麻烦，所以还不如自己配置一个用用，省时省力。</p>
 <a id="more"></a>
 
-<h2 id="PHP-53ca-5176-63d2-4ef6-">PHP及其插件</h2>
+<h2 id="PHP及其插件">PHP及其插件</h2>
 <p>Windows主要从<a href="http://windows.php.net/" target="_blank">http://windows.php.net/</a><br>PHP的一些插件存放在<a href="http://windows.php.net/downloads/pecl/" target="_blank">http://windows.php.net/downloads/pecl/</a><br>64bit的一些插件在<br><a href="http://www.mediafire.com/php-win64-extensions" target="_blank">http://www.mediafire.com/php-win64-extensions</a>  (<a href="http://www.anindya.com/" target="_blank">http://www.anindya.com/</a>)<br><a href="http://www.iis.net/downloads/microsoft/wincache-extension" target="_blank">http://www.iis.net/downloads/microsoft/wincache-extension</a></p>
 <blockquote>
 <p>PHP 5.2以后的版本中的 <em>extras</em> 文件夹不包含如 <strong>mibs</strong> 的文件，可以去xampp里面拿出来借用一下哈，当然也可以直接装Net-SNMP然后用其中的MIBS</p>
 </blockquote>
-<h3 id="php-ini-914d-7f6e-">php.ini配置</h3>
+<h3 id="php-ini配置">php.ini配置</h3>
 <blockquote>
 <p>用于开发的配置，有些属于我这边特殊情况…参考下</p>
 </blockquote>
-<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
+<figure class="highlight ini"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -880,13 +880,13 @@ xdebug.trace_output_dir = "d:\namp\tmp"
 ;xdebug.var_display_max_depth = 3
 </pre></td></tr></table></figure>
 
-<h2 id="Apache-53ca-5176-63d2-4ef6-">Apache及其插件</h2>
+<h2 id="Apache及其插件">Apache及其插件</h2>
 <p>Windos平台主要的更新站点是：<a href="http://www.apachelounge.com" target="_blank">http://www.apachelounge.com</a><br>最新版本更新贴是：<a href="http://www.apachelounge.com/viewtopic.php?p=24281" target="_blank">http://www.apachelounge.com/viewtopic.php?p=24281</a><br>文档还在官网：<a href="http://httpd.apache.org/docs/2.4/" target="_blank">http://httpd.apache.org/docs/2.4/</a></p>
 <blockquote>
 <p>vs11编译的版本不能在XP上使用，XP请选择VS10编译的版本</p>
 </blockquote>
-<h3 id="httpd-conf-914d-7f6e-">httpd.conf配置</h3>
-<figure class="highlight lang-apache"><table><tr><td class="gutter"><pre>1
+<h3 id="httpd-conf配置">httpd.conf配置</h3>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -1150,9 +1150,9 @@ Listen 81
 &lt;/VirtualHost&gt;
 </pre></td></tr></table></figure>
 
-<h3 id="PHP-7684-6302-8f7d-">PHP的挂载</h3>
+<h3 id="PHP的挂载">PHP的挂载</h3>
 <p>还是在httpd.conf中搜索LoadModule找到相关章节 ，在后面添加如下内容</p>
-<figure class="highlight lang-apache"><table><tr><td class="gutter"><pre>1
+<figure class="highlight apache"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -1169,7 +1169,7 @@ Listen 81
 <p>官网<a href="https://downloads.mariadb.org/" target="_blank">https://downloads.mariadb.org/</a><br>数据库的使用还是要看实际的业务，默认我直接用的small的配置，实际有需求再改就行了</p>
 <h2 id="memecache">memecache</h2>
 <p>下载地址<br><a href="http://downloads.northscale.com/" target="_blank">http://downloads.northscale.com/</a><br><a href="http://blog.elijaa.org/index.php?post/2010/10/15/Memcached-for-Windows" target="_blank">http://blog.elijaa.org/index.php?post/2010/10/15/Memcached-for-Windows</a></p>
-<h2 id="-591a-4f59-6587-4ef6-7684-5220-9664-">多余文件的删除</h2>
+<h2 id="多余文件的删除">多余文件的删除</h2>
 <blockquote>
 <p>默认情况下，下载的zip包包含了N多开发用的工具，如果不是开发需要，可以删除<br>删除后大概能节约一半的空间，效果客观= =!</p>
 </blockquote>
@@ -1178,13 +1178,13 @@ Listen 81
 2
 3
 4
-</pre></td><td class="code"><pre><span class="title">include</span>文件夹
-<span class="title">lib</span>文件夹下的 *.lib库
-<span class="title">logs</span>文件夹，自己定义到统一的地方方便管理
-<span class="title">manual</span>文件夹，手册可以直接看在线的
+</pre></td><td class="code"><pre>include文件夹
+<span class="keyword">lib</span>文件夹下的 *.<span class="keyword">lib</span>库
+logs文件夹，自己定义到统一的地方方便管理
+manual文件夹，手册可以直接看在线的
 </pre></td></tr></table></figure>
 
-<h3 id="MariaDB-2f-MySQL">MariaDB/MySQL</h3>
+<h3 id="MariaDB/MySQL">MariaDB/MySQL</h3>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -1192,21 +1192,21 @@ Listen 81
 5
 6
 7
-</pre></td><td class="code"><pre><span class="title">bin</span> 下面的*.pdb调试符号
-<span class="title">doc</span>文件夹
-<span class="title">include</span> 文件夹
-<span class="title">lib</span> 下面的*.pdb调试符号
-<span class="title">mysql</span>-test文件夹，不是跑负载测试，可以删了
-<span class="title">sql</span>-bench文件夹，不是跑负载测试，可以删了
-<span class="title">support</span>-files
+</pre></td><td class="code"><pre>bin 下面的<span class="subst">*</span><span class="built_in">.</span>pdb调试符号
+doc文件夹
+include 文件夹
+lib 下面的<span class="subst">*</span><span class="built_in">.</span>pdb调试符号
+mysql<span class="attribute">-test</span>文件夹，不是跑负载测试，可以删了
+sql<span class="attribute">-bench</span>文件夹，不是跑负载测试，可以删了
+support<span class="attribute">-files</span>
 </pre></td></tr></table></figure>
 
-<h2 id="-670d-52a1-6ce8-518c-2f-5378-8f7d-6279-5904-7406-">服务注册/卸载批处理</h2>
+<h2 id="服务注册/卸载批处理">服务注册/卸载批处理</h2>
 <blockquote>
 <p>这边直接用的%~dp0，所以要在当前文件夹运行哦，不然路径会有问题</p>
 </blockquote>
 <h3 id="Apache">Apache</h3>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<figure class="highlight dos"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -1235,7 +1235,7 @@ Listen 81
 </pre></td></tr></table></figure>
 
 <h3 id="MariaDB-1">MariaDB</h3>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<figure class="highlight dos"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -1264,7 +1264,7 @@ Listen 81
 </pre></td></tr></table></figure>
 
 <h3 id="Memcached">Memcached</h3>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<figure class="highlight dos"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -1397,7 +1397,9 @@ sc delete "namp_memcached"
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/python/">Python</a><small>1</small></li>
+    <li><a href="/categories/python/">Python</a><small>2</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
   
     <li><a href="/categories/original/">原创</a><small>1</small></li>
   
@@ -1450,13 +1452,19 @@ sc delete "namp_memcached"
   
     <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
   
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
     <li><a href="/tags/opensfit/">opensfit</a><small>1</small></li>
   
     <li><a href="/tags/php/">php</a><small>1</small></li>
   
+    <li><a href="/tags/pip/">pip</a><small>1</small></li>
+  
     <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
   
-    <li><a href="/tags/python/">python</a><small>1</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
   

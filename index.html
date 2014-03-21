@@ -60,6 +60,133 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-03-21T12:59:17.000Z"><a href="/posts/2014/03/npm-set-mirror.html">2014-03-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/posts/2014/03/npm-set-mirror.html">npm设置镜像</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>接着上一篇，这次设置npm里面的镜像，这个没什么好选的，如果公司没有则用<code>r.cnpmjs.org</code></p>
+<p>全局设置</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>npm config <span class="keyword">set</span> registry http://r<span class="preprocessor">.cnpmjs</span><span class="preprocessor">.org</span>
+</pre></td></tr></table></figure>
+
+<p>或自己动手修改<code>~/.npmrc</code></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="setting">registry = <span class="value">http://r.cnpmjs.org</span></span>
+</pre></td></tr></table></figure>
+
+<p>单独指定某一包的registry</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>npm install --registry http://r<span class="preprocessor">.cnpmjs</span><span class="preprocessor">.org</span>
+</pre></td></tr></table></figure>
+
+<p>[TOC]</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-21T11:46:52.000Z"><a href="/posts/2014/03/python-pip-mirror-site.html">2014-03-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/posts/2014/03/python-pip-mirror-site.html">pip 国内镜像设置</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>鉴于pypi上下东西越来越困难，用一个镜像现阶段是最好的解决方式。</p>
+<p>需要在配置文件内加上：  </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>[global]
+timeout = 6000
+index-url = http://pypi.v2ex.com/simple
+[install]
+use-mirrors = true
+mirrors = http://pypi.v2ex.com/
+
+#或单纯的就写
+[global]  
+index-url=http://pypi.v2ex.com/simple
+</pre></td></tr></table></figure>
+
+<p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/posts/2014/03/python-pip-mirror-site.html#more" class="more-link">详细</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-02-07T01:59:18.000Z"><a href="/posts/2014/02/why-flappy-bird-success.html">2014-02-07</a></time>
       
       
@@ -215,7 +342,7 @@
     </header>
     <div class="entry">
       
-        <h2 id="Python-5b89-88c5-">Python安装</h2>
+        <h2 id="Python安装">Python安装</h2>
 <p>Python 中国区下载地址：<a href="http://python.org/getit/" target="_blank">http://python.org/getit/</a><br>Package库<a href="https://pypi.python.org/pypi" target="_blank">https://pypi.python.org/pypi</a></p>
 <blockquote>
 <p>在Windows上面使用<code>安装给所有用户</code>选项会使<code>pythonXX.dll</code>复制到<code>Windos/system32</code>下面。<br>这时使用virtualenv生成环境后，需要把<code>pythonXX.dll</code>拷到<code>env/Scripts</code>下面，不然在没Python的机子上可能就可能会报<code>&quot;找不到pythonXX.dll&quot;</code>的错误。</p>
@@ -320,7 +447,7 @@
     </header>
     <div class="entry">
       
-        <h2 id="-63d2-4ef6-5b89-88c5-">插件安装</h2>
+        <h2 id="插件安装">插件安装</h2>
 <p>直接将插件解压缩之后放入Cacti的Plugin目录下，注意不要目录套目录，保持这样一个层次结构。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -388,7 +515,7 @@
     </header>
     <div class="entry">
       
-        <h2 id="-524d-671f-51c6-5907-">前期准备</h2>
+        <h2 id="前期准备">前期准备</h2>
 <p>这里主要说明PHP、Apache的配置，默认认为你已经安装好MySQL、PHP、Apache或其它代替工具，并做好了相应的基本配置，已可以用于开发或生产环境。如果没有请参考其它教程配置PHP、Apache、MySQL，这里不再重复了。<br>
       
     </div>
@@ -456,98 +583,6 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-02-06T07:23:11.000Z"><a href="/posts/2012/02/could-not-get-configurationtask-issue-in-maven-guide-chapter-7-7.html">2012-02-06</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/posts/2012/02/could-not-get-configurationtask-issue-in-maven-guide-chapter-7-7.html">Maven权威指南 第七章数据库生成不了的解决方法</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>　　初学Maven,必然是看\&lt;\<Maven权威指南\>>,这书很全面也有中文版本,sonatype官网,和GitHub上面都有,下载也很方便( <em>我是GitHub上抓的</em> ),不过我看到第七章7.7节,实际遇到了些问题。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/posts/2012/02/could-not-get-configurationtask-issue-in-maven-guide-chapter-7-7.html#more" class="more-link">详细</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2011-10-08T06:54:27.000Z"><a href="/posts/2011/10/using-mklink-to-change-chrome-profile-folder-location.html">2011-10-08</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/posts/2011/10/using-mklink-to-change-chrome-profile-folder-location.html">用mklink修改Chrome的用户数据目录位置</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>　　正值十一黄金周，我给笔记本重新安装了一下系统。一般为了避免重装后的数据丢失，各种软件的用户数据我都保存在别的分区，不过就像大家都知道的一样，Chrome并不能修改默认的Profile文件夹位置。</p>
-<p>　　一般Chrome只能在快捷方式中加上如<code>-User-data-dir=E:/UserData</code>的参数来指定具体目录，不过这样有个明显的缺点： <strong>不能设置Chrome为默认浏览器</strong> </p>
-<p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/posts/2011/10/using-mklink-to-change-chrome-profile-folder-location.html#more" class="more-link">详细</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
@@ -569,7 +604,9 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/python/">Python</a><small>1</small></li>
+    <li><a href="/categories/python/">Python</a><small>2</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
   
     <li><a href="/categories/original/">原创</a><small>1</small></li>
   
@@ -622,13 +659,19 @@
   
     <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
   
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
     <li><a href="/tags/opensfit/">opensfit</a><small>1</small></li>
   
     <li><a href="/tags/php/">php</a><small>1</small></li>
   
+    <li><a href="/tags/pip/">pip</a><small>1</small></li>
+  
     <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
   
-    <li><a href="/tags/python/">python</a><small>1</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
   

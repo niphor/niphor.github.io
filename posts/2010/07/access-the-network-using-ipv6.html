@@ -84,7 +84,7 @@
 </ul>
 <p>一般使用前面几个就可以了，反正我用上海交大的不错。</p>
 <p>　　Vista和Win7都默认已经开启IPv6，而XP由于默认没有安装IPv6，所以先得安装一下</p>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<figure class="highlight dos"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -95,7 +95,7 @@ netsh interface&gt;ipv6&gt;install
 </pre></td></tr></table></figure>
 
 <p>　　接着，我们来设置IPv6的隧道( <em>我以上海交大的隧道地址为例</em> )</p>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<figure class="highlight dos"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -113,7 +113,7 @@ netsh interface ipv6 isatap&gt;<span class="keyword">set</span> state enabled
 <blockquote>
 <p>Win7由于默认开启了<code>6to4</code>和<code>Teredo</code>隧道，所以在以上的情况下面上海交大的IPv6可能会因为使用默认的<code>6to4</code>隧道而不正常。</p>
 <p>于是我们还需关掉<code>6to4</code>隧道</p>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<figure class="highlight dos"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -131,9 +131,9 @@ netsh interface ipv6 isatap&gt;<span class="keyword">set</span> state enabled
 <p>这时访问<a href="http://www.kame.net/" target="_blank">http://www.kame.net/</a>网站</p>
 <p>假如页面上的乌龟是运动的，说明你是通过IPv6访问的<br><img src="http://www.kame.net/img/kame-anime-small.gif" alt="使用IPv6"></p>
 <p>但是要是乌龟不动，说明你的配置不正确<br><img src="http://www.kame.net/img/kame-noanime-small.gif" alt="未使用IPv6"></p>
-<h2 id="-5176-5b83-4e00-4e9b-547d-4ee4-">其它一些命令</h2>
+<h2 id="其它一些命令">其它一些命令</h2>
 <p>IPv6的接口关闭命令</p>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<figure class="highlight dos"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre>netsh interface teredo&gt;<span class="keyword">set</span> state disable
@@ -142,7 +142,7 @@ netsh interface isatap&gt;<span class="keyword">set</span> state disabled
 </pre></td></tr></table></figure>
 
 <p>还原为默认状态:</p>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<figure class="highlight dos"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre>netsh interface teredo&gt;<span class="keyword">set</span> state default
@@ -151,11 +151,11 @@ netsh interface isatap&gt;<span class="keyword">set</span> state default
 </pre></td></tr></table></figure>
 
 <p>重置IPv6，你可以使用rest命令</p>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<figure class="highlight dos"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>netsh interface ipv6&gt;reset
 </pre></td></tr></table></figure>
 
-<h2 id="-76f8-5173-7f51-7ad9-">相关网站</h2>
+<h2 id="相关网站">相关网站</h2>
 <p><a href="http://sixxs.org" target="_blank">http://sixxs.org</a><br><a href="http://yegle.net/glype/" target="_blank">http://yegle.net/glype/</a></p>
 
       
@@ -241,7 +241,9 @@ netsh interface isatap&gt;<span class="keyword">set</span> state default
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/python/">Python</a><small>1</small></li>
+    <li><a href="/categories/python/">Python</a><small>2</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
   
     <li><a href="/categories/original/">原创</a><small>1</small></li>
   
@@ -294,13 +296,19 @@ netsh interface isatap&gt;<span class="keyword">set</span> state default
   
     <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
   
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
     <li><a href="/tags/opensfit/">opensfit</a><small>1</small></li>
   
     <li><a href="/tags/php/">php</a><small>1</small></li>
   
+    <li><a href="/tags/pip/">pip</a><small>1</small></li>
+  
     <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
   
-    <li><a href="/tags/python/">python</a><small>1</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
   

@@ -75,7 +75,7 @@
 <blockquote>
 <p>原理：<br>　　梅麻吕的第十弹不能直接用播放器播放，影像文件为后缀为“mp<em>”的文件。实际是格式是MPEG-PS的mpg文件，但是梅麻吕把文件分为了2部分（以下假设为A和B），原来mpg文件顺序为AB，但是mp</em>的文件顺序却是BA。所以我们只要将顺序调转回来就能直接用播放器放。</p>
 </blockquote>
-<h2 id="-624b-5de5-65b9-5f0f-3a-">手工方式:</h2>
+<h2 id="手工方式:">手工方式:</h2>
 <ul>
 <li>工具：WinHex</li>
 </ul>
@@ -83,21 +83,21 @@
 <blockquote>
 <p>000001B9为mpg结尾<br>000001BA为mpg开头</p>
 </blockquote>
-<h2 id="-81ea-52a8-5c0f-8f6f-4ef6-">自动小软件</h2>
+<h2 id="自动小软件">自动小软件</h2>
 <p>　　为了欢度新年，我编了个小软件来转换,大家可以尝试。不保证所以版本都能行。</p>
 <blockquote>
 <p>需要.net framework 2.0</p>
 </blockquote>
 <p><a href="http://dl.dbank.com/c058aaf773" target="_blank">http://dl.dbank.com/c058aaf773</a></p>
-<h3 id="-64cd-4f5c-65b9-6cd5-">操作方法</h3>
+<h3 id="操作方法">操作方法</h3>
 <p>　　将Movie文件夹下的”.mp_”全选，直接全部拖到此程序图标上面即可。</p>
 <p>　　mpg文件同样生成在Movie文件夹下。</p>
 <blockquote>
 <p>已经发表在百度贴吧里面了：<a href="http://tieba.baidu.com/f?kz=966651885" target="_blank">http://tieba.baidu.com/f?kz=966651885</a></p>
 </blockquote>
-<h2 id="-4ee3-7801-">代码</h2>
+<h2 id="代码">代码</h2>
 <p>　　同时正因为是新年所以把源码也一并附上，有兴趣的一起来研究( <em>注释掉的判断0xFF的循环有时候会出错</em> )</p>
-<figure class="highlight lang-csharp"><table><tr><td class="gutter"><pre>1
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -201,7 +201,7 @@
 102
 103
 104
-</pre></td><td class="code"><pre><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> ConvertMPG(String Input)
+</pre></td><td class="code"><pre><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ConvertMPG</span>(String Input)
 {
     FileStream MP_ = File.Open(Input, FileMode.Open);
     <span class="keyword">int</span> ll=Input.Length;
@@ -288,7 +288,7 @@
 <span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;param name="b1"&gt;</span>数组1<span class="xmlDocTag">&lt;/param&gt;</span></span>
 <span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;param name="b2"&gt;</span>数组2<span class="xmlDocTag">&lt;/param&gt;</span></span>
 <span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;returns&gt;</span>是否相等<span class="xmlDocTag">&lt;/returns&gt;</span></span>
-<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">bool</span> CompareBt(<span class="keyword">int</span>[] b1, <span class="keyword">int</span>[] b2)
+<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">CompareBt</span>(<span class="keyword">int</span>[] b1, <span class="keyword">int</span>[] b2)
 {
     <span class="keyword">if</span> (b1.Length != b2.Length)
     { 
@@ -316,8 +316,8 @@
 <p>尾：000001B7<br>头：000001B3</p>
 </blockquote>
 <p>处理方式也和上面一样<del>，小工具就暂不更新了，我先得考试，虽然改下不用几分钟，但是我懒啊…结果我还是蛋疼的更新了小软件</del></p>
-<h2 id="-8d60-54c1-">赠品</h2>
-<h3 id="-6539-save-65b9-6cd5-28-4e0d-5b8c-7f8e-29-">改save方法(不完美)</h3>
+<h2 id="赠品">赠品</h2>
+<h3 id="改save方法(不完美)">改save方法(不完美)</h3>
 <p>　　save文件中实际上用16进制的<code>00</code>表示<code>没出现过</code>，<code>01</code>表示<code>出现过</code>，这样就简单了，直接全部改成<code>01</code>保存，就能查看几乎所以的视频</p>
 <blockquote>
 <p>第十弹左边2个隐藏的不行…<br>左边2个的方法：<a href="http://new-umemaro3d.sakura.ne.jp/UmeTop-All.html" target="_blank">http://new-umemaro3d.sakura.ne.jp/UmeTop-All.html</a><br>左边2个：红色字的播放个5次即可开启<br>右边2个：红色字的播放个10次即可开启 </p>
@@ -406,7 +406,9 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/python/">Python</a><small>1</small></li>
+    <li><a href="/categories/python/">Python</a><small>2</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
   
     <li><a href="/categories/original/">原创</a><small>1</small></li>
   
@@ -459,13 +461,19 @@
   
     <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
   
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
     <li><a href="/tags/opensfit/">opensfit</a><small>1</small></li>
   
     <li><a href="/tags/php/">php</a><small>1</small></li>
   
+    <li><a href="/tags/pip/">pip</a><small>1</small></li>
+  
     <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
   
-    <li><a href="/tags/python/">python</a><small>1</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
   

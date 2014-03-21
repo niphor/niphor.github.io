@@ -69,21 +69,21 @@
     </header>
     <div class="entry">
       
-        <h2 id="-524d-671f-51c6-5907-">前期准备</h2>
+        <h2 id="前期准备">前期准备</h2>
 <p>这里主要说明PHP、Apache的配置，默认认为你已经安装好MySQL、PHP、Apache或其它代替工具，并做好了相应的基本配置，已可以用于开发或生产环境。如果没有请参考其它教程配置PHP、Apache、MySQL，这里不再重复了。<br><a id="more"></a></p>
-<h3 id="PHP-914d-7f6e-">PHP配置</h3>
-<h4 id="-914d-7f6e-PHPRC">配置PHPRC</h4>
+<h3 id="PHP配置">PHP配置</h3>
+<h4 id="配置PHPRC">配置PHPRC</h4>
 <p>指向你php安装目录</p>
 <p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-phprc.png" alt="设置PHPRC"></p>
-<h4 id="-914d-7f6e-MIBDIRS">配置MIBDIRS</h4>
+<h4 id="配置MIBDIRS">配置MIBDIRS</h4>
 <p>指向php目录下面的extras的mibs文件夹</p>
 <p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-mibdirs.png" alt="设置MIBDIRS"></p>
 <blockquote>
 <p>有的PHP版本安装完之后并不会包含这个文件夹，这时候找个有这个目录的php，拷贝过来即可</p>
 </blockquote>
-<h4 id="-4fee-6539-Path-53d8-91cf-ff0c-6dfb-52a0-PHP-8def-5f84-28-975e-5fc5-987b-29-">修改Path变量，添加PHP路径(非必须)</h4>
+<h4 id="修改Path变量，添加PHP路径(非必须)">修改Path变量，添加PHP路径(非必须)</h4>
 <p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-php-path.png" alt="设置PATH"></p>
-<h4 id="-4fee-6539-php-ini">修改php.ini</h4>
+<h4 id="修改php-ini">修改php.ini</h4>
 <p>修改/配置如下参数</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -97,25 +97,25 @@
 10
 11
 12
-</pre></td><td class="code"><pre><span class="xml"><span class="tag"><span class="attribute">fastcgi.impersonate</span> = <span class="attribute">1</span>
-<span class="attribute">register_argc_argv</span> = <span class="attribute">On</span>
-<span class="attribute">safe_mode</span> = <span class="attribute">Off</span>
-<span class="attribute">cgi.fix_pathinfo</span> = <span class="attribute">1</span>
-<span class="attribute">cgi.force_redirect</span> = <span class="attribute">0</span>
-<span class="attribute">upload_tmp_dir</span> = "<span class="attribute">tmp</span>文件夹路径"
-<span class="attribute">session.save_path</span>=<span class="value">"Session文件夹路径"</span>
+</pre></td><td class="code"><pre>fastcgi<span class="preprocessor">.impersonate</span> = <span class="number">1</span>
+register_argc_argv = On
+safe_mode = Off
+cgi<span class="preprocessor">.fix</span>_pathinfo = <span class="number">1</span>
+cgi<span class="preprocessor">.force</span>_redirect = <span class="number">0</span>
+upload_tmp_dir = <span class="string">"tmp文件夹路径"</span>
+session<span class="preprocessor">.save</span>_path=<span class="string">"Session文件夹路径"</span>
 
 //根据主机实际情况调整
-<span class="attribute">max_execution_time</span> = <span class="attribute">60</span> ;
-<span class="attribute">max_input_time</span> = <span class="attribute">120</span> ;
-<span class="attribute">memory_limit</span> = <span class="attribute">128M</span> ;</span></span>
+max_execution_time = <span class="number">60</span> <span class="comment">;</span>
+max_input_time = <span class="number">120</span> <span class="comment">;</span>
+memory_limit = <span class="number">128</span>M <span class="comment">;</span>
 </pre></td></tr></table></figure>
 
-<h4 id="-4fee-6539-6743-9650-">修改权限</h4>
+<h4 id="修改权限">修改权限</h4>
 <p>给计划任务执行账户 修改<code>php目录\extras\mibs\</code>文件夹的权限</p>
 <p>如果使用IIS：<br>修改<code>tmp文件夹路径</code>和<code>Session文件夹路径</code>的NTFS权限，给<code>IUSR_</code>和<code>IIS_WPG</code>用户修改此文件夹内文件的权限</p>
-<h3 id="Apache-914d-7f6e-">Apache配置</h3>
-<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
+<h3 id="Apache配置">Apache配置</h3>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -125,7 +125,7 @@ extension=php_snmp.dll
 extension=php_sockets.dll
 </pre></td></tr></table></figure>
 
-<h3 id="-8f6f-4ef6-4e0b-8f7d-">软件下载</h3>
+<h3 id="软件下载">软件下载</h3>
 <ul>
 <li>Cacti主程序<br>  <a href="http://www.cacti.net/download_cacti.php" target="_blank">http://www.cacti.net/download_cacti.php</a><br>  下载Windows in ZIP format包</li>
 <li>Spine 程序<br>  <a href="http://www.cacti.net/spine_download.php" target="_blank">http://www.cacti.net/spine_download.php</a><br>  下载Spine Binaries for Windows包</li>
@@ -138,7 +138,7 @@ extension=php_sockets.dll
 <p>RRDtool最新的为1.4.X版本的，但是默认编译好的Windows平台的只有1.2.X版本，如果使用最新的版本需要自行安装Cygwin（ <a href="http://www.cygwin.com/" target="_blank">http://www.cygwin.com/</a> ）编译新版本的源码。1.2.X编译好的版本在Windows下面不能支持中文。</p>
 <p>由于Cacti自带某些perl脚本来查询，所以需要安装ActivePerl，但若你确定自己不会用到perl脚本来查询，则可以不安装。</p>
 </blockquote>
-<h2 id="-8f6f-4ef6-5b89-88c5-">软件安装</h2>
+<h2 id="软件安装">软件安装</h2>
 <h3 id="Spine">Spine</h3>
 <p>Spine为免安装工具，解压到你想要放置的地方( <em>如：c:\spine</em> )</p>
 <p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-spine.png" alt="放置Spine程序文件"></p>
@@ -160,12 +160,12 @@ extension=php_sockets.dll
 <h3 id="Cacti">Cacti</h3>
 <p>Cacti 主程序为PHP的WebApp,解压到Apache或代替软件的网站目录下( <em>如：D:\wamp\htdocs</em> )，或者自行建立虚拟主机，或者虚拟目录，然后解压进去。</p>
 <p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti.png" alt="放置Cacti程序文件"></p>
-<h4 id="MySQL-6570-636e-5e93-914d-7f6e-">MySQL数据库配置</h4>
+<h4 id="MySQL数据库配置">MySQL数据库配置</h4>
 <p>这里创建的数据库即为<code>Spine</code>和<code>Cacti</code>使用的数据库</p>
 <blockquote>
 <p>cacti.sql在cacti的根目录下面，数据库名称和数据库用户可以自己定义。</p>
 </blockquote>
-<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sql"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -174,9 +174,9 @@ extension=php_sockets.dll
 7
 8
 </pre></td><td class="code"><pre>//创建cacti数据库
-mysql&gt; <span class="operator"><span class="keyword">create</span> database cacti;</span>
+mysql&gt; create database cacti;
 //创建cactiuser用户并付给cacti表权限
-mysql&gt; <span class="operator"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">on</span> cacti.* <span class="keyword">to</span> cactiuser@localhost identified <span class="keyword">by</span> “cactiuser”;</span>
+mysql&gt; grant all on cacti.* to cactiuser@localhost identified by “cactiuser”;
 mysql&gt;flush privileges;
 //导入cacti数据库sql
 mysql&gt;use cacti
@@ -184,7 +184,7 @@ mysql&gt;source d:/wamp/htdocs/cacti/cacti.sql
 </pre></td></tr></table></figure>
 
 <p>打开Cacti目录下的<code>include\config.php</code>,配置数据库地址</p>
-<figure class="highlight lang-php"><table><tr><td class="gutter"><pre>1
+<figure class="highlight php"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -200,7 +200,7 @@ mysql&gt;source d:/wamp/htdocs/cacti/cacti.sql
 <span class="variable">$database_ssl</span> = <span class="keyword">false</span>;
 </pre></td></tr></table></figure>
 
-<h4 id="-5b89-88c5-Cacti">安装Cacti</h4>
+<h4 id="安装Cacti">安装Cacti</h4>
 <ol>
 <li>在浏览器中打开cacti(<a href="http://your-url/install/index.php" target="_blank">http://your-url/install/index.php</a>)<br><em>比如我放在了<a href="http://localhost/cacti/install/index.php" target="_blank">http://localhost/cacti/install/index.php</a></em><br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-install-cacti-step-1.png" alt="安装Cacti 第一步"><br>点击 <code>Next&gt;&gt;</code> 进入下一步</li>
 <li><p>选择全新安装</p>
@@ -217,11 +217,11 @@ mysql&gt;source d:/wamp/htdocs/cacti/cacti.sql
 </li>
 </ol>
 <p>至此Cacti安装完成。</p>
-<h4 id="-8bbe-7f6e-Cacti">设置Cacti</h4>
-<h5 id="-8bbe-7f6e-8def-5f84-">设置路径</h5>
+<h4 id="设置Cacti">设置Cacti</h4>
+<h5 id="设置路径">设置路径</h5>
 <p>在Paths选项卡中，如图填入spine和其它组件的绝对路径</p>
 <p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-cacti-set-abspath.png" alt="设置abspath"></p>
-<h5 id="-8bbe-7f6e-Poller">设置Poller</h5>
+<h5 id="设置Poller">设置Poller</h5>
 <p>因为我们安装了<code>Spine</code>，将<code>Poller Type</code>选为<code>spine</code>,并将<code>Poller Interval</code>和<code>Cron interval</code>都设置为<code>Every Minute</code>。</p>
 <p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-cacti-set-poller.png" alt="设置Poller"></p>
 <blockquote>
@@ -230,7 +230,7 @@ mysql&gt;source d:/wamp/htdocs/cacti/cacti.sql
 <p>同时修改左侧<code>Data Templates</code>选项卡里模板的<code>step</code>( <em>采样时间</em> )为 <strong>60</strong> ，<code>heartbeat</code>( <em>超时</em> )为 <strong>120</strong></p>
 <blockquote>
 <p>如果模板太多，可以简单用SQL命令修改：  </p>
-<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sql"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="operator"><span class="keyword">UPDATE</span> data_template_data <span class="keyword">SET</span> rrd_step=<span class="number">60</span> <span class="keyword">WHERE</span> rrd_step=<span class="number">300</span>;</span>
 <span class="operator"><span class="keyword">UPDATE</span> data_template_rrd <span class="keyword">SET</span> rrd_heartbeat=<span class="number">120</span> <span class="keyword">WHERE</span> rrd_heartbeat=<span class="number">600</span>;</span>
@@ -240,23 +240,23 @@ mysql&gt;source d:/wamp/htdocs/cacti/cacti.sql
 <p>修改Data Templates 为需要以分钟为单位收集数据的模版选上<code>Hourly (1 Minute Average)</code></p>
 <blockquote>
 <p>如果模板太多，可以简单用SQL命令修改：</p>
-<figure class="highlight lang-sql"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sql"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> data_template_data_rra(<span class="string">`data_template_data_id`</span>,<span class="string">`rra_id`</span>) <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> dtdr.data_template_data_id,<span class="number">5</span> <span class="keyword">FROM</span> data_template_data_rra dtdr</span>
 </pre></td></tr></table></figure>
 
 </blockquote>
-<h2 id="-8bbe-7f6e-8ba1-5212-4efb-52a1-">设置计划任务</h2>
+<h2 id="设置计划任务">设置计划任务</h2>
 <p>打开控制面板里面的计划任务，点击添加计划任务</p>
 <p>任务的运行中，填写<code>php.exe</code>所在路径并加上参数<code>–f cacti路径/poller.php</code></p>
 <p>起始目录请指定为<code>cacti</code>所在目录。</p>
 <p>修改任务的计划，使其 <strong>每天24小时每隔1分钟执行一次</strong> 。 </p>
 <p><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-win-task-1.png" alt="设置Windows计划任务(1)"><br><img src="http://niphor-dev.qiniudn.com/post-install-cacti-set-win-task-2.png" alt="设置Windows计划任务(2)"></p>
-<h2 id="Linux-7aef-">Linux端</h2>
+<h2 id="Linux端">Linux端</h2>
 <blockquote>
 <p>因为虽然是不同的系统，但是配置都差不多，所以参照Windows的配置，Linux端就写的简短些了</p>
 </blockquote>
-<h3 id="-524d-671f-51c6-5907--1">前期准备</h3>
-<h4 id="-914d-7f6e-597d-Web-73af-5883-28-PHP-ff0c-MySQL-29-ff0c-5982-6700-57fa-672c-7684-LAMP-ff1a-">配置好Web环境(PHP，MySQL)，如最基本的LAMP：</h4>
+<h3 id="前期准备-1">前期准备</h3>
+<h4 id="配置好Web环境(PHP，MySQL)，如最基本的LAMP：">配置好Web环境(PHP，MySQL)，如最基本的LAMP：</h4>
 <ul>
 <li>httpd</li>
 <li>php</li>
@@ -276,10 +276,10 @@ mysql&gt;source d:/wamp/htdocs/cacti/cacti.sql
 <li>patch</li>
 </ul>
 </blockquote>
-<h4 id="-8bbe-7f6e-PHP">设置PHP</h4>
-<h5 id="-4fee-6539-php-ini-1">修改php.ini</h5>
+<h4 id="设置PHP">设置PHP</h4>
+<h5 id="修改php-ini-1">修改php.ini</h5>
 <p>修改/配置如下参数</p>
-<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
+<figure class="highlight ini"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -309,9 +309,9 @@ memory_limit = 128M ;
 <blockquote>
 <p>同时由于要使用<code>php-snmp</code>，必须指定<code>MIBDIRS</code>的位置<br>搜索系统中<code>mibs</code>文件夹，并将其设置为系统变量<br>如<code>export MIBDIRS=/path/to/:/path2/to</code></p>
 </blockquote>
-<h5 id="-914d-7f6e-Apache">配置Apache</h5>
+<h5 id="配置Apache">配置Apache</h5>
 <p>确保已开启以下模块的使用：</p>
-<figure class="highlight lang-ini"><table><tr><td class="gutter"><pre>1
+<figure class="highlight ini"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre><span class="setting">extension=<span class="value">php_mysql.dll</span></span>
@@ -319,14 +319,14 @@ memory_limit = 128M ;
 <span class="setting">extension=<span class="value">php_sockets.dll</span></span>
 </pre></td></tr></table></figure>
 
-<h3 id="-8f6f-4ef6-5b89-88c5--1">软件安装</h3>
+<h3 id="软件安装-1">软件安装</h3>
 <h4 id="Cacti-1">Cacti</h4>
 <p>推荐使用<code>apt-get install cacti</code>来安装编译好的二进制版本</p>
 <blockquote>
 <p>也可以从<a href="http://www.cacti.net/download_cacti.php" target="_blank">http://www.cacti.net/download_cacti.php</a>下载源码包，编译安装</p>
 </blockquote>
 <p>我使用自己下载安装来介绍</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -340,7 +340,7 @@ mv ./cacti-<span class="number">0.8</span><span class="number">.8</span>a /<span
 
 <h4 id="Spine-1">Spine</h4>
 <p>从<a href="http://www.cacti.net/spine_download.php" target="_blank">http://www.cacti.net/spine_download.php</a>处下载<code>Spine Source</code>包,手动编译安装。</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -374,7 +374,7 @@ sudo vi /usr/local/spine/bin/spine<span class="preprocessor">.conf</span>
 <p>也可以从<a href="http://oss.oetiker.ch/rrdtool/download.en.html" target="_blank">http://oss.oetiker.ch/rrdtool/download.en.html</a>下载Debian包，编译安装</p>
 </blockquote>
 <p>设置RRDtool显示中文</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -387,7 +387,7 @@ sudo vi /usr/local/spine/bin/spine<span class="preprocessor">.conf</span>
 </pre></td></tr></table></figure>
 
 <p>填写如下内容</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -397,7 +397,7 @@ sudo vi /usr/local/spine/bin/spine<span class="preprocessor">.conf</span>
 /usr/bin/rrdtool.local <span class="string">"<span class="variable">$@</span>"</span>
 </pre></td></tr></table></figure>
 
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="comment">#修改权限，使其能执行</span>
 <span class="built_in">sudo</span> chmod <span class="number">755</span> /usr/bin/rrdtool
@@ -408,13 +408,13 @@ sudo vi /usr/local/spine/bin/spine<span class="preprocessor">.conf</span>
 <blockquote>
 <p>也可以从<a href="http://www.net-snmp.org/download.html" target="_blank">http://www.net-snmp.org/download.html</a>下载源码包，编译安装</p>
 </blockquote>
-<h3 id="Cacti-5b89-88c5-2f-914d-7f6e-">Cacti安装/配置</h3>
+<h3 id="Cacti安装/配置">Cacti安装/配置</h3>
 <blockquote>
 <p>参见Windows下的安装配置</p>
 <p>注意：RRDtool的版本此时应该选择为1.4.X！</p>
 </blockquote>
 <p>Linux下需要设置文件夹权限</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -446,65 +446,65 @@ chown root:root /<span class="keyword">var</span>/www/cacti
 chmod +s /<span class="keyword">var</span>/www/cacti/poller.php
 </pre></td></tr></table></figure>
 
-<h3 id="-8ba1-5212-4efb-52a1-914d-7f6e-">计划任务配置</h3>
+<h3 id="计划任务配置">计划任务配置</h3>
 <p>使用<code>sudo crontab –e</code>命令编辑任务，在最后添加一行：</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 </pre></td><td class="code"><pre><span class="comment"># */1表示 每1分钟执行1次</span>
 *<span class="regexp">/1 *  * * * /usr</span><span class="regexp">/bin/php</span> /var/www/cacti/poller.php &gt;<span class="regexp">/dev/null</span> <span class="number">2</span>&gt;&<span class="number">1</span>
 </pre></td></tr></table></figure>
 
 <p>Ctrl+X 退出保存</p>
-<h2 id="-88ab-76d1-63a7-7aef-">被监控端</h2>
-<h3 id="Window-5e73-53f0-">Window平台</h3>
+<h2 id="被监控端">被监控端</h2>
+<h3 id="Window平台">Window平台</h3>
 <p>安装Information-std<br>官方下载地址：<a href="http://www.wtcs.org/informant/download.htm" target="_blank">http://www.wtcs.org/informant/download.htm</a><br>不需要做配置</p>
 <blockquote>
 <p>这是由于由于Windows自带的SNMP提供的信息不足以让Cacti监控到主机的信息，所以需要安装</p>
 </blockquote>
-<h3 id="Linux-5e73-53f0-">Linux平台</h3>
+<h3 id="Linux平台">Linux平台</h3>
 <p>Linux平台需要开启<code>SNMP</code>服务</p>
 <p>使用<code>apt-get install snmpd</code>安装<code>snmpd</code>服务</p>
 <blockquote>
 <p>如果服务器自带的MIB不足以让Cacti获得它所需要的信息<br>使用<code>apt-get install snmp-mibs-downloader</code>下载mibs文件。</p>
 </blockquote>
 <p>如果服务器有<code>iptables</code>，需要将<code>upd</code>的<code>161端口</code>设置为<code>可以接受传入</code></p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="variable">#iptables</span> <span class="attribute">-A</span> INPUT <span class="attribute">-i</span> eth0 <span class="attribute">-p</span> udp <span class="attribute">-s</span> 监控服务器IP –dport <span class="number">161</span> <span class="attribute">-j</span> ACCEPT
 </pre></td></tr></table></figure>
 
 <p>如果是Ubuntu平台 修改<code>/etc/default/snmpd</code></p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>snmpDOPTS<span class="subst">=</span>’<span class="attribute">-Lsd</span> <span class="attribute">-Lf</span> <span class="subst">/</span>dev<span class="subst">/</span><span class="built_in">null</span> <span class="attribute">-u</span> snmp <span class="attribute">-I</span> <span class="attribute">-smux</span> <span class="attribute">-p</span> <span class="subst">/</span><span class="built_in">var</span><span class="subst">/</span>run<span class="subst">/</span>snmpd<span class="built_in">.</span>pid <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>’
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>snmpDOPTS<span class="subst">=</span>’<span class="attribute">-Lsd</span> <span class="attribute">-Lf</span> /dev/<span class="built_in">null</span> <span class="attribute">-u</span> snmp <span class="attribute">-I</span> <span class="attribute">-smux</span> <span class="attribute">-p</span> /<span class="built_in">var</span>/run/snmpd<span class="built_in">.</span>pid <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>’
 </pre></td></tr></table></figure>
 
 <p>将之修改为：</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>snmpDOPTS<span class="subst">=</span>’<span class="attribute">-Lsd</span> <span class="attribute">-Lf</span> <span class="subst">/</span>dev<span class="subst">/</span><span class="built_in">null</span> <span class="attribute">-u</span> snmp <span class="attribute">-I</span> <span class="attribute">-smux</span> <span class="attribute">-p</span> <span class="subst">/</span><span class="built_in">var</span><span class="subst">/</span>run<span class="subst">/</span>snmpd<span class="built_in">.</span>pid’
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>snmpDOPTS<span class="subst">=</span>’<span class="attribute">-Lsd</span> <span class="attribute">-Lf</span> /dev/<span class="built_in">null</span> <span class="attribute">-u</span> snmp <span class="attribute">-I</span> <span class="attribute">-smux</span> <span class="attribute">-p</span> /<span class="built_in">var</span>/run/snmpd<span class="built_in">.</span>pid’
 </pre></td></tr></table></figure>
 
 <p>然后执行<code>sudo service snmd restart</code>重启服务</p>
-<h2 id="-5176-4ed6-95ee-9898-">其他问题</h2>
-<h3 id="Net-SNMP-627e-4e0d-5230-libnetsnmp-so-7684-95ee-9898-">Net-SNMP找不到libnetsnmp.so的问题</h3>
+<h2 id="其他问题">其他问题</h2>
+<h3 id="Net-SNMP找不到libnetsnmp-so的问题">Net-SNMP找不到libnetsnmp.so的问题</h3>
 <p>尝试添加系统变量<code>export LD_LIBRARY_PATH=/usr/local/lib</code><br>如果问题依旧使用如下方式：</p>
 <ul>
 <li>创建一个文件<code>/etc/ld.so.conf.d/local.conf</code></li>
 <li>编辑文件，写入<code>/usr/local/lib</code>保存</li>
 <li>运行”ldconfig”</li>
 </ul>
-<h3 id="-4fee-6539-rrd-6587-4ef6-65f6-95f4-95f4-9694-">修改rrd文件时间间隔</h3>
+<h3 id="修改rrd文件时间间隔">修改rrd文件时间间隔</h3>
 <blockquote>
 <p>以修改为60 即1分钟为例</p>
 </blockquote>
 <ul>
 <li><p>用<code>rrdtool dump</code>将rrd库dump成一个xml文件  </p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>sudo rrdtool dump /www/webdev/cacti/rra/<span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.rrd</span> &gt;~/<span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.xml</span>
 </pre></td></tr></table></figure>
 </li>
 <li><p>用手动编辑的方法修改xml文件中的step值</p>
 <blockquote>
 <p>如本例，将300修改成60</p>
-<figure class="highlight lang-xml"><table><tr><td class="gutter"><pre>1
+<figure class="highlight xml"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -524,7 +524,7 @@ chmod +s /<span class="keyword">var</span>/www/cacti/poller.php
 <li><p>保存文件</p>
 </li>
 <li><p>将xml文件用rrd restore存成一个新的rrd库</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>rrdtool restore <span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.xml</span> <span class="number">105</span>_133sh_rent_cpu_6056<span class="preprocessor">.rrd</span>
 </pre></td></tr></table></figure>
 </li>
@@ -621,7 +621,9 @@ chmod +s /<span class="keyword">var</span>/www/cacti/poller.php
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/python/">Python</a><small>1</small></li>
+    <li><a href="/categories/python/">Python</a><small>2</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
   
     <li><a href="/categories/original/">原创</a><small>1</small></li>
   
@@ -674,13 +676,19 @@ chmod +s /<span class="keyword">var</span>/www/cacti/poller.php
   
     <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
   
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
     <li><a href="/tags/opensfit/">opensfit</a><small>1</small></li>
   
     <li><a href="/tags/php/">php</a><small>1</small></li>
   
+    <li><a href="/tags/pip/">pip</a><small>1</small></li>
+  
     <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
   
-    <li><a href="/tags/python/">python</a><small>1</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
   

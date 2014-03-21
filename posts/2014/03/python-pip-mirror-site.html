@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>为什么Flappy Bird会成功 | M-78的开发小站</title>
+  <title>pip 国内镜像设置 | M-78的开发小站</title>
   <meta name="author" content="Niphor">
   
   <meta name="description" content="Niphor的开发文档收集贴，Blog不用了，放这吧...万年更一次...">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="为什么Flappy Bird会成功"/>
+  <meta property="og:title" content="pip 国内镜像设置"/>
   <meta property="og:site_name" content="M-78的开发小站"/>
 
   
@@ -59,46 +59,77 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-02-07T01:59:18.000Z"><a href="/posts/2014/02/why-flappy-bird-success.html">2014-02-07</a></time>
+        <time datetime="2014-03-21T11:46:52.000Z"><a href="/posts/2014/03/python-pip-mirror-site.html">2014-03-21</a></time>
       
       
   
-    <h1 class="title">为什么Flappy Bird会成功</h1>
+    <h1 class="title">pip 国内镜像设置</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Flappy Bird 最近火了，App Store 北美区榜首了。</p>
-<p>于是我下了玩了一下，同时也钓起了几个基友的兴趣，让他们也试完了一下。</p>
-<p>一个认为是 弱智的1B</p>
-<p>一个认为是 不好玩，超过0分就不会去玩了</p>
-<p>一个玩到2分就把手机丢还给我了。</p>
-<p>而我不停玩了几个小时，还在玩。</p>
-<p>也难怪网上会引发激烈讨论…<br><a id="more"></a><br>这里我以一个玩家的身份试图解释其中的原因。就如作者说的：</p>
+        <p>鉴于pypi上下东西越来越困难，用一个镜像现阶段是最好的解决方式。</p>
+<p>需要在配置文件内加上：  </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>[global]
+timeout = 6000
+index-url = http://pypi.v2ex.com/simple
+[install]
+use-mirrors = true
+mirrors = http://pypi.v2ex.com/
+
+#或单纯的就写
+[global]  
+index-url=http://pypi.v2ex.com/simple
+</pre></td></tr></table></figure>
+
+<p><a id="more"></a></p>
 <blockquote>
-<p>我觉得游戏能够获得成功，最重要的原因是在玩家和简单之间的竞争，它们是为线下竞争而设计出来的，如今人们都忘记了这一点。同时，我的每一个游戏都只有一个设置、一个行为和一个游戏机制。它们极为简单，很容易学会，而且只需要技巧。它的玩家是那些需要真正的挑战而非“付钱去赢”的人。</p>
+<p>在unix和macos，配置文件为：<code>$HOME/.pip/pip.conf</code><br>在windows上，配置文件为：<code>%HOME%\pip\pip.ini</code></p>
+<p>清华大学的你可能用不了</p>
 </blockquote>
-<h2 id="简单">简单</h2>
-<p>这款游戏是极其简单的，甚至N年之前各类雷同的游戏就已经充斥在大街小巷了。也正因为操作极其简单，给人以一种 <strong>这个游戏不太难</strong> 的印象，而实际的判定非常的严格，导致了一种心理的落差感。</p>
-<p>也还是因为操作的极其简单( <em>只有点击一个动作</em> )，会让玩家觉得其实难度还行，只要仔细些可能就能过关了。</p>
-<p>这样的心理上的暗示可以让玩家在失败之后存在一种侥幸心理，不会放弃继续尝试。</p>
-<h3 id="没有剧情">没有剧情</h3>
-<p>这游戏没有剧情，回归原始，现在是快节奏生活，面对的是大量碎片化的时间，没有那么多时间来吸收消化过多的剧情，玩家会觉得厌倦。</p>
-<p>因为没有终点，所以你可以随时停止，没有心理上的负担。</p>
-<h2 id="难度">难度</h2>
-<p>难度是这款游戏最大的特点，一不小心就会死。</p>
-<p>因为死得快，所以游戏流程很短，让人不会厌倦，还没反应过来就结束了。</p>
-<p>相反，如果玩家很厉害、持续时间很长，在不断积累的分数面前会有种优越感和刺激感，这些会使玩家继续玩下去。</p>
-<h2 id="积分">积分</h2>
-<p>游戏从开始到结束都会显示当前的分数，分数会给玩家一种刺激，让玩家挑战自我。</p>
-<p>而且难能可贵的是这游戏没有各种蛋疼的内购，也不需要你付出金钱。单纯的实力和运气的比拼。</p>
-<h2 id="总结">总结</h2>
-<p>反观类似《使命召唤》系列，其实游戏很单一，看的是剧情，但是面对几个小时的游戏流程，上学时也许还能玩玩，现在真心是没兴趣看了…</p>
-<p>又如《狂野飙车》系列，游戏很简单，难度也不难，但是后期除了成为金钱玩家，就是必须要通过数百次冗余的操作获得足够金币买辆好点的车，才能开过一个不难的关卡，实在是让人心生厌倦。</p>
-<p>这款游戏对我来说是一款上乘的作品，随手就能玩，随时都能停。是现代人消磨时光的好游戏。</p>
-<p>所以说这游戏能火，完全是适应人们的生活啊。</p>
-<p>不过再火也有厌倦的时候，我们就拭目以待看看这游戏能火多久吧。</p>
+<p>如果不能用时，可以去 <a href="http://www.pypi-mirrors.org/" target="_blank">http://www.pypi-mirrors.org/</a> 看下情况。</p>
+<blockquote>
+<p>别想着用官方的了 <a href="http://[a-z].pypi.python.org/" target="_blank">http://[a-z].pypi.python.org/</a> 估计情况都不行…</p>
+</blockquote>
+<p>用pip的<code>-i</code>参数也是可以的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="preprocessor">#安装pip</span>
+python <span class="keyword">get</span>-pip.py -i http:<span class="comment">//pypi.v2ex.com/simple</span>
+</pre></td></tr></table></figure>
+
+<p>另外用pip升级pip自己时最好用如下的句子，不然Windows上面可能会报异常：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="comment">python</span> <span class="literal">-</span><span class="comment">m</span> <span class="comment">pip</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span> <span class="comment">pip</span>
+</pre></td></tr></table></figure>
+
+<p>如果系统默认版本是2.7，我又安装了3.4，怎么用pip给3.4安装库包？</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>&gt;python3
+&gt;&gt;&gt;<span class="keyword">import</span> pip
+&gt;&gt;&gt;pip.main([<span class="string">"install"</span>,<span class="string">"要装的包"</span>]);
+</pre></td></tr></table></figure>
+
+<p>这是pip自己安装自己的脚本里面的写法，相当于直接调用pip，所以用什么参数你懂的。</p>
+<p>当然你还可以用<code>pyenv</code>等工具来实现不同版本的切换使用，不过我比较蛋疼而已。</p>
+<p>参考：<br><a href="http://segmentfault.com/q/1010000000162410" target="_blank">http://segmentfault.com/q/1010000000162410</a><br><a href="http://blog.csdn.net/sasoritattoo/article/details/10020547" target="_blank">http://blog.csdn.net/sasoritattoo/article/details/10020547</a><br><a href="http://stackoverflow.com/questions/15221473/how-do-i-update-pip-itself-from-inside-my-virtual-environment" target="_blank">http://stackoverflow.com/questions/15221473/how-do-i-update-pip-itself-from-inside-my-virtual-environment</a></p>
+<p>吐槽：</p>
+<p>近来似乎技术网站在国内的访问越来越困难了，原因我也不多说了，不过对我们的影响是越来越大了…</p>
+<p>现在各个语言都有自己的包管理工具，本来是给人便利的东西，在国内就是给人添堵…</p>
+<p>大公司可能还有自己的镜像，小公司或者家用真的是很痛苦…</p>
 <p>[TOC]</p>
 
       
@@ -108,13 +139,13 @@
         
   
   <div class="categories">
-    <a href="/categories/thought/">杂谈</a>
+    <a href="/categories/python/">Python</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/flappy bird/">flappy bird</a>
+    <a href="/tags/python/">python</a>, <a href="/tags/pip/">pip</a>
   </div>
 
         

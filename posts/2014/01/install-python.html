@@ -69,7 +69,7 @@
     </header>
     <div class="entry">
       
-        <h2 id="Python-5b89-88c5-">Python安装</h2>
+        <h2 id="Python安装">Python安装</h2>
 <p>Python 中国区下载地址：<a href="http://python.org/getit/" target="_blank">http://python.org/getit/</a><br>Package库<a href="https://pypi.python.org/pypi" target="_blank">https://pypi.python.org/pypi</a></p>
 <blockquote>
 <p>在Windows上面使用<code>安装给所有用户</code>选项会使<code>pythonXX.dll</code>复制到<code>Windos/system32</code>下面。<br>这时使用virtualenv生成环境后，需要把<code>pythonXX.dll</code>拷到<code>env/Scripts</code>下面，不然在没Python的机子上可能就可能会报<code>&quot;找不到pythonXX.dll&quot;</code>的错误。</p>
@@ -80,12 +80,12 @@
 </blockquote>
 <a id="more"></a>
 
-<h2 id="-5b89-88c5-setuptools">安装setuptools</h2>
+<h2 id="安装setuptools">安装setuptools</h2>
 <p><a href="https://pypi.python.org/pypi/setuptools" title="setuptools" target="_blank">官网</a>推荐的方式是下载py脚本安装</p>
 <blockquote>
 <p>1.0开始的Windows平台已经没有easy_install的安装包了</p>
 </blockquote>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -105,7 +105,7 @@ python ez_setup.py --user
 
 <blockquote>
 <p>Windows下如果报</p>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<figure class="highlight dos"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre>&gt;File "C:\Python27\lib\mimetypes.py", line <span class="number">358</span>, <span class="flow">in</span> init
@@ -115,9 +115,9 @@ python ez_setup.py --user
 
 <p>打开注册表，展开HKEY_CLASSES_ROOT找到中文节点，备份下，删掉就好了</p>
 </blockquote>
-<h2 id="-5b89-88c5-pip">安装pip</h2>
+<h2 id="安装pip">安装pip</h2>
 <p><code>pip</code>需要<code>setuptools</code>支持 <a href="https://pypi.python.org/pypi/pip" title="Pip" target="_blank">官网</a>,<a href="http://www.pip-installer.org/" title="pip-installer" target="_blank">pip-installer 官网</a></p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -133,7 +133,7 @@ python ez_setup.py --user
 <p>Windows上面安装完需要将<code>C:\Python2x\Scripts</code>加入系统路径中</p>
 </blockquote>
 <p>Linux 上面可以简单的使用包管理器</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -146,9 +146,9 @@ $ sudo yum install python<span class="attribute">-pip</span>
 <blockquote>
 <p>安装<code>python-pip</code>一般也会直接安装好<code>python-setuptools</code></p>
 </blockquote>
-<h3 id="-4f7f-7528-pip">使用pip</h3>
+<h3 id="使用pip">使用pip</h3>
 <p>安装一个包</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -156,65 +156,65 @@ $ sudo yum install python<span class="attribute">-pip</span>
 6
 7
 8
-</pre></td><td class="code"><pre>$ [sudo] pip install SomePackage==<span class="number">1.0</span>
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip install SomePackage==<span class="number">1.0</span>
 
-#如
-$ [sudo] pip install Markdown
-#安装特定版本的<span class="package"><span class="keyword">package</span>
-#通过使用==, &gt;=, &lt;=, &gt;, &lt;来指定一个版本号。
-<span class="title">$</span> [<span class="title">sudo</span>] <span class="title">pip</span> <span class="title">install</span> '<span class="title">Markdown</span>&lt;2.0'
-<span class="title">$</span> [<span class="title">sudo</span>] <span class="title">pip</span> <span class="title">install</span> '<span class="title">Markdown</span>&gt;2.0,&lt;2.0.3'</span>
+<span class="comment">#如</span>
+$ [<span class="built_in">sudo</span>] pip install Markdown
+<span class="comment">#安装特定版本的package</span>
+<span class="comment">#通过使用==, &gt;=, &lt;=, &gt;, &lt;来指定一个版本号。</span>
+$ [<span class="built_in">sudo</span>] pip install <span class="string">'Markdown&lt;2.0'</span>
+$ [<span class="built_in">sudo</span>] pip install <span class="string">'Markdown&gt;2.0,&lt;2.0.3'</span>
 </pre></td></tr></table></figure>
 
 <p>列出安装的packages</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip freeze
 </pre></td></tr></table></figure>
 
 <p>显示包安装的文件</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">show</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">files</span> <span class="comment">SomePackage</span>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip show --files SomePackage
 </pre></td></tr></table></figure>
 
 <p>显示过期的包</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">list</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">outdated</span>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ [sudo] pip <span class="type">list</span> <span class="comment">--outdated</span>
 </pre></td></tr></table></figure>
 
 <p>升级包</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre><span class="comment">#升级包到当前最新的版本，可以使用</span><span class="literal">-</span><span class="comment">U</span> <span class="comment">或者</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span>
-<span class="comment">$</span> <span class="title">[</span><span class="comment">sudo</span><span class="title">]</span> <span class="comment">pip</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">upgrade</span> <span class="comment">SomePackage</span>
+</pre></td><td class="code"><pre><span class="comment">#升级包到当前最新的版本，可以使用-U 或者 --upgrade</span>
+$ [<span class="built_in">sudo</span>] pip install --upgrade SomePackage
 </pre></td></tr></table></figure>
 
 <p>卸载一个包</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip uninstall SomePackage
 </pre></td></tr></table></figure>
 
 <p>查询包</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip search <span class="string">"Markdown"</span>
 </pre></td></tr></table></figure>
 
 <blockquote>
 <p>包安装后的py文件路径：/usr/local/lib/python2.7/dist-packages  </p>
 </blockquote>
-<h3 id="-5b89-88c5-virtualenv">安装virtualenv</h3>
+<h3 id="安装virtualenv">安装virtualenv</h3>
 <p><a href="https://pypi.python.org/pypi/virtualenv" title="virtualenv" target="_blank">官网</a></p>
 <p>通过pip全局安装(如果pip&gt;1.3或者全局安装的话)</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>$ [<span class="built_in">sudo</span>] pip install virtualenv
 </pre></td></tr></table></figure>
 
 <p>安装Dev版本</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="variable">$ </span>[sudo] pip install <span class="symbol">https:</span>/<span class="regexp">/github.com/pypa</span><span class="regexp">/virtualenv/tarball</span><span class="regexp">/develop</span>
 </pre></td></tr></table></figure>
 
 <p>通过代码安装</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -233,14 +233,14 @@ $ python virtualenv<span class="preprocessor">.py</span> myVE
 <blockquote>
 <p>如果本地没有可用的<code>pip/setuptools/virtualenv</code> 发行包则<code>virtualenv.py</code>是不能用的。因为有一个和<code>virtualenv.py</code>在一起的有个完整的pip和setuptools的环境发行包的<code>virtualenv_support</code>文件夹，所以上面所有的操作都是支持的</p>
 </blockquote>
-<h3 id="-4f7f-7528-virtualenv">使用virtualenv</h3>
+<h3 id="使用virtualenv">使用virtualenv</h3>
 <p>基础用法</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="variable">$ </span>virtualenv <span class="constant">ENV</span> <span class="comment">#ENV为文件夹路径</span>
 </pre></td></tr></table></figure>
 
 <p>创建虚拟环境，分别会建立</p>
-<figure class="highlight lang-sh"><table><tr><td class="gutter"><pre>1
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 </pre></td><td class="code"><pre>ENV/<span class="keyword">lib</span>/pythonX.X/site-packages <span class="preprocessor">#libraries文件夹</span>
@@ -257,7 +257,7 @@ ENV/bin/pip <span class="preprocessor">#当前环境的pip，可用来安装包<
 <p>使用<code>%~dp0</code>替换<code>ENV\Scripts\(de)activate.bat</code>里的路径可能可以实现到处带着走</p>
 </blockquote>
 <p>如果使用<code>PowerShell</code>，则必须先设置<code>PowerShell</code>的权限才能运行</p>
-<figure class="highlight lang-dos"><table><tr><td class="gutter"><pre>1
+<figure class="highlight dos"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -287,6 +287,11 @@ and is <span class="flow">not</span> trusted on your system. Only run scripts fr
 
 #或者干脆删掉签名，直接运行。
 PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy <span class="comment">RemoteSigned</span>
+</pre></td></tr></table></figure>
+
+<p>一般python运行时会产生 .pyc 文件，挺讨厌的，可以设置如下环境变量</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="attribute">PYTHONDONTWRITEBYTECODE </span>=<span class="string"> x</span>
 </pre></td></tr></table></figure>
 
 <p>参考文章：<br><a href="http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html" target="_blank">http://www.cnblogs.com/harrychinese/archive/2012/01/09/use_virtualenv_on_windows.html</a></p>
@@ -375,7 +380,9 @@ PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy <span class="comment
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/python/">Python</a><small>1</small></li>
+    <li><a href="/categories/python/">Python</a><small>2</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
   
     <li><a href="/categories/original/">原创</a><small>1</small></li>
   
@@ -428,13 +435,19 @@ PS C:\&gt; <span class="keyword">Set</span>-ExecutionPolicy <span class="comment
   
     <li><a href="/tags/mysql/">mysql</a><small>1</small></li>
   
+    <li><a href="/tags/nodejs/">nodejs</a><small>1</small></li>
+  
+    <li><a href="/tags/npm/">npm</a><small>1</small></li>
+  
     <li><a href="/tags/opensfit/">opensfit</a><small>1</small></li>
   
     <li><a href="/tags/php/">php</a><small>1</small></li>
   
+    <li><a href="/tags/pip/">pip</a><small>1</small></li>
+  
     <li><a href="/tags/plugin/">plugin</a><small>2</small></li>
   
-    <li><a href="/tags/python/">python</a><small>1</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/seagate/">seagate</a><small>1</small></li>
   
